@@ -1,6 +1,6 @@
 @extends('layouts/contentLayoutMaster')
 
-@section('title', 'Events Lists')
+@section('title', $eventName)
 
 @section('vendor-style')
     {{-- Page Css files --}}
@@ -29,7 +29,7 @@
         <!-- list and filter start -->
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Events Lists</h4>
+                <h4 class="card-title">Registered Users Lists</h4>
                 {{-- <a href="{{ route('app-users-add') }}" class="col-md-2 btn btn-primary">Add Users
                 </a> --}}
             </div>
@@ -38,10 +38,10 @@
                     <table class="user-list-table table dt-responsive" id="users-table">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Start Date & Time</th>
-                                <th>End Date & Time</th>
-                                <th>Host Name</th>
+                                <th>Company Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Contact_person</th>
                                 <th>Address</th>
                                 <th></th>
                                 <th>Actions</th>
@@ -83,25 +83,25 @@
                 processing: true,
                 serverSide: true,
                 "lengthMenu": [10, 25, 50, 100, 200],
-                ajax: "{{ route('app-event-get-all') }}",
+                ajax: "{{ route('app-event-all-registers-users-lists', $id) }}",
                 columns: [{
-                        data: 'event_name',
-                        name: 'event_name'
+                        data: 'company_name',
+                        name: 'company_name'
                     },
 
                     {
-                        data: 'start_date',
-                        name: 'start_date'
+                        data: 'email',
+                        name: 'email'
                     },
 
                     {
-                        data: 'end_date',
-                        name: 'end_date'
+                        data: 'phone',
+                        name: 'phone'
                     },
 
                     {
-                        data: 'hostname',
-                        name: 'hostname'
+                        data: 'contact_person',
+                        name: 'contact_person'
                     },
 
 
@@ -111,8 +111,8 @@
                     },
 
                     {
-                        data: 'users',
-                        name: 'users'
+                        data: 'guests',
+                        name: 'guests'
                     },
 
 
@@ -149,7 +149,7 @@
                 buttonsStyling: false
             }).then(function(result) {
                 if (result.value) {
-                    window.location.href = '/app/event/destroy/' + id;
+                    window.location.href = '/app/event/registered/destroy/' + id;
                     Swal.fire({
                         icon: 'success',
                         title: 'Deleted!',
