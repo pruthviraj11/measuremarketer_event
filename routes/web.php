@@ -40,10 +40,23 @@ Route::get('/join_event', function () {
     return view('join_event');
 })->name('join_event');
 
+
+Route::get('/users_welcome', function () {
+    return view('users_welcome');
+})->name('users_welcome');
+
+
+
+Route::get('/users_login', function () {
+    return view('users_login');
+})->name('users_login');
+
 Route::post('event-registration', [EventRegisterController::class, 'store'])->name('event.register');
 
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/users_login', [LoginController::class, 'checkLogin'])->name('users_login');
+
 Route::post('/login', [LoginController::class, 'login']);
 Route::any('/logout', [LoginController::class, 'logout'])->name('logout');
 

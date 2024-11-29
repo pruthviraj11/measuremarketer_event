@@ -21,4 +21,13 @@ class EventRegister extends Model
      */
     protected $table = 'event_registers';
     protected $guarded = [];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($user) {
+            $user->password = bcrypt($user->password); // or Hash::make($user->password);
+        });
+    }
 }

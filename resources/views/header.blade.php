@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/favicon.png') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/fevicon.png') }}">
 
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/owl.carousel.min.css') }}">
@@ -28,9 +28,9 @@
 <body>
 
     <header>
-        <div class="header-area ">
+        <div class="header-area">
             <div id="sticky-header" class="main-header-area">
-                <div class="container">
+                <div class="container-fluid">
                     <div class="header_bottom_border">
                         <div class="row align-items-center">
                             <div class="col-xl-3 col-lg-3">
@@ -39,11 +39,10 @@
                                         <img class="logoImage" src="{{ asset('assets/img/optimize-logo.png') }}"
                                             alt="Logo">
                                     </a>
-
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6">
-                                <div class="main-menu  d-none d-lg-block">
+                                <div class="main-menu d-none d-lg-block">
                                     <nav>
                                         <ul id="navigation">
                                             <li><a href="{{ route('index') }}">Home</a></li>
@@ -58,15 +57,17 @@
                                     <div class="book_btn d-none d-lg-block">
                                         <a href="{{ route('join_event') }}" target="_blank">Join Event</a>
                                     </div>
+                                    <!-- Add the Login Button here -->
+                                    <div class="book_btn d-none d-lg-block">
+                                        <a href="{{ route('users_login') }}" target="_blank">Login</a>
+                                    </div>
                                 </div>
                             </div>
-
                             <div class="col-12">
                                 <div class="mobile_menu d-block d-lg-none"></div>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>

@@ -96,8 +96,14 @@
                             </div>
                             <!-- End Login Information -->
 
-                            <div class="col-md-12 form-group  text-center">
+                            <div class="col-md-12 form-group text-center">
                                 <button type="submit" class="button boxed-btn">Register</button>
+                            </div>
+
+                            <!-- Login Link -->
+                            <div class="col-md-12 text-center mt-3">
+                                <p class="text-white">Already have an account? <a href="{{ route('users_login') }}"
+                                        class="btn btn-link p-0 text-danger"><b>Login</b></a></p>
                             </div>
                         </div>
                     </form>
