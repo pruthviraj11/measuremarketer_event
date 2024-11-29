@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\EventRegisterController;
 use App\Http\Controllers\EventController;
 
 
@@ -39,8 +40,28 @@ Route::get('/join_event', function () {
     return view('join_event');
 })->name('join_event');
 
+
+Route::get('/users_welcome', function () {
+    return view('users_welcome');
+})->name('users_welcome');
+
+
+
+Route::get('/users_login', function () {
+    return view('users_login');
+})->name('users_login');
+
+
+Route::get('/password_request', function () {
+    return view('password_request');
+})->name('password_request');
+
+Route::post('event-registration', [EventRegisterController::class, 'store'])->name('event.register');
+
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/users_login', [LoginController::class, 'checkLogin'])->name('users_login');
+
 Route::post('/login', [LoginController::class, 'login']);
 Route::any('/logout', [LoginController::class, 'logout'])->name('logout');
 
