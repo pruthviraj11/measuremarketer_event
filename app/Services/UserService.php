@@ -3,7 +3,6 @@ namespace App\Services;
 use App\Repositories\UserRepository;
 
 class UserService
-
 {
     protected UserRepository $userRepository;
 
@@ -31,9 +30,9 @@ class UserService
         $deleted = $this->userRepository->delete($id);
         return $deleted;
     }
-    public function updateUser($id,$userData)
+    public function updateUser($id, $userData)
     {
-        $updated = $this->userRepository->update($id,$userData);
+        $updated = $this->userRepository->update($id, $userData);
         return $updated;
     }
 
