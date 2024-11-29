@@ -22,9 +22,13 @@ use App\Http\Controllers\AuthenticationController;
 */
 
 // Main Page Route
-Route::get('/', function () {
+Route::get('/admin', function () {
     return redirect('/login');
 });
+
+Route::get('/', function () {
+    return view('index');
+})->name('index');
 
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
