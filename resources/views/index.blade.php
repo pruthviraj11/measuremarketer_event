@@ -77,8 +77,8 @@
                              MARKETERS’</span>
                          <h3 class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".4s">Measurement Summit
                              2024</h3>
-                         <div>
-                             <a href="{{ route('join_event') }}"><button class="join_btn">join event</button></a>
+                         <div class="text-center">
+                             <a href="{{ route('join_event') }}"><button class="join_btn">Book Your Tickets</button></a>
                          </div>
                      </div>
                  </div>

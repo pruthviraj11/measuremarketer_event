@@ -42,17 +42,23 @@
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6">
-                                <div class="main-menu d-none d-lg-block">
+                                <div class="main-menu d-none d-lg-block text-center">
                                     <nav>
-                                        <ul id="navigation">
-                                            <li><a href="{{ route('index') }}">Home</a></li>
-                                            <li><a href="{{ route('index') }}">Summit Highlights</a></li>
-                                            <li><a href="{{ route('index') }}">Summit Venue</a></li>
-                                        </ul>
+
+                                        <div class="buy_tkt">
+                                            {{-- <div class="book_btn d-none d-lg-block">
+                                                <a href="{{ route('join_event') }}" target="_blank">Join Event</a>
+                                            </div> --}}
+                                            <!-- Add the Login Button here -->
+                                            <div class="book_btn d-none d-lg-block">
+                                                <a href="{{ route('users_login') }}" target="_blank">Login</a>
+                                            </div>
+                                        </div>
+
                                     </nav>
                                 </div>
                             </div>
-                            <div class="col-xl-3 col-lg-3 d-none d-lg-block">
+                            {{-- <div class="col-xl-3 col-lg-3 d-none d-lg-block">
                                 <div class="buy_tkt">
                                     <div class="book_btn d-none d-lg-block">
                                         <a href="{{ route('join_event') }}" target="_blank">Join Event</a>
@@ -62,7 +68,7 @@
                                         <a href="{{ route('users_login') }}" target="_blank">Login</a>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="col-12">
                                 <div class="mobile_menu d-block d-lg-none"></div>
                             </div>

@@ -4,17 +4,44 @@
 
 /* Make the form background transparent */
 .registration-form {
-    background-color: rgba(0, 0, 0, 0.5); /* Black with 50% opacity */
+    background-color: rgba(0, 0, 0, 0.6);
+    /* Black with 50% opacity */
     padding: 30px;
     border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Optional: add some shadow for better visibility */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    /* Optional: add some shadow for better visibility */
 }
 
 
-
 .form-control {
-    background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent background for form inputs */
+    background-color: rgba(255, 255, 255, 0.9);
+    /* Slightly transparent background for form inputs */
     border: 1px solid #ccc;
     color: #333;
 }
 
+.login_btn {
+    font-size: 20px !important;
+}
+
+.form-contact .form-control {
+    color: #fff;
+}
+
+.boxed-btn {
+    background: linear-gradient(90deg, #e91a83 0%, #4c24c1 51%, #e91a83 100%) !important;
+    color: #fff !important;
+    font-size: 22px;
+    padding: 10px 80px;
+    text-transform: uppercase;
+    font-family: inherit;
+    font-size: 31px;
+    border: transparent !important;
+    border-radius: 40px;
+}
+
+.boxed-btn:hover {
+    /* background: linear-gradient(90deg, #4c24c1 0%, #e91a83 20%, #4c24c1 100%) !important; */
+    background: #e91a83 !important;
+
+}

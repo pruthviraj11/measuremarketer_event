@@ -5,9 +5,9 @@
         <div class="container d-flex justify-content-center align-items-center">
             <div class="row justify-content-center w-100">
                 <div class="col-xl-6 col-lg-8 col-md-10 col-sm-12">
-                   <div class="slider_text text-left">
+                    {{-- <div class="slider_text text-left">
                         <center><span class="">Login</span></center>
-                    </div>
+                    </div> --}}
 
                     <!-- Success and Error Messages -->
                     @if (session('success'))
@@ -50,7 +50,7 @@
                                 </div>
 
                                 <div class="col-md-12 form-group text-center">
-                                    <button type="submit" class="button boxed-btn">Login</button>
+                                    <button type="submit" class="button boxed-btn login_btn">Login</button>
                                 </div>
 
                                 <!-- Forgot Password Link -->
