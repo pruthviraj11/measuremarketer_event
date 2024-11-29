@@ -5,7 +5,7 @@
         <div class="container d-flex justify-content-center align-items-center">
             <div class="row justify-content-center w-100">
                 <div class="col-xl-6 col-lg-8 col-md-10 col-sm-12">
-                   <div class="slider_text text-left">
+                    <div class="slider_text text-left">
                         <center><span class="">Login</span></center>
                     </div>
 
@@ -25,7 +25,7 @@
                             </ul>
                         </div>
                     @endif
-
+                    
                     <!-- Form -->
                     <div class="d-flex justify-content-center align-items-center">
                         <form action="{{ route('users_login') }}" method="POST" enctype="multipart/form-data"
