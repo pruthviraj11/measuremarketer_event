@@ -138,9 +138,20 @@ class EventController extends Controller
 
 
         return DataTables::of($registered)->addColumn('company_name', function ($row) {
-            return $row->company_name;
-        })->addColumn('company_name', function ($row) {
-            return $row->company_name;
+
+            if (!empty($row->profile_image)) {
+
+                $imageUrl = asset($row->profile_image);
+                $UserImage = "<img src='{$imageUrl}' alt='Client Photo' width='50' height='50' style='border-radius: 10px;' class='clientImage'/>";
+            } else {
+                $UserImage = "<img src='' alt='No Image' width='50' height='50' style='border-radius: 10px;' class='clientImage'/>";
+            }
+            $UserImage;
+
+            return $UserImage . '</br>' . $row->company_name;
+
+
+
         })->addColumn('email', function ($row) {
             return $row->email;
 
@@ -172,7 +183,7 @@ class EventController extends Controller
             $deleteButton = "<a data-bs-toggle='tooltip' title='Delete' data-bs-delay='400' class='btn btn-danger confirm-delete' data-idos='.$encryptedId' id='confirm-color  href='" . route('app-users-destroy', $encryptedId) . "'><i data-feather='trash-2'></i></a>";
 
             return $deleteButton;
-        })->rawColumns(['event_name', 'start_date', 'end_date', 'hostname', 'address', 'guests', 'actions'])->make(true);
+        })->rawColumns(['company_name', 'email', 'phone', 'contact_person', 'address', 'guests', 'actions'])->make(true);
     }
 
 

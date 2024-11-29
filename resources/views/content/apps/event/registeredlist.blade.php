@@ -38,6 +38,7 @@
                     <table class="user-list-table table dt-responsive" id="users-table">
                         <thead>
                             <tr>
+
                                 <th>Company Name</th>
                                 <th>Email</th>
                                 <th>Phone</th>
