@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/slicknav.css') }}">
 
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/welcome.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/joinNow.css') }}">
 </head>
 
@@ -30,10 +31,10 @@
     <header>
         <div class="header-area">
             <div id="sticky-header" class="main-header-area">
-                <div class="container-fluid">
+                <div class="container">
                     <div class="header_bottom_border">
                         <div class="row align-items-center">
-                            <div class="col-xl-3 col-lg-3">
+                            <div class="col-xl-6 col-lg-6">
                                 <div class="logo">
                                     <a href="{{ route('index') }}">
                                         <img class="logoImage" src="{{ asset('assets/img/optimize-logo.png') }}"
@@ -41,34 +42,43 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="col-xl-6 col-lg-6">
-                                <div class="main-menu d-none d-lg-block text-center">
-                                    <nav>
 
-                                        <div class="buy_tkt">
-                                            {{-- <div class="book_btn d-none d-lg-block">
-                                                <a href="{{ route('join_event') }}" target="_blank">Join Event</a>
-                                            </div> --}}
-                                            <!-- Add the Login Button here -->
-                                            <div class="book_btn d-none d-lg-block">
-                                                <a href="{{ route('users_login') }}" target="_blank">Login</a>
-                                            </div>
+                            <div class="col-xl-6 col-lg-6 d-none d-lg-block">
+                                <div class="buy_tkt">
+                                    <!-- Join Event button (always visible) -->
+
+                                    @if (Session::has('user'))
+                                        <!-- Check if user session exists -->
+                                        <!-- My Account button (for logged-in users) -->
+                                        <div class="book_btn d-none d-lg-block">
+                                            <a href="#" target="_blank">My Account</a>
                                         </div>
 
-                                    </nav>
+                                        <!-- Logout button (for logged-in users) -->
+                                        <div class="book_btn d-none d-lg-block">
+                                            <a href="{{ route('userlogout') }}" target="_blank"
+                                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                                        </div>
+
+                                        <!-- Logout form for CSRF protection -->
+                                        <form id="logout-form" action="{{ route('userlogout') }}" method="POST"
+                                            style="display: none;">
+                                            @csrf
+                                        </form>
+                                    @else
+                                        {{-- <div class="book_btn d-none d-lg-block">
+                                            <a href="{{ route('join_event') }}" target="_blank">Join Event</a>
+                                        </div> --}}
+
+                                        <!-- Login button (for users not logged in) -->
+                                        <div class="book_btn d-none d-lg-block">
+                                            <a href="{{ route('users_login') }}" target="_blank">Login</a>
+                                        </div>
+                                    @endif
+
                                 </div>
                             </div>
-                            {{-- <div class="col-xl-3 col-lg-3 d-none d-lg-block">
-                                <div class="buy_tkt">
-                                    <div class="book_btn d-none d-lg-block">
-                                        <a href="{{ route('join_event') }}" target="_blank">Join Event</a>
-                                    </div>
-                                    <!-- Add the Login Button here -->
-                                    <div class="book_btn d-none d-lg-block">
-                                        <a href="{{ route('users_login') }}" target="_blank">Login</a>
-                                    </div>
-                                </div>
-                            </div> --}}
+
                             <div class="col-12">
                                 <div class="mobile_menu d-block d-lg-none"></div>
                             </div>
@@ -77,4 +87,5 @@
                 </div>
             </div>
         </div>
+        
     </header>

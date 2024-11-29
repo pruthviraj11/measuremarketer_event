@@ -64,6 +64,7 @@ Route::post('/users_login', [LoginController::class, 'checkLogin'])->name('users
 
 Route::post('/login', [LoginController::class, 'login']);
 Route::any('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::any('/userlogout', [LoginController::class, 'userlogout'])->name('userlogout');
 
 // Forgot Password routes
 Route::get('/password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
@@ -134,8 +135,19 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
     Route::get('event/list', [EventController::class, 'index'])->name('app-event-list');
     Route::get('event/getAll', [EventController::class, 'getAll'])->name('app-event-get-all');
     Route::get('event/destroy/{encrypted_id}', [EventController::class, 'destroy'])->name('app-event-destroy');
+    Route::get('event/registered/{encrypted_id}', [EventController::class, 'UserRegistered'])->name('app-event-registers-users');
+    Route::get('event/registered/getAllRegistered/{encrypted_id}', action: [EventController::class, 'getAllRegistered'])->name('app-event-all-registers-users-lists');
+    Route::get('event/registered/destroy/{encrypted_id}', [EventController::class, 'RegisteredUserDestroy'])->name('app-event-user-registered-destroy');
+
+
+    Route::get('event/guests/{encrypted_id}', [EventController::class, 'RegisteredGuests'])->name('app-event-registers-guests');
+    Route::get('event/guests/getAllRegisteredGuests/{encrypted_id}', action: [EventController::class, 'getAllRegisteredGuests'])->name('app-event-all-registers-guests-lists');
+
+
+
 
     // Route::get('event/add', [EventController::class, 'create'])->name('app-event-add');
+
     // Route::post('event/store', [EventController::class, 'store'])->name('app-event-store');
     // Route::get('event/edit/{encrypted_id}', [EventController::class, 'edit'])->name('app-event-edit');
     // Route::put('event/update/{encrypted_id}', [EventController::class, 'update'])->name('app-event-update');

@@ -50,7 +50,6 @@ class EventController extends Controller
      */
     public function index()
     {
-
         return view('content.apps.event.list');
     }
 
@@ -58,7 +57,6 @@ class EventController extends Controller
     public function getAll()
     {
         $events = $this->eventService->getAllEvents();
-
 
         return DataTables::of($events)->addColumn('event_name', function ($row) {
             return $row->name;
@@ -77,12 +75,16 @@ class EventController extends Controller
         })->addColumn('users', function ($row) {
 
             $encryptedId = encrypt($row->id);
-            $RegisteredLists = "<a data-bs-toggle='tooltip' title='Edit' data-bs-delay='400' class='btn btn-primary'  href='" . route('app-users-edit', $encryptedId) . "'>View Registered</a>";
+            $countUsers = $this->eventService->CountUsers($row->id);
+
+            $RegisteredLists = "<a data-bs-toggle='tooltip' title='View Registered' data-bs-delay='400' class='btn btn-primary'  href='" . route('app-event-registers-users', $encryptedId) . "'>$countUsers </br>Registered </a>";
 
             return $RegisteredLists;
 
         })->addColumn('actions', function ($row) {
             $encryptedId = encrypt($row->id);
+
+
 
             // Delete Button
             $deleteButton = "<a data-bs-toggle='tooltip' title='Delete' data-bs-delay='400' class='btn btn-danger confirm-delete' data-idos='.$encryptedId' id='confirm-color  href='" . route('app-users-destroy', $encryptedId) . "'><i data-feather='trash-2'></i></a>";
@@ -114,4 +116,151 @@ class EventController extends Controller
             return redirect()->route("app-event-list")->with('error', 'Error while editing Events');
         }
     }
+
+
+    /*------  View Registerd User Section --------*/
+    public function UserRegistered($encrypted_id)
+    {
+        $id = decrypt($encrypted_id);
+        $eventInfo = $this->eventService->getEvent($id);
+        $eventName = $eventInfo->name;
+
+        return view('content.apps.event.registeredlist', compact('eventName', 'id'));
+    }
+
+
+    /*------------ Registerd User Lists -------*/
+    public function getAllRegistered($eventId)
+    {
+        $id = $eventId;
+
+        $registered = $this->eventService->getAllRegistered($id);
+
+
+        return DataTables::of($registered)->addColumn('company_name', function ($row) {
+            return $row->company_name;
+        })->addColumn('company_name', function ($row) {
+            return $row->company_name;
+        })->addColumn('email', function ($row) {
+            return $row->email;
+
+        })->addColumn('phone', function ($row) {
+            return $row->phone;
+
+        })->addColumn('contact_person', function ($row) {
+            return $row->contact_person;
+        })->addColumn('address', function ($row) {
+            return $row->address;
+        })->addColumn('guests', function ($row) {
+
+            $encryptedId = encrypt($row->id);
+
+            $userId = $row->id;
+            $eventId = $row->event_id;
+
+            $countUsers = $this->eventService->CountUserGuests($userId, $eventId);
+
+
+            $RegisteredLists = "<a data-bs-toggle='tooltip' title='View Guests' data-bs-delay='400' class='btn btn-primary'  href='" . route('app-event-registers-guests', $encryptedId) . "'>$countUsers </br> Guests</a>";
+
+            return $RegisteredLists;
+
+        })->addColumn('actions', function ($row) {
+            $encryptedId = encrypt($row->id);
+
+            // Delete Button
+            $deleteButton = "<a data-bs-toggle='tooltip' title='Delete' data-bs-delay='400' class='btn btn-danger confirm-delete' data-idos='.$encryptedId' id='confirm-color  href='" . route('app-users-destroy', $encryptedId) . "'><i data-feather='trash-2'></i></a>";
+
+            return $deleteButton;
+        })->rawColumns(['event_name', 'start_date', 'end_date', 'hostname', 'address', 'guests', 'actions'])->make(true);
+    }
+
+
+
+    /*--------------  Event Registerd User Delete ---------*/
+    public function RegisteredUserDestroy($encrypted_id)
+    {
+        try {
+            $id = decrypt($encrypted_id);
+
+            $registeredUser = $this->eventService->getUserRegistered($id);
+
+            $eventId = encrypt($registeredUser->event_id);
+
+
+            $deleted = $this->eventService->deleteRegisteredUser($id);
+            if (!empty($deleted)) {
+                return redirect()->route("app-event-registers-users", $eventId)->with('success', 'Registered User Deleted Successfully');
+            } else {
+                return redirect()->back()->with('error', 'Error while Deleting Registered User');
+            }
+        } catch (\Exception $error) {
+            return redirect()->route("app-event-registers-users", $eventId)->with('error', 'Error while editing Registered User');
+        }
+    }
+
+
+    /*-------  Registered Guest information -----------*/
+
+    public function RegisteredGuests($encrypted_id)
+    {
+        $id = decrypt($encrypted_id);
+        $registredInfo = $this->eventService->getUserRegistered($id);
+
+        $userId = $registredInfo->id;
+        $eventId = $registredInfo->event_id;
+
+        $eventInfo = $this->eventService->getEvent($eventId);
+        $eventName = $eventInfo->name;
+
+        $registeredUser = $registredInfo->company_name;
+
+        // $users = $this->eventService->getUserGuests($userId, $eventId);
+        //$eventInfo = $this->eventService->getEvent($id);
+        // $eventName = $eventInfo->name;
+
+
+
+        return view('content.apps.event.registered_user_list', compact('eventName', 'registeredUser', 'id', 'eventId'));
+    }
+
+
+    /*------  Registered User Guest Details ---*/
+    public function getAllRegisteredGuests($id)
+    {
+        $registredInfo = $this->eventService->getUserRegistered($id);
+
+        $userId = $registredInfo->id;
+        $eventId = $registredInfo->event_id;
+
+        $guests = $this->eventService->getUserGuests($userId, $eventId);
+
+        return DataTables::of($guests)->addColumn('name', function ($row) {
+            return $row->name;
+        })->addColumn('name', function ($row) {
+            return $row->name;
+        })->addColumn('phone', function ($row) {
+            return $row->phone;
+
+        })->addColumn('email', function ($row) {
+            return $row->email;
+
+        })->rawColumns(['name', 'phone', 'email'])->make(true);
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
