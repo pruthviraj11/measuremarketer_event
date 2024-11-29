@@ -30,6 +30,10 @@ Route::get('/', function () {
     return view('index');
 })->name('index');
 
+Route::get('/join_event', function () {
+    return view('join_event');
+})->name('join_event');
+
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
