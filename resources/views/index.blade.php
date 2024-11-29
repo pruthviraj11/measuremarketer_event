@@ -1,6 +1,6 @@
  @include('header')
  <!-- slider_area_start -->
- <div class="slider_area">
+ {{-- <div class="slider_area">
      <div class="single_slider  d-flex align-items-center slider_bg_1 overlay pt-5">
          <div class="container">
              <div class="row align-items-center justify-content-center">
@@ -59,10 +59,67 @@
 
 
 
+ </div> --}}
+
+ <div class="slider_area">
+     <div class="single_slider  d-flex align-items-center slider_bg_1 overlay">
+         <div class="container">
+             <div class="row align-items-center justify-content-center">
+                 <div class="col-xl-12">
+                     <div class="slider_text text-left"> <!-- Change text-center to text-left -->
+                         <div class="shape_1 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">
+                             <img src="img/shape/shape_1.svg" alt="">
+                         </div>
+                         <div class="shape_2 wow fadeInDown" data-wow-duration="1s" data-wow-delay=".2s">
+                             <img src="img/shape/shape_2.svg" alt="">
+                         </div>
+                         <span class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".3s">FOR ‘PERFORMANCE
+                             MARKETERS’</span>
+                         <h3 class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".4s">Measurement Summit
+                             2024</h3>
+                         <div>
+                             <a href="{{ route('join_event') }}"><button class="join_btn">join event</button></a>
+                         </div>
+                     </div>
+                 </div>
+
+
+             </div>
+         </div>
+     </div>
  </div>
 
+ <section class="timer_background">
+     <div class="container pt-5">
+         <div class="row text-white">
+             <div class="col-md-8 mx-auto count_main_div">
+                 <div class="countdown-container">
+                     <div class="countdown-item">
+                         <span class="countdown-number" id="days">15</span>
+                         <span class="countdown-label">Days</span>
+                     </div>
+                     <span class="colon">:</span>
+                     <div class="countdown-item">
+                         <span class="countdown-number" id="hours">08</span>
+                         <span class="countdown-label">Hours</span>
+                     </div>
+                     <span class="colon">:</span>
+                     <div class="countdown-item timer-section">
+                         <span class="countdown-number" id="minutes">06</span>
+                         <span class="countdown-label">Minutes</span>
+                     </div>
+                     <span class="colon">:</span>
+                     <div class="countdown-item">
+                         <span class="countdown-number " id="seconds">25</span>
+                         <span class="countdown-label ">Seconds</span>
+                     </div>
+                 </div>
 
+             </div>
 
+         </div>
+     </div>
+ </section>
  <!-- slider_area_end -->
  <!-- performar_area_start  -->
  {{-- <div class="performar_area black_bg">
