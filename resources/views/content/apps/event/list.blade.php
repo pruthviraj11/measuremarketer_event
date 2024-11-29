@@ -41,8 +41,9 @@
                                 <th>Name</th>
                                 <th>Start Date & Time</th>
                                 <th>End Date & Time</th>
-                                <th>HostName</th>
+                                <th>Host Name</th>
                                 <th>Address</th>
+                                <th></th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -87,17 +88,15 @@
                         data: 'event_name',
                         name: 'event_name'
                     },
-                    {
-                        data: 'description',
-                        name: 'description'
-                    },
+
                     {
                         data: 'start_date',
                         name: 'start_date'
                     },
+
                     {
                         data: 'end_date',
-                        name: 'end_time'
+                        name: 'end_date'
                     },
 
                     {
@@ -105,10 +104,17 @@
                         name: 'hostname'
                     },
 
+
                     {
                         data: 'address',
                         name: 'address'
                     },
+
+                    {
+                        data: 'users',
+                        name: 'users'
+                    },
+
 
                     {
                         data: 'actions',
@@ -143,7 +149,7 @@
                 buttonsStyling: false
             }).then(function(result) {
                 if (result.value) {
-                    window.location.href = '/app/users/destroy/' + id;
+                    window.location.href = '/app/event/destroy/' + id;
                     Swal.fire({
                         icon: 'success',
                         title: 'Deleted!',

@@ -3,8 +3,24 @@ namespace App\Repositories;
 
 use App\Models\User;
 
-class UserRepository
+use App\Models\Event;
+
+
+
+class EventRepository
 {
+
+    public function getAll()
+    {
+        return Event::all();
+    }
+
+    public function delete($id)
+    {
+        return Event::where('id', $id)->delete();
+    }
+
+
     public function find($id)
     {
         return User::find($id);
@@ -20,12 +36,6 @@ class UserRepository
         return User::where('id', $id)->update($data);
     }
 
-    public function delete($id)
-    {
-        return User::where('id', $id)->delete();
-    }
-    public function getAll()
-    {
-        return User::all();
-    }
+
+
 }
