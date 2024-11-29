@@ -6,7 +6,7 @@
             <div class="row justify-content-center w-100">
                 <div class="col-xl-6 col-lg-8 col-md-10 col-sm-12">
                    <div class="slider_text text-left">
-                        <center><span class="">Login</span></center>
+                        <center><span class="">Password reset</span></center>
                     </div>
 
                     <!-- Success and Error Messages -->
@@ -40,22 +40,14 @@
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="col-sm-12 form-group">
-                                    <label class="text-white" for="pass">Password</label>
-                                    <input type="password" name="password" class="form-control" id="pass"
-                                        placeholder="Enter your password." required>
-                                    @error('password')
-                                        <div class="text-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
+                               
 
                                 <div class="col-md-12 form-group text-center">
-                                    <button type="submit" class="button boxed-btn">Login</button>
+                                    <button type="submit" class="button boxed-btn">Send Link</button>
                                 </div>
 
-                                <!-- Forgot Password Link -->
                                 <div class="col-md-12 text-center">
-                                    <a href="{{ route('password_request') }}" class="text-white">Forgot Password?</a>
+                                    <a href="{{ route('users_login') }}" class="text-white">Login</a>
                                 </div>
                             </div>
                         </form>

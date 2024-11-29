@@ -51,6 +51,11 @@ Route::get('/users_login', function () {
     return view('users_login');
 })->name('users_login');
 
+
+Route::get('/password_request', function () {
+    return view('password_request');
+})->name('password_request');
+
 Route::post('event-registration', [EventRegisterController::class, 'store'])->name('event.register');
 
 Route::post('/login', [LoginController::class, 'login'])->name('login');
