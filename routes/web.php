@@ -115,7 +115,7 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
     //Event start
     Route::get('event/list', [EventController::class, 'index'])->name('app-event-list');
     Route::get('event/getAll', [EventController::class, 'getAll'])->name('app-event-get-all');
-
+    Route::get('event/destroy/{encrypted_id}', [EventController::class, 'destroy'])->name('app-event-destroy');
 
     // Route::get('event/add', [EventController::class, 'create'])->name('app-event-add');
     // Route::post('event/store', [EventController::class, 'store'])->name('app-event-store');
