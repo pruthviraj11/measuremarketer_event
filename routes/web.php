@@ -6,6 +6,11 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\EventController;
+
+
+
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthenticationController;
 
@@ -99,6 +104,23 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
     Route::get('users/destroy/{encrypted_id}', [UsersController::class, 'destroy'])->name('app-users-destroy');
     Route::get('users/getAll', [UsersController::class, 'getAll'])->name('app-users-get-all');
     //User End
+
+    //Event start
+    Route::get('event/list', [EventController::class, 'index'])->name('app-event-list');
+    Route::get('event/getAll', [EventController::class, 'getAll'])->name('app-event-get-all');
+
+
+    // Route::get('event/add', [EventController::class, 'create'])->name('app-event-add');
+    // Route::post('event/store', [EventController::class, 'store'])->name('app-event-store');
+    // Route::get('event/edit/{encrypted_id}', [EventController::class, 'edit'])->name('app-event-edit');
+    // Route::put('event/update/{encrypted_id}', [EventController::class, 'update'])->name('app-event-update');
+    // Route::get('event/destroy/{encrypted_id}', [EventController::class, 'destroy'])->name('app-event-destroy');
+
+    //Event End
+
+
+
+
 
 });
 /* Route Apps */
