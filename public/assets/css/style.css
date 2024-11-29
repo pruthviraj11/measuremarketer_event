@@ -6012,16 +6012,27 @@ h6 {
 .colon {
     font-weight: bold;
     font-size: 40px;
+    color: #fff;
 }
 
-.count_main_div {
-    padding-top: 100px !important;
+
+.count_left_text h3 {
+    font-family: "DM Sans", Sans-serif;
+    font-size: 51px;
+    color: #fff;
+    line-height: 1.1;
+    letter-spacing: 1px;
+    font-weight: bold;
 }
 
 
 @media(max-width:768px) {
     .count_main_div {
         padding-top: 0px !important;
+    }
+
+    .count_left_text h3 {
+        font-size: 23px;
     }
 
     .countdown-container {
@@ -6045,4 +6056,8 @@ h6 {
     .colon {
         font-size: 19px;
     }
+}
+
+.timer_background {
+    background-color: rgb(10, 14, 19);
 }

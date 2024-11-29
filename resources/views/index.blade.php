@@ -90,9 +90,14 @@
  </div>
 
  <section class="timer_background">
-     <div class="container pt-5">
-         <div class="row text-white">
-             <div class="col-md-8 mx-auto count_main_div">
+     <div class="container py-5">
+         <div class="row d-flex align-items-center">
+             <div class="col-md-6 text-white count_left_text">
+                 <h3>
+                     Learn How Tracking Changes the Whole Marketing Game
+                 </h3>
+             </div>
+             <div class="col-md-6 mx-auto count_main_div">
                  <div class="countdown-container">
                      <div class="countdown-item">
                          <span class="countdown-number" id="days">15</span>
