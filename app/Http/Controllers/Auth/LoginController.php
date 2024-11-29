@@ -49,6 +49,13 @@ class LoginController extends Controller
         return redirect()->route('login');
     }
 
+
+    public function userlogout(Request $request)
+    {
+        $this->performLogout($request);
+        return redirect()->route('users_login');
+    }
+
     public function checkLogin(Request $request)
     {
         // Validate the input data
@@ -62,6 +69,9 @@ class LoginController extends Controller
 
         // If user is found and password matches
         if ($user && Hash::check($request->password, $user->password)) {
+            // Store user data in the session
+            session(['user' => $user]);
+
             // Successful login, redirect to the welcome page
             return redirect()->route('users_welcome');
         }
@@ -71,5 +81,6 @@ class LoginController extends Controller
             'email' => 'The provided credentials are incorrect.',
         ]);
     }
+
 
 }

@@ -64,6 +64,7 @@ Route::post('/users_login', [LoginController::class, 'checkLogin'])->name('users
 
 Route::post('/login', [LoginController::class, 'login']);
 Route::any('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::any('/userlogout', [LoginController::class, 'userlogout'])->name('userlogout');
 
 // Forgot Password routes
 Route::get('/password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
