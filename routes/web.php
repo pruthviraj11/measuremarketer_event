@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\EventRegisterController;
 use App\Http\Controllers\EventController;
 
 
@@ -38,6 +39,8 @@ Route::get('/', function () {
 Route::get('/join_event', function () {
     return view('join_event');
 })->name('join_event');
+
+Route::post('event-registration', [EventRegisterController::class, 'store'])->name('event.register');
 
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');

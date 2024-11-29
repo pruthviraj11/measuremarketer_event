@@ -2,9 +2,19 @@
     padding-top: 200px;
 }
 
-.submitjoin button{
-    align-items: center;
-    display: flex;
-    text-align: center;
-    flex-direction: column;
+/* Make the form background transparent */
+.registration-form {
+    background-color: rgba(0, 0, 0, 0.5); /* Black with 50% opacity */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Optional: add some shadow for better visibility */
 }
+
+
+
+.form-control {
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent background for form inputs */
+    border: 1px solid #ccc;
+    color: #333;
+}
+

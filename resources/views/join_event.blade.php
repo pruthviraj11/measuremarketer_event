@@ -3,82 +3,106 @@
 <div class="slider_area">
     <div class="single_slider mt-199 slider_bg_1 overlay">
         <div class="container">
-            <div class="row ">
+            <div class="row">
                 <div class="col-xl-12">
-                    <div class="slider_text text-left"> <!-- Changed to text-left -->
-                        <div class="shape_1 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">
-                            <img src="img/shape/shape_1.svg" alt="">
-                        </div>
-                        <div class="shape_2 wow fadeInDown" data-wow-duration="1s" data-wow-delay=".2s">
-                            <img src="img/shape/shape_2.svg" alt="">
-                        </div>
+                    <div class="slider_text text-left">
                         <center><span class="">Registration</span></center>
                     </div>
                 </div>
-                <div class="mt-3">
-                    <form>
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+                <div class="mt-1">
+                    <form action="{{ route('event.register') }}" method="POST" enctype="multipart/form-data"
+                        class="registration-form">
+                        @csrf
                         <div class="row">
+
+                            <!-- Personal Information -->
+                            <div class="col-12 mt-4">
+                                <h4 class="text-white">Personal Information</h4>
+                            </div>
                             <div class="col-sm-6 form-group">
                                 <label class="text-white" for="company_name">Company Name</label>
                                 <input type="text" class="form-control" name="company_name" id="company_name"
-                                    placeholder="Enter your Company Name Name." required>
+                                    placeholder="Enter your Company Name." required>
+                                @error('company_name')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
-                            
                             <div class="col-sm-6 form-group">
                                 <label class="text-white" for="contact_person">Contact Person</label>
                                 <input type="text" class="form-control" name="contact_person" id="contact_person"
                                     placeholder="Enter your contact Person Name." required>
-                            </div>
-                           
-                            <div class="col-sm-6 form-group">
-                                <label class="text-white" for="email">Email</label>
-                                <input type="email" class="form-control" name="email" id="email"
-                                    placeholder="Enter your email." required>
+                                @error('contact_person')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="col-sm-6 form-group">
                                 <label class="text-white" for="address-1">Address</label>
-                                <input type="address" class="form-control" name="Locality" id="address-1"
+                                <input type="text" class="form-control" name="address-1" id="address-1"
                                     placeholder="Locality/House/Street no." required>
-                            </div>
-
-                            <div class="col-sm-6 form-group">
-                                <label class="text-white" for="Date">Date Of Birth</label>
-                                <input type="Date" name="dob" class="form-control" id="Date" placeholder=""
-                                    required>
-                            </div>
-                            <div class="col-sm-6 form-group">
-                                <label class="text-white" for="sex">Gender</label>
-                                <select id="sex" class="form-control browser-default custom-select">
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
-                                    <option value="unspesified">Unspecified</option>
-                                </select>
+                                @error('address-1')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="col-sm-6 form-group">
                                 <label class="text-white" for="tel">Phone</label>
                                 <input type="tel" name="phone" class="form-control" id="tel"
                                     placeholder="Enter Your Contact Number." required>
+                                @error('phone')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label class="text-white" for="profile_image">Profile Image</label>
+                                <input type="file" name="profile_image" class="form-control" id="profile_image"
+                                    accept="image/*">
+                                @error('profile_image')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <!-- End Personal Information -->
+
+                            <!-- Login Information -->
+                            <div class="col-12">
+                                <h4 class="text-white">Login Information</h4>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label class="text-white" for="email">Email</label>
+                                <input type="email" class="form-control" name="email" id="email"
+                                    placeholder="Enter your email." required>
+                                @error('email')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="col-sm-6 form-group">
                                 <label class="text-white" for="pass">Password</label>
-                                <input type="Password" name="password" class="form-control" id="pass"
+                                <input type="password" name="password" class="form-control" id="pass"
                                     placeholder="Enter your password." required>
+                                @error('password')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="col-sm-6 form-group">
                                 <label class="text-white" for="pass2">Confirm Password</label>
-                                <input type="Password" name="cnf-password" class="form-control" id="pass2"
+                                <input type="password" name="password_confirmation" class="form-control" id="pass2"
                                     placeholder="Re-enter your password." required>
+                                @error('password_confirmation')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
-                            <div class="col-md-12 form-group mt-5 text-center">
-                                <button type="submit" class="button boxed-btn">Registration</button>
+                            <!-- End Login Information -->
+
+                            <div class="col-md-12 form-group  text-center">
+                                <button type="submit" class="button boxed-btn">Register</button>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
-
-
-
         </div>
     </div>
 </div>
