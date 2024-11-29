@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- <link rel="manifest" href="site.webmanifest"> -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/favicon.png') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/fevicon.png') }}">
     <!-- Place favicon.ico in the root directory -->
 
     <!-- CSS here -->
@@ -43,7 +43,8 @@
                             <div class="col-xl-3 col-lg-3">
                                 <div class="logo">
                                     <a href="index.html">
-                                        <img src="img/logo.png" alt="">
+                                        {{-- <img height="57" width="163"
+                                            src="{{ asset('assets/img/optimize-logo.png') }}" alt=""> --}}
                                     </a>
                                 </div>
                             </div>
@@ -52,23 +53,10 @@
                                     <nav>
                                         <ul id="navigation">
                                             <li><a href="index.html">home</a></li>
-                                            <li><a href="performer.html">Performer</a></li>
+                                            <li><a href="performer.html">Summit Highlights</a></li>
 
-                                            <li><a href="#">pages <i class="ti-angle-down"></i></a>
-                                                <ul class="submenu">
-                                                    <li><a href="about.html">about</a></li>
-                                                    <li><a href="Program.html">Program</a></li>
-                                                    <li><a href="Venue.html">Venue</a></li>
-                                                    <li><a href="elements.html">elements</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="#">blog <i class="ti-angle-down"></i></a>
-                                                <ul class="submenu">
-                                                    <li><a href="blog.html">blog</a></li>
-                                                    <li><a href="single-blog.html">single-blog</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="contact.html">Contact</a></li>
+                                            <li><a href="#">Summit Venue</i></a></li>
+
                                         </ul>
                                     </nav>
                                 </div>
@@ -76,7 +64,7 @@
                             <div class="col-xl-3 col-lg-3 d-none d-lg-block">
                                 <div class="buy_tkt">
                                     <div class="book_btn d-none d-lg-block">
-                                        <a href="#">Buy Tickets</a>
+                                        <a href="#">Register Now </a>
                                     </div>
                                 </div>
                             </div>
@@ -107,7 +95,8 @@
                             </div>
                             <span class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".3s">12 Feb, 2020</span>
                             <h3 class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".4s">Concert 2020</h3>
-                            <p class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".5s">Green Avenue, New York
+                            <p class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".5s">Green Avenue, New
+                                York
                             </p>
                         </div>
                     </div>
