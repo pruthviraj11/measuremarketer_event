@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/slicknav.css') }}">
 
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/joinNow.css') }}">
 </head>
 
 <body>

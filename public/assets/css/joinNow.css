@@ -1,0 +1,10 @@
+.mt-199 {
+    padding-top: 200px;
+}
+
+.submitjoin button{
+    align-items: center;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+}
