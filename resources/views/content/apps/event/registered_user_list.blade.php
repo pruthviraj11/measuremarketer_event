@@ -1,6 +1,6 @@
 @extends('layouts/contentLayoutMaster')
 
-@section('title', 'Events Lists')
+@section('title', $eventName . ' | ' . $registeredUser)
 
 @section('vendor-style')
     {{-- Page Css files --}}
@@ -29,7 +29,7 @@
         <!-- list and filter start -->
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Events Lists</h4>
+                <h4 class="card-title">{{ $registeredUser }} Guests Lists</h4>
                 {{-- <a href="{{ route('app-users-add') }}" class="col-md-2 btn btn-primary">Add Users
                 </a> --}}
             </div>
@@ -39,12 +39,8 @@
                         <thead>
                             <tr>
                                 <th>Name</th>
-                                <th>Start Date & Time</th>
-                                <th>End Date & Time</th>
-                                <th>Host Name</th>
-                                <th>Address</th>
-                                <th></th>
-                                <th>Actions</th>
+                                <th>Phone</th>
+                                <th>Email</th>
                             </tr>
                         </thead>
                     </table>
@@ -83,45 +79,23 @@
                 processing: true,
                 serverSide: true,
                 "lengthMenu": [10, 25, 50, 100, 200],
-                ajax: "{{ route('app-event-get-all') }}",
+                ajax: "{{ route('app-event-all-registers-guests-lists', $id) }}",
                 columns: [{
-                        data: 'event_name',
-                        name: 'event_name'
+                        data: 'name',
+                        name: 'name'
                     },
 
                     {
-                        data: 'start_date',
-                        name: 'start_date'
+                        data: 'phone',
+                        name: 'phone'
                     },
 
                     {
-                        data: 'end_date',
-                        name: 'end_date'
-                    },
-
-                    {
-                        data: 'hostname',
-                        name: 'hostname'
+                        data: 'email',
+                        name: 'email'
                     },
 
 
-                    {
-                        data: 'address',
-                        name: 'address'
-                    },
-
-                    {
-                        data: 'users',
-                        name: 'users'
-                    },
-
-
-                    {
-                        data: 'actions',
-                        name: 'actions',
-                        orderable: false,
-                        searchable: false
-                    }
                 ],
                 drawCallback: function() {
                     feather.replace();
@@ -129,45 +103,6 @@
                 },
 
 
-            });
-        });
-
-
-        $(document).on("click", ".confirm-delete", function(e) {
-            e.preventDefault();
-            var id = $(this).data("idos");
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Yes, delete it!',
-                customClass: {
-                    confirmButton: 'btn btn-primary',
-                    cancelButton: 'btn btn-outline-danger ms-1'
-                },
-                buttonsStyling: false
-            }).then(function(result) {
-                if (result.value) {
-                    window.location.href = '/app/event/destroy/' + id;
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Deleted!',
-                        text: 'Record has been deleted.',
-                        customClass: {
-                            confirmButton: 'btn btn-success'
-                        }
-                    });
-                } else if (result.dismiss === Swal.DismissReason.cancel) {
-                    Swal.fire({
-                        title: 'Cancelled',
-                        text: 'Your imaginary record is safe :)',
-                        icon: 'error',
-                        customClass: {
-                            confirmButton: 'btn btn-success'
-                        }
-                    });
-                }
             });
         });
     </script>
