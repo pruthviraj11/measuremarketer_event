@@ -44,8 +44,9 @@
                                     </div>
 
                                     <!-- Add More Button and Submit Button -->
-                                    <button type="button" class="btn btn-secondary add-more">Add More</button>
-                                    <button type="submit" class="btn btn-primary">Save Guests</button>
+                                    <button type="button" class="btn btn-secondary add-more add_more_btn">Add
+                                        More</button>
+                                    <button type="submit" class="btn btn-primary save_guest_btn">Save Guests</button>
                                 </form>
 
                             </div>
