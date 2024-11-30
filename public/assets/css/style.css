@@ -1192,9 +1192,10 @@ h3 {
 }
 
 .header-area .main-header-area .buy_tkt .book_btn a:hover {
-    background: #e91a83 !important;
-    color: #fff !important;
-    cursor: pointer;
+    /* background: #e91a83 !important; */
+    background: transparent;
+    color: #e91a83;
+    border: 1px solid #e91a83;
 }
 
 @media (min-width: 992px) and (max-width: 1200px) {
