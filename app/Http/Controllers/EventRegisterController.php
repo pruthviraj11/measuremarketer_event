@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
 use App\Models\Event;
+use App\Models\EventGuest;
 use Yajra\DataTables\Facades\DataTables;
 
 class EventRegisterController extends Controller
@@ -111,5 +112,100 @@ class EventRegisterController extends Controller
         return view('community_view', compact('event', 'registrants'));
     }
 
+    public function editProfile()
+    {
+        if (!Session::has('user')) {
+            return redirect()->route('login');  // Redirect to login if the user is not logged in
+        }
+
+        $userId = Session::get('user')->id;
+
+        $user = EventRegister::where('id', $userId)->first();
+        // dd($user);
+        // Return the view with user data
+        return view('user_profile', compact('user'));
+    }
+    public function updateProfile(Request $request)
+    {
+        $userId = Session::get('user')->id;
+        // Get the authenticated user
+        $user = EventRegister::findOrFail($userId);
+
+        // Update the user's details
+        $user->company_name = $request->company_name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->contact_person = $request->contact_person;
+
+        // Handle image upload if present
+        if ($request->hasFile('profile_image')) {
+            // Delete old image if it exists in the public directory
+            if ($user->profile_image && file_exists(public_path('images/profilephoto/' . $user->profile_image))) {
+                unlink(public_path('images/profilephoto/' . $user->profile_image));
+            }
+
+            // Store the new image in the 'public/images/profilephoto' directory
+            $image = $request->file('profile_image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+
+            // Move the image to the 'public/images/profilephoto' directory
+            $image->move(public_path('images/profilephoto'), $imageName);
+
+            // Update the database with the new image name (relative path)
+            $user->profile_image = 'images/profilephoto/' . $imageName;
+        }
+
+        // Update the password if provided
+        if ($request->filled('password')) {
+            $user->password = Hash::make($request->password);
+        }
+
+        // Save the updated user information
+        $user->save();
+
+        // Redirect with success message
+        return redirect()->route('profile.edit')->with('success', 'Profile updated successfully.');
+    }
+    public function showFormGuests()
+    {
+        if (Session::has('user')) {
+            $userId = Session::get('user')->id;
+            $userData = EventRegister::where('id', $userId)->first();
+            $eventId = $userData->event_id;
+            return view('add_guests', compact('eventId'));
+        }
+
+        return redirect()->route('users_login');
+    }
+
+
+    // Save new guest data
+    public function storeGuests(Request $request)
+    {
+        // Validate the data
+        $request->validate([
+            'guests.*.name' => 'required|string',
+            'guests.*.email' => 'nullable|email',
+            'guests.*.phone' => 'nullable|string',
+        ]);
+
+        $userId = Session::get('user')->id;
+        $eventId = $request->input('event_id'); // Assuming event_id is passed
+
+        // Loop through the guests and save each one
+        foreach ($request->guests as $guest) {
+            EventGuest::create([
+                'user_id' => $userId,
+                'event_id' => $eventId,
+                'name' => $guest['name'],
+                'phone' => $guest['phone'] ?? null,
+                'email' => $guest['email'] ?? null,
+                'created_by' => $userId,
+                'updated_by' => $userId,
+            ]);
+        }
+
+        return back()->with('success', 'Guests added successfully!');
+    }
 
 }

@@ -56,6 +56,20 @@ Route::get('/password_request', function () {
     return view('password_request');
 })->name('password_request');
 
+
+Route::get('/profile/edit', [EventRegisterController::class, 'editProfile'])->name('profile.edit');
+
+// Handle the profile update
+Route::post('/profile/update', [EventRegisterController::class, 'updateProfile'])->name('profile.update');
+
+
+
+// Show the form for adding guests
+Route::get('/add-guests', [EventRegisterController::class, 'showFormGuests'])->name('add.guests');
+
+// Store the guests
+Route::post('/add-guests', [EventRegisterController::class, 'storeGuests'])->name('store.guests');
+
 Route::post('event-registration', [EventRegisterController::class, 'store'])->name('event.register');
 
 Route::post('/login', [LoginController::class, 'login'])->name('login');
