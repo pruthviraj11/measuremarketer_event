@@ -17,30 +17,37 @@
                                 <form action="{{ route('store.guests') }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="event_id" value="{{ $eventId }}">
-                                    <!-- Make sure to pass the event id -->
 
+                                    <!-- Guests Container -->
                                     <div class="guests-container">
                                         <div class="guest-form" id="guest-0">
-                                            <div class="form-group">
-                                                <label for="name">Name</label>
-                                                <input type="text" name="guests[0][name]" class="form-control"
-                                                    required>
+                                            <div class="form-row"> <!-- Use form-row for grid system -->
+                                                <div class="form-group col-md-4">
+                                                    <label for="name">Name</label>
+                                                    <input type="text" name="guests[0][name]" class="form-control"
+                                                        required>
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="email">Email</label>
+                                                    <input type="email" name="guests[0][email]" class="form-control">
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="phone">Phone</label>
+                                                    <input type="text" name="guests[0][phone]" class="form-control">
+                                                </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="email">Email</label>
-                                                <input type="email" name="guests[0][email]" class="form-control">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="phone">Phone</label>
-                                                <input type="text" name="guests[0][phone]" class="form-control">
-                                            </div>
-                                             <button type="button" class="btn btn-danger remove-guest" style="display:none; margin-top: 10px;">Remove</button> <!-- Hidden initially with margin-top -->
+
+                                            <!-- Remove Button (hidden by default) -->
+                                            <button type="button" class="btn btn-danger remove-guest"
+                                                style="display:none; margin-top: 10px;">Remove</button>
                                         </div>
                                     </div>
 
+                                    <!-- Add More Button and Submit Button -->
                                     <button type="button" class="btn btn-secondary add-more">Add More</button>
                                     <button type="submit" class="btn btn-primary">Save Guests</button>
                                 </form>
+
                             </div>
                         </div>
                     </div>

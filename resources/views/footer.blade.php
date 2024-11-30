@@ -160,17 +160,19 @@
          guestForm.classList.add('guest-form');
          guestForm.id = `guest-${guestIndex}`;
          guestForm.innerHTML = `
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" name="guests[${guestIndex}][name]" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" name="guests[${guestIndex}][email]" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="phone">Phone</label>
-                <input type="text" name="guests[${guestIndex}][phone]" class="form-control">
+            <div class="form-row"> <!-- Added form-row to align fields in a row -->
+                <div class="form-group col-md-4">
+                    <label for="name">Name</label>
+                    <input type="text" name="guests[${guestIndex}][name]" class="form-control" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="email">Email</label>
+                    <input type="email" name="guests[${guestIndex}][email]" class="form-control">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="phone">Phone</label>
+                    <input type="text" name="guests[${guestIndex}][phone]" class="form-control">
+                </div>
             </div>
             <button type="button" class="btn btn-danger remove-guest" style="margin-top: 10px;">Remove</button> <!-- Add margin-top for spacing -->
         `;
@@ -190,6 +192,33 @@
              e.target.closest('.guest-form').remove();
          }
      });
+ </script>
+ <script>
+     $(document).ready(function() {
+         $('#guestsTable').DataTable({
+             "ordering": false // This disables sorting
+         });
+     });
+ </script>
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+ <script>
+     function confirmDelete(guestId) {
+         Swal.fire({
+             title: 'Are you sure?',
+             text: "You won't be able to revert this!",
+             icon: 'warning',
+             showCancelButton: true,
+             confirmButtonColor: '#d33',
+             cancelButtonColor: '#3085d6',
+             confirmButtonText: 'Yes, delete it!',
+             cancelButtonText: 'Cancel'
+         }).then((result) => {
+             if (result.isConfirmed) {
+                 // If confirmed, submit the delete form
+                 document.getElementById('deleteForm' + guestId).submit();
+             }
+         });
+     }
  </script>
  </body>
 
