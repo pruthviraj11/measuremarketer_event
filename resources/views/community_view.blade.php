@@ -33,8 +33,9 @@
                                                 <td>{{ $registrant->email }}</td>
                                                 <td>{{ $registrant->phone }}</td>
                                                 <td>
-                                                    <button type="button" class="btn btn-primary" data-toggle="modal"
-                                                        data-target="#exampleModal" data-id="{{ $registrant->id }}"
+                                                    <button type="button" class="btn btn-primary send_message_btn"
+                                                        data-toggle="modal" data-target="#exampleModal"
+                                                        data-id="{{ $registrant->id }}"
                                                         data-name="{{ $registrant->contact_person }}"
                                                         data-event-id="{{ $registrant->event_id }}">Send
                                                         Message</button>
@@ -90,16 +91,3 @@
 
 
 @include('footer')
-
-<script>
-    // JavaScript to populate the modal with the registrant's ID and name when button is clicked
-    $('#messageModal').on('show.bs.modal', function(event) {
-        var button = $(event.relatedTarget); // Button that triggered the modal
-        var registrantId = button.data('id'); // Extract registrant ID
-        var registrantName = button.data('name'); // Extract registrant name
-
-        var modal = $(this);
-        modal.find('.modal-title').text('Send Message to ' + registrantName);
-        modal.find('#registrant_id').val(registrantId);
-    });
-</script>
