@@ -16,7 +16,7 @@
 <script src="{{ asset(mix('vendors/js/extensions/sweetalert2.all.min.js')) }}"></script>
 <script src="{{ asset(mix('js/scripts/extensions/ext-component-sweet-alerts.js')) }}"></script>
 <script src="{{ asset(mix('js/scripts/components/components-bs-toast.js')) }}"></script>
-<script src="{{ asset(mix('vendors/js/extensions/toastr.min.js')) }}"></script><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{{ asset(mix('vendors/js/extensions/toastr.min.js')) }}"></script>
 
 <script src="{{ asset(mix('js/scripts/pages/app-email.js')) }}"></script>
 <script src="{{ asset(mix('vendors/js/editors/quill/katex.min.js')) }}"></script>
