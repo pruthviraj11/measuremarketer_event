@@ -15,7 +15,7 @@
                                     </div>
                                 @endif
 
-                                <table id="registrantsTable" class="display">
+                                <table id="registrantsTable" class="display table table-bordered table-responsive">
                                     <thead>
                                         <tr>
                                             <th>Contact Person</th>
@@ -54,9 +54,9 @@
         </div>
     </div>
     <!-- Modal -->
-    <div class="modal fade" style="z-index: 9999999;" id="exampleModal" tabindex="-1" role="dialog"
+    <div class="modal fade modle_change" style="z-index: 9999999;" id="exampleModal" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modle_view_change" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Send Message</h5>
@@ -76,7 +76,7 @@
                         <div class="form-group">
                             <textarea class="form-control" id="message" name="message" placeholder="Message" rows="4" required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Send Message</button>
+                        <button type="submit" class="btn btn-primary model_send_msg_btn">Send Message</button>
                     </form>
                 </div>
             </div>

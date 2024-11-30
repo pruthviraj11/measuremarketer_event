@@ -57,14 +57,14 @@
  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Ensure jQuery is up-to-date -->
 
  <!-- Modernizr (if you're using it for feature detection) -->
-<script src="{{ asset('assets/js/vendor/modernizr-3.5.0.min.js') }}"></script>
+ <script src="{{ asset('assets/js/vendor/modernizr-3.5.0.min.js') }}"></script>
 
-<!-- Bootstrap JS (requires jQuery) -->
-<script src="{{ asset('assets/js/popper.min.js') }}"></script> <!-- Popper.js for Bootstrap tooltips and popovers -->
-<script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+ <!-- Bootstrap JS (requires jQuery) -->
+ <script src="{{ asset('assets/js/popper.min.js') }}"></script> <!-- Popper.js for Bootstrap tooltips and popovers -->
+ <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
 
-<!-- Other vendor scripts -->
-<script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
+ <!-- Other vendor scripts -->
+ <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
 
  <script src="{{ asset('assets/js/isotope.pkgd.min.js') }}"></script>
  <script src="{{ asset('assets/js/ajax-form.js') }}"></script>
@@ -91,8 +91,8 @@
  <!-- Main JS -->
  <script src="{{ asset('assets/js/main.js') }}"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
 
  <!-- DataTables & Additional Libraries (if needed) -->
  <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
@@ -179,7 +179,7 @@
                     <input type="text" name="guests[${guestIndex}][phone]" class="form-control">
                 </div>
                 <div class="form-group col-md-3">
-                    <button type="button" class="btn btn-danger remove-guest" style="margin-top: 10px;"> X </button>
+                    <button type="button" class="btn btn-danger remove-guest" style="margin-top: 10px;"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg> </button>
                 </div>
             </div>
            <!-- Add margin-top for spacing -->
@@ -238,19 +238,19 @@
          });
      }
  </script>
-<script>
-    // JavaScript to set the registrant id and event_id dynamically
-    $('#exampleModal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget); // Button that triggered the modal
-        var registrantId = button.data('id');
-        var eventId = button.data('event-id');
-        
-        // Update modal's form action with the registrant id and event id
-        var modal = $(this);
-        modal.find('#registrant_id').val(registrantId);
-        modal.find('#event_id').val(eventId);
-    });
-</script>
+ <script>
+     // JavaScript to set the registrant id and event_id dynamically
+     $('#exampleModal').on('show.bs.modal', function(event) {
+         var button = $(event.relatedTarget); // Button that triggered the modal
+         var registrantId = button.data('id');
+         var eventId = button.data('event-id');
+
+         // Update modal's form action with the registrant id and event id
+         var modal = $(this);
+         modal.find('#registrant_id').val(registrantId);
+         modal.find('#event_id').val(eventId);
+     });
+ </script>
 
  </body>
 

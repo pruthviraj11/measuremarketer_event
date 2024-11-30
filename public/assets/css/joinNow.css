@@ -131,6 +131,8 @@ form label {
     border: 1px solid #e91a83 !important;
 }
 
+
+.model_send_msg_btn,
 .send_message_btn,
 .add_guest_btn,
 .add_more_btn,
@@ -182,6 +184,10 @@ input:focus {
     color: #e91a83;
     background: transparent !important;
     border: 1px solid #e91a83 !important;
+}
+
+.modle_change .form-control {
+    color: #000 !important;
 }
 
 @media(max-width:768px) {

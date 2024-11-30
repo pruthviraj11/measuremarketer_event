@@ -57,10 +57,20 @@
                                                 id="profile_image">
                                         </div>
                                         <div class="col-md-6 mb-3">
-                                            @if ($user->profile_image)
-                                                <img src="{{ asset($user->profile_image) }}" alt="Profile Image"
-                                                    class="img-thumbnail mt-2" width="150">
+                                            @php
+                                                $profileImagePath = 'images/profilephoto/' . $user->profile_image;
+                                            @endphp
+
+                                            @if ($user->profile_image && \Storage::disk('public')->exists($profileImagePath))
+                                                <img src="{{ asset($profileImagePath) }}" alt="Profile Image"
+                                                    class="img-thumbnail mt-2 rounded-circle" width="120">
+                                            @else
+                                                <img src="{{ asset('images/no_image_found.png') }}" alt="No Image Found"
+                                                    class="img-thumbnail mt-2 rounded-circle" width="120">
                                             @endif
+
+
+
                                         </div>
                                     </div>
 
