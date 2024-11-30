@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Session;
 use App\Models\Event;
 use App\Models\EventGuest;
 use Yajra\DataTables\Facades\DataTables;
+use App\Models\EventNotification;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MessageSent;
 
 class EventRegisterController extends Controller
 {
@@ -108,6 +111,7 @@ class EventRegisterController extends Controller
         $eventId = decrypt($encryptedId);
         $event = Event::findOrFail($eventId);
         $registrants = EventRegister::where('event_id', $eventId)->get();
+        // dd($registrants);
 
         return view('community_view', compact('event', 'registrants'));
     }
@@ -239,5 +243,35 @@ class EventRegisterController extends Controller
 
         // If guest not found, return an error
         return back()->with('error', 'Guest not found!');
+    }
+
+    public function sendMessage(Request $request)
+    {
+        // Validation
+        $validatedData = $request->validate([
+            'registrant_id' => 'required|exists:registrants,id',
+            'subject' => 'required|string|max:255',
+            'message' => 'required|string',
+            'event_id' => 'required|exists:events,id',
+        ]);
+
+        // Save the message in the EventNotification table
+        $notification = new EventNotification();
+        $notification->user_id = auth()->user()->id; // current logged-in user
+        $notification->event_id = $request->event_id;
+        $notification->message = $request->message;
+        $notification->subject = $request->subject;
+        $notification->sent_by = auth()->user()->name;
+        $notification->read_by = $request->registrant_id; // This will be the person receiving the message
+        $notification->status = 'unread'; // you can set other statuses
+        $notification->created_by = auth()->user()->id;
+        $notification->save();
+
+        // Send an email to the recipient (registrant)
+        $registrant = EventRegister::find($request->registrant_id);
+        Mail::to($registrant->email)->send(new MessageSent($notification));
+
+        // Redirect back with a success message
+        return back()->with('success', 'Message sent successfully!');
     }
 }
