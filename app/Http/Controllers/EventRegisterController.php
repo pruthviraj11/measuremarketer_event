@@ -247,31 +247,39 @@ class EventRegisterController extends Controller
 
     public function sendMessage(Request $request)
     {
-        // Validation
-        $validatedData = $request->validate([
-            'registrant_id' => 'required|exists:registrants,id',
-            'subject' => 'required|string|max:255',
-            'message' => 'required|string',
-            'event_id' => 'required|exists:events,id',
-        ]);
+        $userId = Session::get('user')->id;
 
         // Save the message in the EventNotification table
         $notification = new EventNotification();
-        $notification->user_id = auth()->user()->id; // current logged-in user
+        $notification->user_id = $userId;
         $notification->event_id = $request->event_id;
         $notification->message = $request->message;
-        $notification->subject = $request->subject;
-        $notification->sent_by = auth()->user()->name;
-        $notification->read_by = $request->registrant_id; // This will be the person receiving the message
-        $notification->status = 'unread'; // you can set other statuses
-        $notification->created_by = auth()->user()->id;
+        $notification->sent_by = $userId;
+        $notification->read_by = $request->registrant_id;
+        $notification->created_by = $userId;
         $notification->save();
 
-        // Send an email to the recipient (registrant)
-        $registrant = EventRegister::find($request->registrant_id);
-        Mail::to($registrant->email)->send(new MessageSent($notification));
+        try {
+            // Send an email to the recipient (registrant)
+            $registrant = EventRegister::find($request->registrant_id);
+            Mail::to($registrant->email)->send(new MessageSent($notification));
 
-        // Redirect back with a success message
-        return back()->with('success', 'Message sent successfully!');
+            // If email was sent successfully, update the status to 1 (success)
+            $notification->status = 1; // success
+            $notification->save();
+
+            // Redirect back with a success message
+            return back()->with('success', 'Message sent successfully!');
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+            // If there was an error in sending the email, update the status to 0 (failure)
+            $notification->status = 0; // failure
+            $notification->save();
+
+            // Redirect back with an error message
+            return back()->with('error', 'Failed to send the message. Please try again!');
+        }
     }
+
+
 }

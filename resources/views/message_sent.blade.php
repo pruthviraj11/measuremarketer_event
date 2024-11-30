@@ -1,17 +1,14 @@
-// In resources/views/emails/message_sent.blade.php
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $subject }}</title>
+    <title>Event Notification</title>
 </head>
 <body>
-    <h2>{{ $subject }}</h2>
-    <p>Dear,</p>
-    <p>{{ $message }}</p>
-    <p>Best regards,</p>
-    <p>{{ $sent_by }}</p>
+    <h1>You have a new event notification!</h1>
+    {{-- {{ dd($messageop) }} --}}
+    {{-- <p><strong>Event ID:</strong> {{ $eventId }}</p> --}}
+    <p><strong>Message:</strong> {{ $messageop }}</p>
 </body>
 </html>
