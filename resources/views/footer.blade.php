@@ -112,6 +112,9 @@
          $('#eventsTable').DataTable({
              processing: true,
              serverSide: true,
+             ordering: false,
+             paging: false,
+             bInfo: false,
              ajax: '{{ route('registerd_event') }}', // AJAX URL to fetch the data
              columns: [{
                      data: 'name'
@@ -124,7 +127,7 @@
                          const endDate = row.end_date ? row.end_date : '-';
                          const endTime = row.end_time ? row.end_time : '-';
 
-                         return `${startDate} ${startTime} - ${endDate} ${endTime}`;
+                         return `${startDate} ${startTime}`;
                      }
                  },
                  {

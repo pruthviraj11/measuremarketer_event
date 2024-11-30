@@ -5,11 +5,11 @@
         <div class="single_slider mt-199 slider_bg_1 overlay">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12 Sidebar-area" style="background-color: #ffff;">
+                    <div class="col-md-12 Sidebar-area">
                         <div class="row">
                             @include('sidebar_welcome')
                             <div class="col-md-9">
-                                <h3>Update Profile</h3>
+                                <h1 class="text-white">Update Profile</h1>
 
                                 @if (session('success'))
                                     <div class="alert alert-success">{{ session('success') }}</div>
@@ -69,7 +69,8 @@
                                         </div>
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary">Update Profile</button>
+                                    <button type="submit" class="btn btn-primary profile_update_btn">Update
+                                        Profile</button>
                                 </form>
                             </div>
                         </div>

@@ -52,19 +52,16 @@
     padding: 30px;
     border-radius: 10px;
     min-height: 650px;
-    border: 1px solid white;
+    /* border: 1px solid white; */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     /* Optional: add some shadow for better visibility */
 }
 
 .form-control {
-    background-color: rgba(255,
-            255,
-            255,
-            0.9);
+    background: transparent;
     /* Slightly transparent background for form inputs */
     border: 1px solid #ccc;
-    color: #333;
+    color: #fff;
 }
 
 
@@ -86,16 +83,77 @@
     background: linear-gradient(to right, #e91a83, #4c24c1);
 }
 
-#eventsTable th th {
-    margin: 0px 10px !important;
+#eventsTable {
+    width: 100% !important;
+}
+
+#eventsTable tr th {
+    font-size: 20px;
+    padding: 10px;
+}
+
+#eventsTable tr td {
+    padding: 10px;
 }
 
 .view_community_btn {
     background: linear-gradient(to right, #e91a83, #4c24c1) !important;
     border: transparent !important;
+    font-size: 20px;
+    border: transparent;
 }
 
 .view_community_btn:hover {
     color: #e91a83;
     background: transparent !important;
+    border: 1px solid #e91a83 !important;
+}
+
+form label {
+    color: #fff !important;
+}
+
+.profile_update_btn {
+    background: linear-gradient(to right, #e91a83, #4c24c1) !important;
+    border: transparent !important;
+    font-size: 20px;
+    border: transparent;
+}
+
+.profile_update_btn:hover {
+    color: #e91a83;
+    background: transparent !important;
+    border: 1px solid #e91a83 !important;
+}
+
+.add_more_btn,
+.save_guest_btn {
+    background: linear-gradient(to right, #e91a83, #4c24c1) !important;
+    border: transparent !important;
+    font-size: 20px;
+    border: transparent;
+}
+
+.add_more_btn,
+.save_guest_btn:hover {
+    color: #e91a83;
+    background: transparent !important;
+    border: 1px solid #e91a83 !important;
+}
+
+@media(max-width:768px) {
+    #eventsTable tr th {
+        padding-right: 30px !important;
+        font-size: 13px;
+    }
+
+
+
+    #eventsTable tr td {
+        font-size: 12px !important;
+    }
+
+    .view_community_btn {
+        font-size: 10px;
+    }
 }

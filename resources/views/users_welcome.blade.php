@@ -6,17 +6,18 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 Sidebar-area text-white border-0">
+                        {{-- <h1 class="text-center">Events</h1> --}}
                         <div class="row">
                             @include('sidebar_welcome')
                             <div class="col-md-9">
                                 <center class="mb-4">
-                                    <h6>My Account</h6>
+                                    {{-- <h6>My Account</h6> --}}
                                 </center>
                                 <!-- DataTable for Registered Events -->
-                                <table id="eventsTable" class="display text-white border-white">
+                                <table id="eventsTable" class="display text-white border-white table-bordered">
                                     <thead>
                                         <tr>
-                                            <th class="pe-4">Event Name</th>
+                                            <th>Event Name</th>
                                             <th>Event Date</th> <!-- Combined Start and End Date -->
                                             <th>Action</th> <!-- Action column for View Community -->
                                         </tr>

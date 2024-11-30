@@ -5,7 +5,7 @@
         <div class="single_slider mt-199 slider_bg_1 overlay">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12 Sidebar-area" style="background-color: #ffff;">
+                    <div class="col-md-12 Sidebar-area">
                         <div class="row">
                             @include('sidebar_welcome')
                             <div class="col-md-9">
@@ -13,7 +13,7 @@
                                 @if (session('success'))
                                     <div class="alert alert-success">{{ session('success') }}</div>
                                 @endif
-                                <h2>Add Guests</h2>
+                                <h1 class="text-white text-center">Add Guests</h1>
                                 <form action="{{ route('store.guests') }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="event_id" value="{{ $eventId }}">
@@ -34,12 +34,18 @@
                                                 <label for="phone">Phone</label>
                                                 <input type="text" name="guests[0][phone]" class="form-control">
                                             </div>
-                                             <button type="button" class="btn btn-danger remove-guest" style="display:none; margin-top: 10px;">Remove</button> <!-- Hidden initially with margin-top -->
+                                            <button type="button" class="btn btn-danger remove-guest"
+                                                style="display:none; margin-top: 10px;">Remove</button>
+                                            <!-- Hidden initially with margin-top -->
                                         </div>
                                     </div>
 
-                                    <button type="button" class="btn btn-secondary add-more">Add More</button>
-                                    <button type="submit" class="btn btn-primary">Save Guests</button>
+                                    <div class="text-center">
+                                        <button type="button" class="btn btn-secondary add-more add_more_btn">Add
+                                            More</button>
+                                        <button type="submit" class="btn btn-primary save_guest_btn">Save
+                                            Guests</button>
+                                    </div>
                                 </form>
                             </div>
                         </div>
