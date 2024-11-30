@@ -93,7 +93,7 @@ class EventRegisterController extends Controller
                     $encryptedId = encrypt($event->id);
 
                     // Return the button with the encrypted ID
-                    return '<button class="btn btn-primary btn-sm view-community" data-id="' . $encryptedId . '">View Community</button>';
+                    return '<button class="btn btn-primary btn-sm view-community view_community_btn" data-id="' . $encryptedId . '">View Community</button>';
                 })
                 ->make(true);
         }

@@ -5,18 +5,18 @@
         <div class="single_slider mt-199 slider_bg_1 overlay">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12 Sidebar-area" style="background-color: #ffff;">
+                    <div class="col-md-12 Sidebar-area text-white border-0">
                         <div class="row">
-                           @include('sidebar_welcome')
+                            @include('sidebar_welcome')
                             <div class="col-md-9">
-                                <center>
+                                <center class="mb-4">
                                     <h6>My Account</h6>
                                 </center>
                                 <!-- DataTable for Registered Events -->
-                                <table id="eventsTable" class="display">
+                                <table id="eventsTable" class="display text-white border-white">
                                     <thead>
                                         <tr>
-                                            <th>Event Name</th>
+                                            <th class="pe-4">Event Name</th>
                                             <th>Event Date</th> <!-- Combined Start and End Date -->
                                             <th>Action</th> <!-- Action column for View Community -->
                                         </tr>
