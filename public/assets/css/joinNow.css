@@ -47,7 +47,7 @@
 }
 
 .Sidebar-area {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.6);
     /* Black with 50% opacity */
     padding: 30px;
     border-radius: 10px;
@@ -65,4 +65,37 @@
     /* Slightly transparent background for form inputs */
     border: 1px solid #ccc;
     color: #333;
+}
+
+
+
+/* .sidebar {
+    border-right: 1px solid #fff !important;
+} */
+
+.nav-link {
+    color: #fff !important;
+    margin: 3px 0px;
+}
+
+.nav-item .active {
+    background: linear-gradient(to right, #e91a83, #4c24c1) !important;
+}
+
+.nav-link:hover {
+    background: linear-gradient(to right, #e91a83, #4c24c1);
+}
+
+#eventsTable th th {
+    margin: 0px 10px !important;
+}
+
+.view_community_btn {
+    background: linear-gradient(to right, #e91a83, #4c24c1) !important;
+    border: transparent !important;
+}
+
+.view_community_btn:hover {
+    color: #e91a83;
+    background: transparent !important;
 }

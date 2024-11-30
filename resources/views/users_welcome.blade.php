@@ -5,12 +5,12 @@
         <div class="single_slider mt-199 slider_bg_1 overlay">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12 Sidebar-area" style="background-color: #ffff;">
+                    <div class="col-md-12 Sidebar-area text-white border-0">
                         <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-md-3 sidebar">
                                 <div class="d-flex flex-column flex-shrink-0 p-3" style="">
                                     <a href="/"
-                                        class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+                                        class="d-flex align-items-center text-white mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                                         <span class="fs-4">Menus</span>
                                     </a>
                                     <hr>
@@ -40,14 +40,14 @@
                                 </div>
                             </div>
                             <div class="col-md-9">
-                                <center>
+                                <center class="mb-4">
                                     <h6>My Account</h6>
                                 </center>
                                 <!-- DataTable for Registered Events -->
-                                <table id="eventsTable" class="display">
+                                <table id="eventsTable" class="display text-white border-white">
                                     <thead>
                                         <tr>
-                                            <th>Event Name</th>
+                                            <th class="pe-4">Event Name</th>
                                             <th>Event Date</th> <!-- Combined Start and End Date -->
                                             <th>Action</th> <!-- Action column for View Community -->
                                         </tr>
