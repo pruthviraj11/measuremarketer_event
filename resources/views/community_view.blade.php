@@ -40,23 +40,26 @@
                                 </div>
                             </div>
                             <div class="col-md-9">
-                                <center>
-                                    <h6>My Account</h6>
-                                </center>
-                                <!-- DataTable for Registered Events -->
-                                <table id="eventsTable" class="display">
+                                <table id="registrantsTable" class="display">
                                     <thead>
                                         <tr>
-                                            <th>Event Name</th>
-                                            <th>Event Date</th> <!-- Combined Start and End Date -->
-                                            <th>Action</th> <!-- Action column for View Community -->
+                                            <th>Contact Person</th>
+                                            <th>Compony Name</th>
+                                            <th>Email</th>
+                                            <th>Phone</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <!-- Data will be populated via DataTables AJAX -->
+                                        @foreach ($registrants as $registrant)
+                                            <tr>
+                                                <td>{{ $registrant->contact_person }}</td>
+                                                <td>{{ $registrant->company_name }}</td>
+                                                <td>{{ $registrant->email }}</td>
+                                                <td>{{ $registrant->phone }}</td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
-
                             </div>
 
                         </div>

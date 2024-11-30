@@ -1,6 +1,6 @@
  <!-- footer_start  -->
  <footer class="footer">
-   
+
      <div class="copy-right_text">
          <div class="container">
              <div class="row">
@@ -53,38 +53,102 @@
      setInterval(countdown, 1000);
  </script>
 
- <!-- JS here -->
+ <!-- jQuery (required for many plugins) -->
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Ensure jQuery is up-to-date -->
+
+ <!-- Modernizr (if you're using it for feature detection) -->
  <script src="js/vendor/modernizr-3.5.0.min.js"></script>
- <script src="js/vendor/jquery-1.12.4.min.js"></script>
- <script src="js/popper.min.js"></script>
+
+ <!-- Bootstrap JS (requires jQuery) -->
+ <script src="js/popper.min.js"></script> <!-- Popper.js for Bootstrap tooltips and popovers -->
  <script src="js/bootstrap.min.js"></script>
- <script src="js/owl.carousel.min.js"></script>
- <script src="js/isotope.pkgd.min.js"></script>
- <script src="js/ajax-form.js"></script>
- <script src="js/waypoints.min.js"></script>
- <script src="js/jquery.counterup.min.js"></script>
- <script src="js/imagesloaded.pkgd.min.js"></script>
- <script src="js/scrollIt.js"></script>
- <script src="js/jquery.scrollUp.min.js"></script>
- <script src="js/wow.min.js"></script>
- <script src="js/gijgo.min.js"></script>
- <script src="js/nice-select.min.js"></script>
- <script src="js/jquery.slicknav.min.js"></script>
- <script src="js/jquery.magnific-popup.min.js"></script>
- <script src="js/tilt.jquery.js"></script>
- <script src="js/plugins.js"></script>
+
+ <!-- Other vendor scripts -->
+ <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
+ <script src="{{ asset('assets/js/isotope.pkgd.min.js') }}"></script>
+ <script src="{{ asset('assets/js/ajax-form.js') }}"></script>
+ <script src="{{ asset('assets/js/waypoints.min.js') }}"></script>
+ <script src="{{ asset('assets/js/jquery.counterup.min.js') }}"></script>
+ <script src="{{ asset('assets/js/imagesloaded.pkgd.min.js') }}"></script>
+ <script src="{{ asset('assets/js/scrollIt.js') }}"></script>
+ <script src="{{ asset('assets/js/jquery.scrollUp.min.js') }}"></script>
+ <script src="{{ asset('assets/js/wow.min.js') }}"></script>
+ <script src="{{ asset('assets/js/gijgo.min.js') }}"></script>
+ <script src="{{ asset('assets/js/nice-select.min.js') }}"></script>
+ <script src="{{ asset('assets/js/jquery.slicknav.min.js') }}"></script>
+ <script src="{{ asset('assets/js/jquery.magnific-popup.min.js') }}"></script>
+ <script src="{{ asset('assets/js/tilt.jquery.js') }}"></script>
+ <script src="{{ asset('assets/js/plugins.js') }}"></script>
+
+ <!-- Contact JS -->
+ <script src="{{ asset('assets/js/contact.js') }}"></script>
+ <script src="{{ asset('assets/js/jquery.ajaxchimp.min.js') }}"></script>
+ <script src="{{ asset('assets/js/jquery.form.js') }}"></script>
+ <script src="{{ asset('assets/js/jquery.validate.min.js') }}"></script>
+ <script src="{{ asset('assets/js/mail-script.js') }}"></script>
+
+ <!-- Main JS -->
+ <script src="{{ asset('assets/js/main.js') }}"></script>
 
 
 
- <!--contact js-->
- <script src="js/contact.js"></script>
- <script src="js/jquery.ajaxchimp.min.js"></script>
- <script src="js/jquery.form.js"></script>
- <script src="js/jquery.validate.min.js"></script>
- <script src="js/mail-script.js"></script>
+ <!-- DataTables & Additional Libraries (if needed) -->
+ <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+ <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap5.min.js"></script>
 
+ <!-- DataTables Buttons (if you use them) -->
+ <script src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+ <script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.html5.min.js"></script>
+ <script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.print.min.js"></script>
 
- <script src="js/main.js"></script>
+ <!-- Select2 (if you're using it for select dropdowns) -->
+ <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"></script>
+
+ <!-- Bootstrap 5 specific -->
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+ <script>
+     $(document).ready(function() {
+         $('#eventsTable').DataTable({
+             processing: true,
+             serverSide: true,
+             ajax: '{{ route('registerd_event') }}', // AJAX URL to fetch the data
+             columns: [{
+                     data: 'name'
+                 },
+                 {
+                     data: 'event_date',
+                     render: function(data, type, row) {
+                         const startDate = row.start_date ? row.start_date : '-';
+                         const startTime = row.start_time ? row.start_time : '-';
+                         const endDate = row.end_date ? row.end_date : '-';
+                         const endTime = row.end_time ? row.end_time : '-';
+
+                         return `${startDate} ${startTime} - ${endDate} ${endTime}`;
+                     }
+                 },
+                 {
+                     data: 'action', // Use 'action' to render the button
+                     render: function(data, type, row) {
+                         return data; // This will return the HTML for the button
+                     }
+                 }
+             ]
+         });
+
+         // Add event listener for View Community button
+         $(document).on('click', '.view-community', function() {
+             var encryptedId = $(this).data('id');
+             window.location.href = `/community/view/${encryptedId}`;
+         });
+     });
+ </script>
+ <script type="text/javascript">
+     $(document).ready(function() {
+         $('#registrantsTable').DataTable();
+     });
+ </script>
+
  </body>
 
  </html>
