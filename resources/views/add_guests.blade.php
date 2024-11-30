@@ -14,7 +14,7 @@
                                     <div class="alert alert-success">{{ session('success') }}</div>
                                 @endif
                                 <h1 class="text-white text-center">Add Guests</h1>
-                                <form action="{{ route('store.guests') }}" method="POST">
+                                <form action="{{ route('store.guests') }}" method="POST" class="guest_form">
                                     @csrf
                                     <input type="hidden" name="event_id" value="{{ $eventId }}">
 
@@ -22,24 +22,27 @@
                                     <div class="guests-container">
                                         <div class="guest-form" id="guest-0">
                                             <div class="form-row"> <!-- Use form-row for grid system -->
-                                                <div class="form-group col-md-4">
+                                                <div class="form-group col-md-3">
                                                     <label for="name">Name</label>
                                                     <input type="text" name="guests[0][name]" class="form-control"
                                                         required>
                                                 </div>
-                                                <div class="form-group col-md-4">
+                                                <div class="form-group col-md-3">
                                                     <label for="email">Email</label>
                                                     <input type="email" name="guests[0][email]" class="form-control">
                                                 </div>
-                                                <div class="form-group col-md-4">
+                                                <div class="form-group col-md-3">
                                                     <label for="phone">Phone</label>
                                                     <input type="text" name="guests[0][phone]" class="form-control">
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <button type="button" class="btn btn-danger remove-guest"
+                                                        style="display:none; margin-top: 10px;">Remove</button>
                                                 </div>
                                             </div>
 
                                             <!-- Remove Button (hidden by default) -->
-                                            <button type="button" class="btn btn-danger remove-guest"
-                                                style="display:none; margin-top: 10px;">Remove</button>
+
                                         </div>
                                     </div>
 

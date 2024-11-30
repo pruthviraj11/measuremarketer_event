@@ -31,6 +31,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/welcome.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/joinNow.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.29.0/dist/feather.min.js"></script>
+
 </head>
 
 <body>

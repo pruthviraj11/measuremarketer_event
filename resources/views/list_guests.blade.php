@@ -5,7 +5,7 @@
         <div class="single_slider mt-199 slider_bg_1 overlay">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12 Sidebar-area" style="background-color: #ffff;">
+                    <div class="col-md-12 Sidebar-area text-white">
                         <div class="row">
                             @include('sidebar_welcome')
                             <div class="col-md-9">
@@ -23,10 +23,10 @@
 
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <h2>List Guests</h2>
+                                        <h1 class="text-white mb-5">List Guests</h1>
                                     </div>
                                     <div class="col-md-6 text-right"> <a href="{{ route('add.guests') }}"
-                                            class="btn btn-primary btn-sm">Add Guest</a></div>
+                                            class="btn btn-primary btn-sm add_guest_btn">Add Guest</a></div>
                                 </div>
                                 <!-- Table for displaying guest information -->
                                 <table id="guestsTable" class="table table-bordered">

@@ -70,6 +70,11 @@
     border-right: 1px solid #fff !important;
 } */
 
+.guest_form input:focus {
+    background: transparent !important;
+    color: #fff !important;
+}
+
 .nav-link {
     color: #fff !important;
     margin: 3px 0px;
@@ -98,7 +103,7 @@
 
 .view_community_btn {
     background: linear-gradient(to right, #e91a83, #4c24c1) !important;
-    border: transparent !important;
+    border: 1px solid #e91a83 !important;
     font-size: 20px;
     border: transparent;
 }
@@ -126,15 +131,53 @@ form label {
     border: 1px solid #e91a83 !important;
 }
 
+.send_message_btn,
+.add_guest_btn,
 .add_more_btn,
 .save_guest_btn {
     background: linear-gradient(to right, #e91a83, #4c24c1) !important;
-    border: transparent !important;
+    border: 1px solid transparent !important;
     font-size: 20px;
-    border: transparent;
+    border: none;
+    color: #fff;
+    /* border-radius: 40px; */
+    padding: 10px 20px;
 }
 
-.add_more_btn,
+.send_message_btn:hover {
+    background: transparent !important;
+    border: 1px solid #e91a83 !important;
+    color: #e91a83;
+}
+
+
+.add_guest_btn:hover {
+    background: transparent !important;
+    border: 1px solid #e91a83 !important;
+    color: #e91a83;
+}
+
+.add_more_btn:hover {
+    background: transparent !important;
+    border: 1px solid #e91a83 !important;
+    color: #e91a83;
+}
+
+#registrantsTable thead th {
+    padding: 7px;
+    padding-left: 10px;
+}
+
+input:focus {
+    background: transparent !important;
+    color: #fff !important;
+}
+
+#registrantsTable tr td {
+    padding: 7px;
+    padding-left: 10px;
+}
+
 .save_guest_btn:hover {
     color: #e91a83;
     background: transparent !important;

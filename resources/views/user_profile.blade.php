@@ -9,8 +9,10 @@
                         <div class="row">
                             @include('sidebar_welcome')
                             <div class="col-md-9">
-                                <h1 class="text-white">Update Profile</h1>
+                                <div class="text-center mb-3">
+                                    <h1 class="text-white">Update Profile</h1>
 
+                                </div>
                                 @if (session('success'))
                                     <div class="alert alert-success">{{ session('success') }}</div>
                                 @endif

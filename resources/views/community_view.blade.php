@@ -5,11 +5,11 @@
         <div class="single_slider mt-199 slider_bg_1 overlay">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12 Sidebar-area" style="background-color: #ffff;">
+                    <div class="col-md-12 Sidebar-area text-white">
                         <div class="row">
                             @include('sidebar_welcome')
                             <div class="col-md-9">
-                                <table id="registrantsTable" class="display">
+                                <table id="registrantsTable" class="display table-bordered">
                                     <thead>
                                         <tr>
                                             <th>Contact Person</th>
@@ -28,8 +28,10 @@
                                                 <td>{{ $registrant->phone }}</td>
                                                 <td>
                                                     <!-- Button to trigger the modal, passing registrant ID -->
-                                                    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#messageModal" 
-                                                            data-id="{{ $registrant->id }}" data-name="{{ $registrant->contact_person }}">Send Message</button>
+                                                    <button class="btn btn-sm send_message_btn" data-toggle="modal"
+                                                        data-target="#messageModal" data-id="{{ $registrant->id }}"
+                                                        data-name="{{ $registrant->contact_person }}">Send
+                                                        Message</button>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -50,7 +52,8 @@
 @endif
 
 <!-- Bootstrap Modal for Sending Message -->
-<div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="messageModalLabel" aria-hidden="true">
+<div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="messageModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -80,7 +83,7 @@
 
 <script>
     // JavaScript to populate the modal with the registrant's ID and name when button is clicked
-    $('#messageModal').on('show.bs.modal', function (event) {
+    $('#messageModal').on('show.bs.modal', function(event) {
         var button = $(event.relatedTarget); // Button that triggered the modal
         var registrantId = button.data('id'); // Extract registrant ID
         var registrantName = button.data('name'); // Extract registrant name

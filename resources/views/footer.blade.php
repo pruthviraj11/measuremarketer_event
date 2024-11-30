@@ -163,21 +163,24 @@
          guestForm.classList.add('guest-form');
          guestForm.id = `guest-${guestIndex}`;
          guestForm.innerHTML = `
-            <div class="form-row"> <!-- Added form-row to align fields in a row -->
-                <div class="form-group col-md-4">
+            <div class="form-row row d-flex align-items-end"> <!-- Added form-row to align fields in a row -->
+                <div class="form-group col-md-3">
                     <label for="name">Name</label>
                     <input type="text" name="guests[${guestIndex}][name]" class="form-control" required>
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-3">
                     <label for="email">Email</label>
                     <input type="email" name="guests[${guestIndex}][email]" class="form-control">
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-3">
                     <label for="phone">Phone</label>
                     <input type="text" name="guests[${guestIndex}][phone]" class="form-control">
                 </div>
+                <div class="form-group col-md-3">
+                    <button type="button" class="btn btn-danger remove-guest" style="margin-top: 10px;"> X </button>
+                </div>
             </div>
-            <button type="button" class="btn btn-danger remove-guest" style="margin-top: 10px;">Remove</button> <!-- Add margin-top for spacing -->
+           <!-- Add margin-top for spacing -->
         `;
 
          container.appendChild(guestForm);
@@ -197,7 +200,17 @@
      });
  </script>
  <script>
+     $(document).ready(function() {});
+     if (feather) {
+         feather.replace({
+             width: 14,
+             height: 14
+         });
+     }
+ </script>
+ <script>
      $(document).ready(function() {
+         feather.replace();
          $('#guestsTable').DataTable({
              "ordering": false // This disables sorting
          });
