@@ -63,9 +63,11 @@ Route::get('/profile/edit', [EventRegisterController::class, 'editProfile'])->na
 Route::post('/profile/update', [EventRegisterController::class, 'updateProfile'])->name('profile.update');
 
 
-
+Route::post('/send-message', [EventRegisterController::class, 'sendMessage'])->name('send_message');
 // Show the form for adding guests
 Route::get('/add-guests', [EventRegisterController::class, 'showFormGuests'])->name('add.guests');
+Route::get('/list-guests', [EventRegisterController::class, 'listGuests'])->name('list.guests');
+Route::delete('/guests/{id}/delete', [EventRegisterController::class, 'deleteGuest'])->name('guests.delete');
 
 // Store the guests
 Route::post('/add-guests', [EventRegisterController::class, 'storeGuests'])->name('store.guests');

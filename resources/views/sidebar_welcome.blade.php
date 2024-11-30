@@ -24,9 +24,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('add.guests') }}" class="nav-link {{ Route::is('add.guests') ? 'active' : '' }}"
-                    aria-current="page">
-                    Add Guests
+                <a href="{{ route('list.guests') }}" class="nav-link {{ Route::is('add.guests') ? 'active' : '' }}" aria-current="page">
+                    List Guests
                 </a>
             </li>
         </ul>

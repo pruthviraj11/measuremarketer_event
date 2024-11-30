@@ -179,6 +179,23 @@ class EventRegisterController extends Controller
     }
 
 
+    public function listGuests()
+    {
+        if (Session::has('user')) {
+            $userId = Session::get('user')->id;
+            $userData = EventGuest::join('events', 'event_guests.event_id', '=', 'events.id')
+                ->where('event_guests.user_id', $userId)
+                ->whereNull('event_guests.deleted_at') // Filter out soft-deleted guests
+                ->select('event_guests.*', 'events.name as event_name')
+                ->get();
+            return view('list_guests', compact('userData'));
+        }
+
+        return redirect()->route('users_login');
+    }
+
+
+
     // Save new guest data
     public function storeGuests(Request $request)
     {
@@ -207,5 +224,20 @@ class EventRegisterController extends Controller
 
         return back()->with('success', 'Guests added successfully!');
     }
+    public function deleteGuest($id)
+    {
+        $guest = EventGuest::find($id);
 
+        // Check if the guest exists
+        if ($guest) {
+            // Soft delete the guest (sets the deleted_at field)
+            $guest->delete();
+
+            // Redirect back with a success message
+            return back()->with('success', 'Guest deleted successfully!');
+        }
+
+        // If guest not found, return an error
+        return back()->with('error', 'Guest not found!');
+    }
 }
