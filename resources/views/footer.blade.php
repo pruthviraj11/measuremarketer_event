@@ -148,7 +148,49 @@
          $('#registrantsTable').DataTable();
      });
  </script>
+ <script>
+     let guestIndex = 1;
 
+     // Function to add new guest form
+     document.querySelector('.add-more').addEventListener('click', function() {
+         let container = document.querySelector('.guests-container');
+
+         // Create new guest form dynamically
+         let guestForm = document.createElement('div');
+         guestForm.classList.add('guest-form');
+         guestForm.id = `guest-${guestIndex}`;
+         guestForm.innerHTML = `
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" name="guests[${guestIndex}][name]" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" name="guests[${guestIndex}][email]" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="text" name="guests[${guestIndex}][phone]" class="form-control">
+            </div>
+            <button type="button" class="btn btn-danger remove-guest" style="margin-top: 10px;">Remove</button> <!-- Add margin-top for spacing -->
+        `;
+
+         container.appendChild(guestForm);
+
+         // Make the Remove button visible after adding the form
+         document.querySelector(`#guest-${guestIndex} .remove-guest`).style.display = 'inline-block';
+
+         guestIndex++;
+     });
+
+     // Event delegation to handle the remove button click for dynamically added guests
+     document.querySelector('.guests-container').addEventListener('click', function(e) {
+         if (e.target && e.target.classList.contains('remove-guest')) {
+             // Remove the guest form container
+             e.target.closest('.guest-form').remove();
+         }
+     });
+ </script>
  </body>
 
  </html>

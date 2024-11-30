@@ -7,38 +7,7 @@
                 <div class="row">
                     <div class="col-md-12 Sidebar-area" style="background-color: #ffff;">
                         <div class="row">
-                            <div class="col-md-3">
-                                <div class="d-flex flex-column flex-shrink-0 p-3" style="">
-                                    <a href="/"
-                                        class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-                                        <span class="fs-4">Menus</span>
-                                    </a>
-                                    <hr>
-                                    <ul class="nav nav-pills flex-column mb-auto">
-                                        <li class="nav-item">
-                                            <a href="{{ route('registerd_event') }}" class="nav-link active"
-                                                aria-current="page">
-                                                Registered Events
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="#" class="nav-link" aria-current="page">
-                                                My Profile
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="#" class="nav-link" aria-current="page">
-                                                My Messages
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="#" class="nav-link" aria-current="page">
-                                                Add Guests
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                           @include('sidebar_welcome')
                             <div class="col-md-9">
                                 <center>
                                     <h6>My Account</h6>
