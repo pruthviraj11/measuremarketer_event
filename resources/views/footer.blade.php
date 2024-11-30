@@ -57,14 +57,15 @@
  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Ensure jQuery is up-to-date -->
 
  <!-- Modernizr (if you're using it for feature detection) -->
- <script src="js/vendor/modernizr-3.5.0.min.js"></script>
+<script src="{{ asset('assets/js/vendor/modernizr-3.5.0.min.js') }}"></script>
 
- <!-- Bootstrap JS (requires jQuery) -->
- <script src="js/popper.min.js"></script> <!-- Popper.js for Bootstrap tooltips and popovers -->
- <script src="js/bootstrap.min.js"></script>
+<!-- Bootstrap JS (requires jQuery) -->
+<script src="{{ asset('assets/js/popper.min.js') }}"></script> <!-- Popper.js for Bootstrap tooltips and popovers -->
+<script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
 
- <!-- Other vendor scripts -->
- <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
+<!-- Other vendor scripts -->
+<script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
+
  <script src="{{ asset('assets/js/isotope.pkgd.min.js') }}"></script>
  <script src="{{ asset('assets/js/ajax-form.js') }}"></script>
  <script src="{{ asset('assets/js/waypoints.min.js') }}"></script>
@@ -90,7 +91,8 @@
  <!-- Main JS -->
  <script src="{{ asset('assets/js/main.js') }}"></script>
 
-
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
 
  <!-- DataTables & Additional Libraries (if needed) -->
  <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
@@ -236,6 +238,20 @@
          });
      }
  </script>
+<script>
+    // JavaScript to set the registrant id and event_id dynamically
+    $('#exampleModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget); // Button that triggered the modal
+        var registrantId = button.data('id');
+        var eventId = button.data('event-id');
+        
+        // Update modal's form action with the registrant id and event id
+        var modal = $(this);
+        modal.find('#registrant_id').val(registrantId);
+        modal.find('#event_id').val(eventId);
+    });
+</script>
+
  </body>
 
  </html>

@@ -10,6 +10,8 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/fevicon.png') }}">
 
+
+
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/magnific-popup.css') }}">
@@ -60,7 +62,7 @@
                                         <!-- Check if user session exists -->
                                         <!-- My Account button (for logged-in users) -->
                                         <div class="book_btn d-none d-lg-block">
-                                            <a href="#" target="_blank">My Account</a>
+                                            <a href="{{ route ('registerd_event') }}" target="_blank">My Account</a>
                                         </div>
 
                                         <!-- Logout button (for logged-in users) -->

@@ -9,7 +9,13 @@
                         <div class="row">
                             @include('sidebar_welcome')
                             <div class="col-md-9">
-                                <table id="registrantsTable" class="display table-bordered">
+                                @if (session('success'))
+                                    <div class="alert alert-success">
+                                        {{ session('success') }}
+                                    </div>
+                                @endif
+
+                                <table id="registrantsTable" class="display">
                                     <thead>
                                         <tr>
                                             <th>Contact Person</th>
@@ -27,11 +33,12 @@
                                                 <td>{{ $registrant->email }}</td>
                                                 <td>{{ $registrant->phone }}</td>
                                                 <td>
-                                                    <!-- Button to trigger the modal, passing registrant ID -->
-                                                    <button class="btn btn-sm send_message_btn" data-toggle="modal"
-                                                        data-target="#messageModal" data-id="{{ $registrant->id }}"
-                                                        data-name="{{ $registrant->contact_person }}">Send
+                                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                        data-target="#exampleModal" data-id="{{ $registrant->id }}"
+                                                        data-name="{{ $registrant->contact_person }}"
+                                                        data-event-id="{{ $registrant->event_id }}">Send
                                                         Message</button>
+
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -45,39 +52,42 @@
             </div>
         </div>
     </div>
+    <!-- Modal -->
+    <div class="modal fade" style="z-index: 9999999;" id="exampleModal" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Send Message</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('sendMessage') }}" method="POST" id="messageForm">
+                        @csrf
+                        <input type="hidden" id="registrant_id" name="registrant_id">
+                        <input type="hidden" id="event_id" name="event_id">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="subject" name="subject"
+                                placeholder="Subject" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" id="message" name="message" placeholder="Message" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 @else
     <script>
         window.location.href = "{{ route('users_login') }}"; // Redirect to login route
     </script>
 @endif
 
-<!-- Bootstrap Modal for Sending Message -->
-<div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="messageModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="messageModalLabel">Send Message</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="messageForm" method="POST" action="{{ route('send_message') }}">
-                    @csrf
-                    <input type="hidden" id="registrant_id" name="registrant_id">
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" class="form-control" rows="4" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Send</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 @include('footer')
 
