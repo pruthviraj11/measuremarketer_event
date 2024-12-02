@@ -123,14 +123,15 @@
                  },
                  {
                      data: 'event_date',
-                     render: function(data, type, row) {
-                         const startDate = row.start_date ? row.start_date : '-';
-                         const startTime = row.start_time ? row.start_time : '-';
-                         const endDate = row.end_date ? row.end_date : '-';
-                         const endTime = row.end_time ? row.end_time : '-';
+                     name: 'event_date'
+                     //  render: function(data, type, row) {
+                     //      const startDate = row.start_date ? row.start_date : '-';
+                     //      const startTime = row.start_time ? row.start_time : '-';
+                     //      const endDate = row.end_date ? row.end_date : '-';
+                     //      const endTime = row.end_time ? row.end_time : '-';
 
-                         return `${startDate} ${startTime}`;
-                     }
+                     //      return `${startDate} ${startTime}`;
+                     //  }
                  },
              ]
          });
@@ -188,7 +189,11 @@
  </script>
  <script type="text/javascript">
      $(document).ready(function() {
-         $('#registrantsTable').DataTable();
+         $('#registrantsTable').DataTable({
+             ordering: false,
+             paging: false,
+             info: false,
+         });
      });
  </script>
  <script>

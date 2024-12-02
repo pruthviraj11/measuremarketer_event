@@ -21,7 +21,8 @@
             <li class="nav-item">
                 <a href="{{ route('list.attending') }}"
                     class="nav-link {{ Route::is('list.attending') ? 'active' : '' }}" aria-current="page">
-                    List Attending
+                    List Attendees
+
                 </a>
             </li>
 

@@ -16,6 +16,7 @@ use App\Models\EventNotification;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\MessageSent;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class EventRegisterController extends Controller
 {
@@ -67,7 +68,7 @@ class EventRegisterController extends Controller
         // dd($eventRegister);
         $eventRegister->save();
 
-        return redirect()->route('join_event')->with('success', 'Registration successful! Youre all set up!');
+        return redirect()->route('join_event')->with('success', 'Thank you for registering! Your spot is confirmed, and we can’t wait to see you at the event!');
     }
 
     public function RegisterdEvent(Request $request)
@@ -92,13 +93,15 @@ class EventRegisterController extends Controller
             return DataTables::of($events)
                 ->addColumn('event_date', function ($event) {
                     // Combine Start Date, Start Time, End Date, and End Time
-                    $startDate = $event->start_date ?? '-';
+                    // $startDate = $event->start_date ?? '-';
+    
+                    // $startDate = Carbon::now()->format('d-m-Y');
                     $startTime = $event->start_time ?? '-';
-                    $endDate = $event->end_date ?? '-';
-                    $endTime = $event->end_time ?? '-';
-
+                   
+                    $startDate = $event->start_date = Carbon::parse($event->start_date)->format('d-m-Y');
+                    // $event->end_date = Carbon::parse($event->end_date)->format('d-m-Y');
                     // Return combined date and time
-                    return $startDate . ' ' . $startTime . ' - ' . $endDate . ' ' . $endTime;
+                    return $startDate . ' ' . $startTime;
                 })
                 // ->addColumn('action', function ($event) {
                 //     // Encrypt the event ID
@@ -423,7 +426,8 @@ class EventRegisterController extends Controller
     public function userQrCode()
     {
         $ss = QrCode::size(250)->generate('name: Pradip
-        email:gpradipdan
+        email:gpradipdanMicrosoft Message	
+
         phone:9890988909');
         return view('qr_code', compact('ss'));
     }

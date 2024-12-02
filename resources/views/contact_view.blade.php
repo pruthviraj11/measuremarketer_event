@@ -20,7 +20,7 @@
 
                                     @if ($getPerson['profile_image'] && file_exists(public_path($getPerson['profile_image'])))
                                         <img src="{{ asset($profileImagePath) }}" alt="Profile Image"
-                                            class=" mt-2 rounded-circle" width="100" height="100">
+                                            class="mt-2 rounded-circle" width="100" height="100">
                                     @else
                                         <img src="{{ asset('images/no_image_found.png') }}" alt="No Image Found"
                                             class="img-thumbnail mt-2 rounded-circle" width="110">
