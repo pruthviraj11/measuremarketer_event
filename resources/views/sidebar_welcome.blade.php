@@ -7,17 +7,24 @@
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item">
+                <a href="{{ route('profile.edit') }}" class="nav-link {{ Route::is('profile.edit') ? 'active' : '' }}"
+                    aria-current="page">
+                    My Profile
+                </a>
+            </li>
+            <li class="nav-item">
                 <a href="{{ route('registerd_event') }}"
                     class="nav-link {{ Route::is('registerd_event') ? 'active' : '' }}" aria-current="page">
                     Registered Events
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('profile.edit') }}" class="nav-link {{ Route::is('profile.edit') ? 'active' : '' }}"
-                    aria-current="page">
-                    My Profile
+                <a href="{{ route('list.attending') }}"
+                    class="nav-link {{ Route::is('list.attending') ? 'active' : '' }}" aria-current="page">
+                    List Attending
                 </a>
             </li>
+
             <li class="nav-item">
                 <a href="#" class="nav-link {{ Route::is('messages') ? 'active' : '' }}" aria-current="page">
                     My Messages
@@ -29,15 +36,6 @@
                     List Guests
                 </a>
             </li>
-
-            <li class="nav-item">
-                <a href="{{ route('list.attending') }}"
-                    class="nav-link {{ Route::is('list.attending') ? 'active' : '' }}" aria-current="page">
-                    List Attending
-                </a>
-            </li>
-
-
         </ul>
     </div>
 </div>

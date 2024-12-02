@@ -192,7 +192,7 @@ class UsersController extends Controller
             $updated = $this->userService->updateUser($id, $userData);
             if (!empty($updated)) {
 
-                return redirect()->back()->with('success', 'Profile updated successfully');
+                return redirect()->back()->with('success', 'Your profile has been successfully Updated!');
             } else {
 
                 return redirect()->back()->with('error', 'Error while Updating User');
@@ -248,12 +248,12 @@ class UsersController extends Controller
             $id = decrypt($encrypted_id);
             $deleted = $this->userService->deleteUser($id);
             if (!empty($deleted)) {
-                return redirect()->route("app-users-list")->with('success', 'Users Deleted Successfully');
+                return redirect()->route("app-users-list")->with('success', 'User Deleted Successfully');
             } else {
                 return redirect()->back()->with('error', 'Error while Deleting Users');
             }
         } catch (\Exception $error) {
-            return redirect()->route("app-users-list")->with('error', 'Error while editing Users');
+            return redirect()->route("app-users-list")->with('error', 'Error while Deleting Users');
         }
     }
 }

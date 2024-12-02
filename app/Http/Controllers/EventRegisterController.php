@@ -65,7 +65,7 @@ class EventRegisterController extends Controller
         // dd($eventRegister);
         $eventRegister->save();
 
-        return redirect()->route('join_event')->with('success', 'Registration successful!');
+        return redirect()->route('join_event')->with('success', 'Registration successful! Youre all set up!');
     }
 
     public function RegisterdEvent(Request $request)
@@ -98,13 +98,13 @@ class EventRegisterController extends Controller
                     // Return combined date and time
                     return $startDate . ' ' . $startTime . ' - ' . $endDate . ' ' . $endTime;
                 })
-                ->addColumn('action', function ($event) {
-                    // Encrypt the event ID
-                    $encryptedId = encrypt($event->id);
+                // ->addColumn('action', function ($event) {
+                //     // Encrypt the event ID
+                //     $encryptedId = encrypt($event->id);
 
-                    // Return the button with the encrypted ID
-                    return '<button class="btn btn-primary btn-sm view-community view_community_btn" data-id="' . $encryptedId . '">View Registered Community</button>';
-                })
+                //     // Return the button with the encrypted ID
+                //     // return '<button class="btn btn-primary btn-sm view-community view_community_btn" data-id="' . $encryptedId . '">View Registered Community</button>';
+                // })
                 ->make(true);
         }
 
@@ -175,7 +175,7 @@ class EventRegisterController extends Controller
         $user->save();
 
         // Redirect with success message
-        return redirect()->route('profile.edit')->with('success', 'Profile updated successfully.');
+        return redirect()->route('profile.edit')->with('success', 'Your profile has been successfully Updated !.');
     }
     public function showFormGuests()
     {

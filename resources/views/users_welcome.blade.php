@@ -19,7 +19,7 @@
                                         <tr>
                                             <th>Event Name</th>
                                             <th>Event Date</th> <!-- Combined Start and End Date -->
-                                            <th>Action</th> <!-- Action column for View Community -->
+                                            {{-- <th>Action</th> --}}
                                         </tr>
                                     </thead>
                                     <tbody>

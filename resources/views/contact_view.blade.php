@@ -32,38 +32,48 @@
 
                                 <div class="row">
                                     <div class="col-md-6 mb-4">
-                                        <label for="contact-name" class="text-white profile_label">Company Name
-                                            :</label>
-                                        <p>{{ $getPerson['company_name'] }}</p>
+                                        <p class="text-white profile_label">Company Name
+                                            :</p>
+                                        <p class="profile_data">{{ $getPerson['company_name'] }}</p>
                                     </div>
                                     <div class="col-md-6 mb-4">
-                                        <label for="contact-name" class="text-white profile_label">Contact Person
-                                            Name :</label>
-                                        <p>{{ $getPerson['contact_person'] }}</p>
+                                        <p class="text-white profile_label">Contact Person
+                                            Name :</p>
+                                        <p class="profile_data">{{ $getPerson['contact_person'] }}</p>
                                     </div>
                                     <div class="col-md-6 mb-4">
-                                        <label for="contact-email" class="text-white profile_label">Email :</label>
-                                        <p>{{ $getPerson['email'] }}</p>
+                                        <p class="text-white profile_label">Email :</p>
+                                        <p class="profile_data">{{ $getPerson['email'] }}</p>
                                     </div>
                                     <div class="col-md-6 mb-4">
-                                        <label for="contact-email" class="text-white profile_label">Phone Number
-                                            :</label>
-                                        <p>{{ $getPerson['phone'] }}</p>
+                                        <p class="text-white profile_label">Phone Number
+                                            :</p>
+                                        <p class="profile_data">{{ $getPerson['phone'] }}</p>
                                     </div>
                                     <div class="col-md-6 mb-4">
-                                        <label for="contact-email" class="text-white profile_label">Address :</label>
-                                        <p>{{ $getPerson['address'] ?? '-' }}</p>
+                                        <p class="text-white profile_label">Address :</p>
+                                        <p class="profile_data">{{ $getPerson['address'] ?? '-' }}</p>
                                     </div>
 
 
                                 </div>
 
-                                <div class="text-center">
-                                    <button type="button" class="btn btn-primary send_message_btn" data-toggle="modal"
-                                        data-target="#exampleModal" data-id="{{ $getPerson->id }}"
+                                <div class="text-center d-flex justify-content-center">
+                                    <button type="button"
+                                        class="btn btn-primary send_message_btn d-flex align-items-center"
+                                        data-toggle="modal" data-target="#exampleModal" data-id="{{ $getPerson->id }}"
                                         data-name="{{ $getPerson->contact_person }}"
-                                        data-event-id="{{ $getPerson->event_id }}">Send
-                                        Message</button>
+                                        data-event-id="{{ $getPerson->event_id }}">
+                                        <svg class="mail_svg" xmlns="http://www.w3.org/2000/svg" width="24"
+                                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="feather feather-mail">
+                                            <path
+                                                d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                                            </path>
+                                            <polyline points="22,6 12,13 2,6"></polyline>
+                                        </svg>
+                                        Send Message</button>
                                 </div>
 
                             </div>

@@ -132,12 +132,6 @@
                          return `${startDate} ${startTime}`;
                      }
                  },
-                 {
-                     data: 'action', // Use 'action' to render the button
-                     render: function(data, type, row) {
-                         return data; // This will return the HTML for the button
-                     }
-                 }
              ]
          });
 
