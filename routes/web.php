@@ -68,6 +68,11 @@ Route::post('/send-message', [EventRegisterController::class, 'sendMessage'])->n
 Route::get('/add-guests', [EventRegisterController::class, 'showFormGuests'])->name('add.guests');
 Route::get('/list-guests', [EventRegisterController::class, 'listGuests'])->name('list.guests');
 Route::delete('/guests/{id}/delete', [EventRegisterController::class, 'deleteGuest'])->name('guests.delete');
+Route::get('/list-attending', [EventRegisterController::class, 'listEventAttending'])->name('list.attending');
+
+
+
+
 
 // Store the guests
 Route::post('/add-guests', [EventRegisterController::class, 'storeGuests'])->name('store.guests');

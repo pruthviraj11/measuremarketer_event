@@ -35,6 +35,9 @@
     <link rel="stylesheet" href="{{ asset('assets/css/joinNow.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.29.0/dist/feather.min.js"></script>
 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+
 </head>
 
 <body>
@@ -62,7 +65,7 @@
                                         <!-- Check if user session exists -->
                                         <!-- My Account button (for logged-in users) -->
                                         <div class="book_btn d-none d-lg-block">
-                                            <a href="{{ route ('registerd_event') }}" target="_blank">My Account</a>
+                                            <a href="{{ route('registerd_event') }}" target="_blank">My Account</a>
                                         </div>
 
                                         <!-- Logout button (for logged-in users) -->

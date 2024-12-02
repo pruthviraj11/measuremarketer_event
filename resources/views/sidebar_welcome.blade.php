@@ -24,10 +24,20 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('list.guests') }}" class="nav-link {{ Route::is('add.guests') ? 'active' : '' }}" aria-current="page">
+                <a href="{{ route('list.guests') }}" class="nav-link {{ Route::is('add.guests') ? 'active' : '' }}"
+                    aria-current="page">
                     List Guests
                 </a>
             </li>
+
+            <li class="nav-item">
+                <a href="{{ route('list.attending') }}"
+                    class="nav-link {{ Route::is('list.attending') ? 'active' : '' }}" aria-current="page">
+                    List Attending
+                </a>
+            </li>
+
+
         </ul>
     </div>
 </div>
