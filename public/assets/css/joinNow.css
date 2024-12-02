@@ -103,9 +103,8 @@
 
 .view_community_btn {
     background: linear-gradient(to right, #e91a83, #4c24c1) !important;
-    border: 1px solid #e91a83 !important;
     font-size: 20px;
-    border: transparent;
+    border: 1px solid transparent !important;
 }
 
 .view_community_btn:hover {
@@ -188,6 +187,13 @@ input:focus {
 
 .modle_change .form-control {
     color: #000 !important;
+}
+
+.paginate_button a {
+    margin-top: 10px !important;
+    background: linear-gradient(to right, #e91a83, #4c24c1) !important;
+    color: #fff !important;
+    border: transparent;
 }
 
 @media(max-width:768px) {
