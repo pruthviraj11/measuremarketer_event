@@ -29,7 +29,7 @@
                                             class="btn btn-primary btn-sm add_guest_btn">Add Guest</a></div>
                                 </div>
                                 <!-- Table for displaying guest information -->
-                                <table id="guestsTable" class="table table-bordered table-responsive">
+                                <table id="guestsTable" class="table table-bordered">
                                     <thead>
                                         <tr>
                                             <th>Guest Name</th>
