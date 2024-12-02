@@ -49,6 +49,12 @@ class EventRegisterController extends Controller
         $eventRegister->password = Hash::make($request->password);
         // $eventRegister->password = encrypt($request->password);
         $eventRegister->designation = $request->designation;
+
+        $eventRegister->linkedin = $request->linkedin;
+        $eventRegister->total_experience = $request->total_experience;
+        $eventRegister->bio = $request->bio;
+        $eventRegister->category = implode(",", $request->category);
+        $eventRegister->interest = implode(",", $request->interests);
         $eventRegister->event_id = 1;
 
         // dd($eventRegister->password);
@@ -97,7 +103,7 @@ class EventRegisterController extends Controller
     
                     // $startDate = Carbon::now()->format('d-m-Y');
                     $startTime = $event->start_time ?? '-';
-                   
+
                     $startDate = $event->start_date = Carbon::parse($event->start_date)->format('d-m-Y');
                     // $event->end_date = Carbon::parse($event->end_date)->format('d-m-Y');
                     // Return combined date and time

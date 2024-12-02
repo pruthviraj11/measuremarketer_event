@@ -102,7 +102,10 @@
 }
 
 
-
+.nice-select
+{
+    display:none !important;
+}
 
 
 

@@ -76,14 +76,102 @@
                                 @enderror
                             </div>
 
+                            <div class="col-sm-6 form-group">
+                                {{-- <label class="text-white" for="tel">Phone</label> --}}
+                                <input type="text" name="linkedin" class="form-control" id="linkedin"
+                                    placeholder="Linkedin." value="{{ old('linkedin') }}" required>
+                                @error('linkedin')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="col-sm-6 form-group">
+                                {{-- <label class="text-white" for="tel">Phone</label> --}}
+                                <input type="text" name="total_experience" class="form-control" id="total_experience"
+                                    placeholder="Total Experience in Marketing." value="{{ old('total_experience') }}"
+                                    required>
+                                @error('total_experience')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="col-sm-12 form-group">
+                                {{-- <label class="text-white" for="tel">Phone</label> --}}
+                                <textarea name="bio" class="form-control" placeholder="Bio." required></textarea>
+                                @error('bio')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+
+                            </div>
+
+
+                            <div class="col-sm-12 form-group">
+                                <label class="text-white" for="category">Categories to Choose From: </label>
+
+                                <select class="form-control" name="category[]" id="category" multiple="multiple">
+                                    <option value="">Select Category</option>
+                                    <option value="Performance Marketing">Performance Marketing</option>
+                                    <option value="Conversion Rate Optimization (CRO)">Conversion Rate Optimization
+                                        (CRO)</option>
+                                    <option value="Pay-per-click (PPC) - Google/Meta/Others">Pay-per-click (PPC) -
+                                        Google/Meta/Others</option>
+                                    <option value="Search Engine Optimization">Search Engine Optimization</option>
+                                    <option value="Social Media Marketing.">Social Media Marketing</option>
+                                    <option value="Influencer Marketing">Influencer Marketing</option>
+                                    <option value="Marketing Analytics">Marketing Analytics</option>
+                                    <option value="Affiliate Marketing">Affiliate Marketing</option>
+                                    <option value="Content Marketing">Content Marketing</option>
+                                    <option value="Email Marketing">Email Marketing</option>
+                                    <option value="Graphic Creators for Marketing">Graphic Creators for Marketing
+                                    </option>
+                                    <option value="Video Creators for Marketing">Video Creators for Marketing</option>
+                                    <option value="Others">Others</option>
+                                </select>
+                                @error('category')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+
+                            </div>
+
+                            <div class="col-sm-12 form-group">
+                                <label class="text-white" for="category">Interested in: </label>
+
+                                <select class="form-control" name="interests[]" id="interests" multiple="multiple">
+                                    <option value="">Select Interests</option>
+                                    <option value="Networking">Networking</option>
+                                    <option value="Career Opportunity">Career Opportunity</option>
+                                    <option value="Upskilling">Upskilling</option>
+                                    <option value="New Market Trends">New Market Trends</option>
+                                    <option value="Mentorship Opportunities">Mentorship Opportunities</option>
+                                    <option value="Startup Consulting">Startup Consulting</option>
+                                    <option value="Investment in Marketing Startups">Investment in Marketing Startups
+                                    </option>
+
+                                </select>
+                                @error('interests')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+
+                            </div>
+
+
+
+
+
+
+
+
+
+
 
 
                             <div class="col-sm-12 form-group">
 
                                 <div class="form-check form-check-inline mt-2">
-                                    <input class="form-check-input" type="checkbox" name="is_checked" id="is_checked"
-                                        value="1" checked>
-                                    <label class="form-check-label" for="is_checked">Lorem Ipsum is simply dummy text of
+                                    <input class="form-check-input" type="checkbox" name="is_checked"
+                                        id="is_checked" value="1" checked>
+                                    <label class="form-check-label" for="is_checked">Lorem Ipsum is simply dummy text
+                                        of
                                         the printing and typesetting industry. </label>
                                 </div>
                             </div>
@@ -121,9 +209,10 @@
                             </div>
                             <div class="col-sm-6 form-group">
                                 {{-- <label class="text-white" for="pass2">Confirm Password</label> --}}
-                                <input type="password" name="password_confirmation" class="form-control form_passsword"
-                                    id="pass2" placeholder="Re-enter your password."
-                                    value="{{ old('password_confirmation') }}" required>
+                                <input type="password" name="password_confirmation"
+                                    class="form-control form_passsword" id="pass2"
+                                    placeholder="Re-enter your password." value="{{ old('password_confirmation') }}"
+                                    required>
 
                                 <button type="button" class="btn btn-outline-secondary confirm-toggle-password"
                                     data-target="#pass2">
