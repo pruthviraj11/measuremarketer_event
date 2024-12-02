@@ -100,6 +100,11 @@ Route::get('/event/messages', [EventRegisterController::class, 'EventMessage'])-
 Route::post('/send-message', [EventRegisterController::class, 'sendMessage'])->name('sendMessage');
 
 Route::get('/community/view/{encryptedId}', [EventRegisterController::class, 'view'])->name('community.view');
+Route::get('/view-contact-person/{encryptedId}', [EventRegisterController::class, 'getContactPerson'])->name('get_contact_person');
+
+
+// for QR code
+Route::get('get-qr-code', [EventRegisterController::class, 'userQrCode'])->name('get-qr-code');
 
 Route::get('/messages/view/{encryptedId}', [EventRegisterController::class, 'eventViewMessages'])->name('event_messages.view');
 

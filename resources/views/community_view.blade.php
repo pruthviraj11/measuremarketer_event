@@ -15,7 +15,7 @@
                                     </div>
                                 @endif
 
-                                <table id="registrantsTable" class="display table table-bordered table-responsive">
+                                <table id="registrantsTable" class="display table table-bordered">
                                     <thead>
                                         <tr>
                                             <th>Contact Person</th>
@@ -36,12 +36,27 @@
                                                 {{-- <td>{{ $registrant->email }}</td>
                                                 <td>{{ $registrant->phone }}</td> --}}
                                                 <td>
-                                                    <button type="button" class="btn btn-primary send_message_btn"
+                                                    {{-- <button type="button" class="btn btn-primary send_message_btn"
                                                         data-toggle="modal" data-target="#exampleModal"
                                                         data-id="{{ $registrant->id }}"
                                                         data-name="{{ $registrant->contact_person }}"
                                                         data-event-id="{{ $registrant->event_id }}">Send
-                                                        Message</button>
+                                                        Message</button> --}}
+                                                    <?php $encryptedId = encrypt($registrant->id); ?>
+
+                                                    <a href="{{ route('get_contact_person', $encryptedId) }}"><button
+                                                            class="btn profile_view_btn ">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                height="24" viewBox="0 0 24 24" fill="none"
+                                                                stroke="currentColor" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round"
+                                                                class="feather feather-eye">
+                                                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z">
+                                                                </path>
+                                                                <circle cx="12" cy="12" r="3"></circle>
+                                                            </svg>
+                                                        </button>
+                                                    </a>
 
                                                 </td>
                                             </tr>

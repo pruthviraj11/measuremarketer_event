@@ -133,32 +133,12 @@ form label {
     color: #fff !important;
 }
 
-.form_passsword
-{
-    position: relative;
-}
-.btn-outline-secondary
-{
-    position: absolute !important;
-    right: 15px;
-    top: 5px;
-    border-color: transparent !important;
-    background: transparent !important;
-}
-
-.btn-outline-secondary:hover
-{
-    background: transparent !important;
-    border-color: transparent !important;
-}
-
-
-
 .profile_update_btn {
     background: linear-gradient(to right, #e91a83, #4c24c1) !important;
     border: transparent !important;
     font-size: 20px;
-    border: transparent;
+    border-radius: 40px;
+    padding: 10px 15px;
 }
 
 .profile_update_btn:hover {
@@ -174,21 +154,21 @@ form label {
 .add_more_btn,
 .save_guest_btn {
     background: linear-gradient(to right, #e91a83, #4c24c1) !important;
-    border: 1px solid transparent !important;
+    border: transparent !important;
     font-size: 20px;
-    border: none;
     color: #fff;
-    /* border-radius: 40px; */
-    padding: 10px 20px;
+    border-radius: 40px;
+    padding: 10px 25px;
 }
-
-
-
 
 .send_message_btn:hover {
     background: transparent !important;
     border: 1px solid #e91a83 !important;
     color: #e91a83;
+}
+
+.mail_svg {
+    padding-right: 4px;
 }
 
 
@@ -233,6 +213,60 @@ input:focus {
     margin-top: 10px !important;
     background: linear-gradient(to right, #e91a83, #4c24c1) !important;
     color: #fff !important;
+    border: transparent;
+}
+
+.profile_view_btn {
+    background: transparent !important;
+    border: 1px solid transparent !important;
+    font-size: 20px;
+    color: #e91a83;
+    padding: 5px 20px;
+    border-radius: 40px;
+}
+
+.profile_view_btn:hover {
+    color: #4c24c1;
+}
+
+
+.profile_text {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.profile_label {
+    font-size: 20px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+
+
+.profile_label::after {
+    content: "";
+    width: 50%;
+    display: block;
+    height: 2px;
+    background: linear-gradient(to right, #e91a83, #4c24c1) !important;
+}
+
+
+.profile_data {
+    font-size: 16px;
+    padding-top: 0px;
+    color: #fff;
+}
+
+.alert-success {
+    background: linear-gradient(to right, #e91a83, #4c24c1) !important;
+    color: #fff;
+    border: transparent;
+}
+
+#eventsTable_processing {
+    background: linear-gradient(to right, #e91a83, #4c24c1) !important;
+    color: #fff;
     border: transparent;
 }
 

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
 use App\Models\Event;
 use App\Models\EventGuest;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Yajra\DataTables\Facades\DataTables;
 use App\Models\EventNotification;
 use Illuminate\Support\Facades\Mail;
@@ -66,7 +67,7 @@ class EventRegisterController extends Controller
         // dd($eventRegister);
         $eventRegister->save();
 
-        return redirect()->route('join_event')->with('success', 'Registration successful!');
+        return redirect()->route('join_event')->with('success', 'Registration successful! Youre all set up!');
     }
 
     public function RegisterdEvent(Request $request)
@@ -99,13 +100,13 @@ class EventRegisterController extends Controller
                     // Return combined date and time
                     return $startDate . ' ' . $startTime . ' - ' . $endDate . ' ' . $endTime;
                 })
-                ->addColumn('action', function ($event) {
-                    // Encrypt the event ID
-                    $encryptedId = encrypt($event->id);
+                // ->addColumn('action', function ($event) {
+                //     // Encrypt the event ID
+                //     $encryptedId = encrypt($event->id);
 
-                    // Return the button with the encrypted ID
-                    return '<button class="btn btn-primary btn-sm view-community view_community_btn" data-id="' . $encryptedId . '">View Registered Community</button>';
-                })
+                //     // Return the button with the encrypted ID
+                //     // return '<button class="btn btn-primary btn-sm view-community view_community_btn" data-id="' . $encryptedId . '">View Registered Community</button>';
+                // })
                 ->make(true);
         }
 
@@ -272,7 +273,7 @@ class EventRegisterController extends Controller
         $user->save();
 
         // Redirect with success message
-        return redirect()->route('profile.edit')->with('success', 'Profile updated successfully.');
+        return redirect()->route('profile.edit')->with('success', 'Your profile has been successfully Updated !.');
     }
     public function showFormGuests()
     {
@@ -408,6 +409,23 @@ class EventRegisterController extends Controller
             // Redirect back with an error message
             return back()->with('error', 'Failed to send the message. Please try again!');
         }
+    }
+
+
+    public function getContactPerson($encryptedId)
+    {
+        $id = decrypt($encryptedId);
+        $getPerson = EventRegister::where('id', $id)->first();
+
+        return view('contact_view', compact('getPerson'));
+    }
+
+    public function userQrCode()
+    {
+        $ss = QrCode::size(250)->generate('name: Pradip
+        email:gpradipdan
+        phone:9890988909');
+        return view('qr_code', compact('ss'));
     }
 
 
