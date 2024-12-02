@@ -36,17 +36,12 @@
                                                 {{-- <td>{{ $registrant->email }}</td>
                                                 <td>{{ $registrant->phone }}</td> --}}
                                                 <td>
-                                                    {{-- <button type="button" class="btn btn-primary send_message_btn"
+                                                    <button type="button" class="btn btn-primary send_message_btn"
                                                         data-toggle="modal" data-target="#exampleModal"
                                                         data-id="{{ $registrant->id }}"
                                                         data-name="{{ $registrant->contact_person }}"
                                                         data-event-id="{{ $registrant->event_id }}">Send
-                                                        Message</button> --}}
-                                                    <?php $encryptedId = encrypt($registrant->id); ?>
-
-                                                    <a href="{{ route('get_contact_person', $encryptedId) }}"><button
-                                                            class="btn profile_view_btn ">View</button>
-                                                    </a>
+                                                        Message</button>
 
                                                 </td>
                                             </tr>

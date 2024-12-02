@@ -28,11 +28,14 @@ class EventRegisterController extends Controller
             'phone' => 'required|digits:10',
             'password' => 'required|min:8|confirmed',
             'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'designation' => 'required|string|max:255',
         ], [
 
             'phone.digits' => 'Phone number must be 10 digits.',
             'password.confirmed' => 'Password confirmation does not match.',
         ]);
+
+
 
         $eventRegister = new EventRegister();
         $eventRegister->company_name = $request->company_name;
@@ -41,7 +44,11 @@ class EventRegisterController extends Controller
         $eventRegister->address = $request->input('address-1');
         $eventRegister->phone = $request->phone;
         $eventRegister->password = Hash::make($request->password);
+        // $eventRegister->password = encrypt($request->password);
+        $eventRegister->designation = $request->designation;
         $eventRegister->event_id = 1;
+
+        // dd($eventRegister->password);
 
 
         if ($request->hasFile('profile_image')) {
@@ -55,7 +62,7 @@ class EventRegisterController extends Controller
             $eventRegister->profile_image = 'images/profilephoto/' . $imageName;
         }
 
-
+        // dd($eventRegister);
         $eventRegister->save();
 
         return redirect()->route('join_event')->with('success', 'Registration successful!');
@@ -161,7 +168,7 @@ class EventRegisterController extends Controller
 
         // Update the password if provided
         if ($request->filled('password')) {
-            $user->password = Hash::make($request->password);
+            $user->password = encrypt($request->password);
         }
 
         // Save the updated user information
@@ -196,6 +203,31 @@ class EventRegisterController extends Controller
         }
 
         return redirect()->route('users_login');
+    }
+
+    /*------------- Attending List ------*/
+    public function listEventAttending()
+    {
+        if (Session::has('user')) {
+            $userId = Session::get('user')->id;
+            $eventInfo = EventRegister::where('id', $userId)->first();
+            $eventId = $eventInfo->event_id;
+
+
+            $event = Event::findOrFail($eventId);
+            $registrants = EventRegister::where('event_id', $eventId)
+                ->where('id', '!=', $userId)
+                ->get();
+
+            // $userData = EventGuest::join('events', 'event_guests.event_id', '=', 'events.id')
+            //     ->where('event_guests.user_id', $userId)
+            //     ->whereNull('event_guests.deleted_at') // Filter out soft-deleted guests
+            //     ->select('event_guests.*', 'events.name as event_name')
+            //     ->get();
+            return view('community_view', compact('event', 'registrants'));
+        }
+
+        //return redirect()->route('users_login');
     }
 
 

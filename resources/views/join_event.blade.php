@@ -27,7 +27,7 @@
                             <div class="col-sm-6 form-group">
                                 {{-- <label class="text-white" for="company_name">Company Name</label> --}}
                                 <input type="text" class="form-control" name="company_name" id="company_name"
-                                    placeholder="Enter your Company Name." required>
+                                    placeholder="Enter your Company Name." value="{{ old('company_name') }}" required>
                                 @error('company_name')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -35,7 +35,8 @@
                             <div class="col-sm-6 form-group">
                                 {{-- <label class="text-white" for="contact_person">Contact Person</label> --}}
                                 <input type="text" class="form-control" name="contact_person" id="contact_person"
-                                    placeholder="Enter your contact Person Name." required>
+                                    placeholder="Enter your contact Person Name." value="{{ old('contact_person') }}"
+                                    required>
                                 @error('contact_person')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -43,7 +44,7 @@
                             <div class="col-sm-6 form-group">
                                 {{-- <label class="text-white" for="address-1">Address</label> --}}
                                 <input type="text" class="form-control" name="address-1" id="address-1"
-                                    placeholder="Locality/House/Street no." required>
+                                    placeholder="Locality/House/Street no." value="{{ old('address-1') }}" required>
                                 @error('address-1')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -51,7 +52,7 @@
                             <div class="col-sm-6 form-group">
                                 {{-- <label class="text-white" for="tel">Phone</label> --}}
                                 <input type="tel" name="phone" class="form-control" id="tel"
-                                    placeholder="Enter Your Contact Number." required>
+                                    placeholder="Enter Your Contact Number." value="{{ old('phone') }}" required>
                                 @error('phone')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -64,6 +65,30 @@
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
+
+
+                            <div class="col-sm-6 form-group">
+                                {{-- <label class="text-white" for="tel">Phone</label> --}}
+                                <input type="text" name="designation" class="form-control" id="designation"
+                                    placeholder="Designation." value="{{ old('designation') }}" required>
+                                @error('designation')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+
+
+                            <div class="col-sm-12 form-group">
+
+                                <div class="form-check form-check-inline mt-2">
+                                    <input class="form-check-input" type="checkbox" name="is_checked" id="is_checked"
+                                        value="1" checked>
+                                    <label class="form-check-label" for="is_checked">Lorem Ipsum is simply dummy text of
+                                        the printing and typesetting industry. </label>
+                                </div>
+                            </div>
+
+
                             <!-- End Personal Information -->
 
                             <!-- Login Information -->
@@ -73,23 +98,39 @@
                             <div class="col-sm-6 form-group">
                                 {{-- <label class="text-white" for="email">Email</label> --}}
                                 <input type="email" class="form-control" name="email" id="email"
-                                    placeholder="Enter your email." required>
+                                    placeholder="Enter your email." value="{{ old('email') }}" required>
                                 @error('email')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-sm-6 form-group">
                                 {{-- <label class="text-white" for="pass">Password</label> --}}
-                                <input type="password" name="password" class="form-control" id="pass"
-                                    placeholder="Enter your password." required>
+                                <input type="password" name="password" class="form-control form_passsword"
+                                    id="pass" placeholder="Enter your password." value="{{ old('password') }}"
+                                    required>
+
+                                <button type="button" class="btn btn-outline-secondary toggle-password"
+                                    data-target="#pass">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+
+
                                 @error('password')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-sm-6 form-group">
                                 {{-- <label class="text-white" for="pass2">Confirm Password</label> --}}
-                                <input type="password" name="password_confirmation" class="form-control" id="pass2"
-                                    placeholder="Re-enter your password." required>
+                                <input type="password" name="password_confirmation" class="form-control form_passsword"
+                                    id="pass2" placeholder="Re-enter your password."
+                                    value="{{ old('password_confirmation') }}" required>
+
+                                <button type="button" class="btn btn-outline-secondary confirm-toggle-password"
+                                    data-target="#pass2">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+
+
                                 @error('password_confirmation')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
