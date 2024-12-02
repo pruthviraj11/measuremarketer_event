@@ -97,6 +97,10 @@ Route::get('/community/view/{encryptedId}', [EventRegisterController::class, 'vi
 Route::get('/view-contact-person/{encryptedId}', [EventRegisterController::class, 'getContactPerson'])->name('get_contact_person');
 
 
+// for QR code
+Route::get('get-qr-code', [EventRegisterController::class, 'userQrCode'])->name('get-qr-code');
+
+
 // Reset Password routes
 Route::get('/password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 Route::post('/password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
 use App\Models\Event;
 use App\Models\EventGuest;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Yajra\DataTables\Facades\DataTables;
 use App\Models\EventNotification;
 use Illuminate\Support\Facades\Mail;
@@ -322,6 +323,13 @@ class EventRegisterController extends Controller
         return view('contact_view', compact('getPerson'));
     }
 
+    public function userQrCode()
+    {
+        $ss = QrCode::size(250)->generate('name: Pradip
+        email:gpradipdan
+        phone:9890988909');
+        return view('qr_code', compact('ss'));
+    }
 
 
 }
