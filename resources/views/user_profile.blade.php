@@ -58,12 +58,12 @@
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             @php
-                                                $profileImagePath = 'images/profilephoto/' . $user->profile_image;
+                                                $profileImagePath = $user->profile_image;
                                             @endphp
 
-                                            @if ($user->profile_image && \Storage::disk('public')->exists($profileImagePath))
+                                            @if ($user->profile_image && file_exists(public_path($user->profile_image)))
                                                 <img src="{{ asset($profileImagePath) }}" alt="Profile Image"
-                                                    class="img-thumbnail mt-2 rounded-circle" width="120">
+                                                    class=" mt-2 rounded-circle" width="100" height="100">
                                             @else
                                                 <img src="{{ asset('images/no_image_found.png') }}" alt="No Image Found"
                                                     class="img-thumbnail mt-2 rounded-circle" width="120">

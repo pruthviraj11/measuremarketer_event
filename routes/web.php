@@ -89,6 +89,7 @@ Route::get('/registered/event', [EventRegisterController::class, 'RegisterdEvent
 Route::post('/send-message', [EventRegisterController::class, 'sendMessage'])->name('sendMessage');
 
 Route::get('/community/view/{encryptedId}', [EventRegisterController::class, 'view'])->name('community.view');
+Route::get('/view-contact-person/{encryptedId}', [EventRegisterController::class, 'getContactPerson'])->name('get_contact_person');
 
 
 // Reset Password routes

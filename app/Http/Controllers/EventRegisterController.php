@@ -282,4 +282,14 @@ class EventRegisterController extends Controller
     }
 
 
+    public function getContactPerson($encryptedId)
+    {
+        $id = decrypt($encryptedId);
+        $getPerson = EventRegister::where('id', $id)->first();
+
+        return view('contact_view', compact('getPerson'));
+    }
+
+
+
 }

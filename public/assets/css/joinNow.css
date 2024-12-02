@@ -196,6 +196,23 @@ input:focus {
     border: transparent;
 }
 
+.profile_view_btn {
+    background: linear-gradient(to right, #e91a83, #4c24c1) !important;
+    border: 1px solid transparent !important;
+    font-size: 20px;
+    color: #fff;
+    padding: 10px 20px;
+}
+
+.profile_text {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.profile_label {
+    font-size: 20px;
+}
+
 @media(max-width:768px) {
     #eventsTable tr th {
         padding-right: 30px !important;
