@@ -101,6 +101,22 @@
     padding: 10px;
 }
 
+#eventMessageTable {
+    width: 100% !important;
+}
+
+#eventMessageTable tr th {
+    font-size: 20px;
+    padding: 10px;
+}
+
+#eventMessageTable tr td {
+    padding: 10px;
+}
+
+
+
+
 .view_community_btn {
     background: linear-gradient(to right, #e91a83, #4c24c1) !important;
     font-size: 20px;

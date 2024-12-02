@@ -19,7 +19,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link {{ Route::is('messages') ? 'active' : '' }}" aria-current="page">
+                <a href="{{ route('event_messages') }}"
+                    class="nav-link {{ Route::is('event_messages') ? 'active' : '' }}" aria-current="page">
                     My Messages
                 </a>
             </li>

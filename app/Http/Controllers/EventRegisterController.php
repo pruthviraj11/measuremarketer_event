@@ -14,6 +14,7 @@ use Yajra\DataTables\Facades\DataTables;
 use App\Models\EventNotification;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\MessageSent;
+use Illuminate\Support\Facades\DB;
 
 class EventRegisterController extends Controller
 {
@@ -112,6 +113,76 @@ class EventRegisterController extends Controller
     }
 
 
+
+    /*-----------  View Event Message List --------*/
+    public function EventMessage(Request $request)
+    {
+        if (!Session::has('user')) {
+            return redirect()->route('login');  // Redirect to login if the user is not logged in
+        }
+
+        $userId = Session::get('user')->id;
+
+
+        // Get the event registrations for the user
+        // $eventRegisters = EventNotification::where('id', $userId)
+        //     ->whereNull('deleted_at') // Only non-deleted events
+        //     ->get();
+
+
+        $eventMessage = DB::table('events_notifications as en')
+            ->select(
+                'en.read_by',
+                'er.company_name',
+                'en.message as messages'
+            )
+            ->join('event_registers as er', 'en.read_by', '=', 'er.id')
+            ->where('en.user_id', $userId)
+            ->whereIn('en.id', function ($query) use ($userId) {
+                $query->select(DB::raw('MIN(id)'))
+                    ->from('events_notifications')
+                    ->where('user_id', $userId)
+                    ->groupBy('read_by');
+            })
+            ->get();
+
+
+
+
+
+
+
+        if ($request->ajax()) {
+            return DataTables::of($eventMessage)
+                ->addColumn('company_name', function ($eventMessage) {
+                    // Combine Start Date, Start Time, End Date, and End Time
+    
+                    return $eventMessage->company_name;
+                })->addColumn('message', function ($eventMessage) {
+                    // Combine Start Date, Start Time, End Date, and End Time
+                    return $eventMessage->messages;
+
+                    // Return combined date and time
+    
+                })
+                ->addColumn('action', function ($eventMessage) {
+                    // Encrypt the event ID
+                    //$encryptedId = encrypt($event->id);
+    
+                    $encryptedId = encrypt($eventMessage->read_by);
+
+                    // Return the button with the encrypted ID
+                    return '<button class="btn btn-primary btn-sm view-messages view_community_btn" data-id="' . $encryptedId . '">View Messages</button>';
+                })
+                ->make(true);
+        }
+
+        return view('event_messages', compact('eventMessage'));
+    }
+
+    /*-----------  End Evet Message List ------------*/
+
+
     public function view($encryptedId)
     {
         // dd($encryptedId);
@@ -122,6 +193,32 @@ class EventRegisterController extends Controller
 
         return view('community_view', compact('event', 'registrants'));
     }
+
+
+    /*----- View messages --------*/
+
+    public function eventViewMessages($encryptedId)
+    {
+
+        $CompanyId = decrypt($encryptedId);
+        $userId = Session::get('user')->id;
+
+        $username = EventRegister::where('id', $userId)->first();
+
+        $chatDetails = EventNotification::where(function ($query) use ($CompanyId, $userId) {
+            $query->where('read_by', $CompanyId)
+                ->where('sent_by', $userId);
+        })->orWhere(function ($query) use ($CompanyId, $userId) {
+            $query->where('read_by', $userId)
+                ->where('sent_by', $CompanyId);
+        })->get();
+
+
+        return view('event_chats', compact('chatDetails', 'userId', 'username'));
+    }
+
+
+    /*------ End messages -------*/
 
     public function editProfile()
     {

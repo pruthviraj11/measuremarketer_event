@@ -91,10 +91,17 @@ Route::any('/userlogout', [LoginController::class, 'userlogout'])->name('userlog
 Route::get('/password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
 Route::post('/password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
 Route::get('/registered/event', [EventRegisterController::class, 'RegisterdEvent'])->name('registerd_event');
+
+
+Route::get('/event/messages', [EventRegisterController::class, 'EventMessage'])->name('event_messages');
+
+
+
 Route::post('/send-message', [EventRegisterController::class, 'sendMessage'])->name('sendMessage');
 
 Route::get('/community/view/{encryptedId}', [EventRegisterController::class, 'view'])->name('community.view');
 
+Route::get('/messages/view/{encryptedId}', [EventRegisterController::class, 'eventViewMessages'])->name('event_messages.view');
 
 // Reset Password routes
 Route::get('/password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');

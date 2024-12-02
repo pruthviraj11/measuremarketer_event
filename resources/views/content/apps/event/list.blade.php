@@ -35,7 +35,7 @@
             </div>
             <div class="card-body border-bottom">
                 <div class="card-datatable table-responsive pt-0">
-                    <table class="user-list-table table dt-responsive" id="users-table">
+                    <table class="user-list-table table dt-responsive" id="events-table">
                         <thead>
                             <tr>
                                 <th>Name</th>
@@ -74,12 +74,15 @@
     <script src="{{ asset(mix('vendors/js/forms/cleave/cleave.min.js')) }}"></script>
     <script src="{{ asset(mix('vendors/js/forms/cleave/addons/cleave-phone.us.js')) }}"></script>
     @yield('links')
+
+
+
 @endsection
 
 @section('page-script')
     <script>
         $(document).ready(function() {
-            $('#users-table').DataTable({
+            $('#events-table').DataTable({
                 processing: true,
                 serverSide: true,
                 "lengthMenu": [10, 25, 50, 100, 200],

@@ -146,6 +146,50 @@
              var encryptedId = $(this).data('id');
              window.location.href = `/community/view/${encryptedId}`;
          });
+
+
+         /*------------- Event Messages Lists   ----*/
+         $('#eventMessageTable').DataTable({
+             processing: true,
+             serverSide: true,
+             ordering: false,
+             paging: false,
+             bInfo: false,
+             ajax: '{{ route('event_messages') }}', // AJAX URL to fetch the data
+             columns: [{
+                     data: 'company_name'
+                 },
+                 {
+                     data: 'message'
+                 },
+
+                 {
+                     data: 'action', // Use 'action' to render the button
+                     render: function(data, type, row) {
+                         return data; // This will return the HTML for the button
+                     }
+                 }
+             ]
+         });
+
+         // Add event listener for View Community button
+         $(document).on('click', '.view-messages', function() {
+             var encryptedId = $(this).data('id');
+             window.location.href = `/messages/view/${encryptedId}`;
+         });
+
+
+
+         /*------------- End Event Message Lists   ------------*/
+
+
+
+
+
+
+
+
+
      });
  </script>
  <script type="text/javascript">
