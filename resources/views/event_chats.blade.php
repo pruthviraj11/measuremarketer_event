@@ -9,19 +9,21 @@
                         <div class="row">
                             @include('sidebar_welcome')
                             <div class="col-md-9">
-                                @foreach ($chatDetails as $chatDetail)
-                                    @if ($chatDetail->sent_by == $userId)
+
+                                @foreach ($messageDatas as $chatDetail)
+                                    @if ($chatDetail['sent_by'] == $userId)
                                         <!-- Right-side chat bubble -->
                                         <div class="chat-message right right_part chat_font">
-                                            <span class="chat_name">{{ $username->company_name }}</span>
-                                            <p>{{ $chatDetail->message }}</p>
-                                            <span class="timestamp">{{ $chatDetail->created_at }}</span>
+                                            {{-- <span class="chat_name">{{ $username->company_name }}</span> --}}
+                                            <p>{{ $chatDetail['message'] }}</p>
+                                            <span class="timestamp">{{ $chatDetail['created_at'] }}</span>
                                         </div>
                                     @else
                                         <!-- Left-side chat bubble -->
                                         <div class="chat-message left left_part chat_font">
-                                            <p>{{ $chatDetail->message }}</p>
-                                            <span class="timestamp">{{ $chatDetail->created_at }}</span>
+                                            <span class="chat_name">{{ $chatDetail['company_name'] }}</span>
+                                            <p>{{ $chatDetail['message'] }}</p>
+                                            <span class="timestamp">{{ $chatDetail['created_at'] }}</span>
                                         </div>
                                     @endif
                                 @endforeach

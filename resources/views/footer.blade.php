@@ -120,8 +120,14 @@
  <script>
      $(document).ready(function() {
 
-         $('#category').select2();
-         $('#interests').select2();
+         $('#category').select2({
+             placeholder: "Select Category",
+             allowClear: true
+         });
+         $('#interests').select2({
+             placeholder: "Select Interest",
+             allowClear: true
+         });
 
          $(".individual_info").hide();
          $(".radio_form").click(function() {
@@ -141,13 +147,13 @@
 
          /*-------Event AttandingList Info---------*/
          $('#category').change(function() {
-             let categoryId = $(this).val();
+             let selectedCategories = $(this).val();
 
              $.ajax({
                  url: "{{ route('list.attending') }}", // Adjust to your route
                  method: "GET",
                  data: {
-                     category: categoryId
+                     categories: selectedCategories
                  },
                  success: function(response) {
                      let registrantsTable = $('#registrantsTable tbody');

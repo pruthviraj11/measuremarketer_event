@@ -14,14 +14,15 @@
                                         {{ session('success') }}
                                     </div>
                                 @endif
+                                <div class="col-md-12 mb-5">
+                                    <select name="category[]" id="category" multiple class="form-control">
+                                        <option value="">Select Category</option>
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->category }}</option>
+                                        @endforeach
 
-                                <select name="category" id="category">
-                                    <option value="">Select Category</option>
-                                    @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->category }}</option>
-                                    @endforeach
-
-                                </select>
+                                    </select>
+                                </div>
 
                                 <table id="registrantsTable" class="display table table-bordered">
                                     <thead>

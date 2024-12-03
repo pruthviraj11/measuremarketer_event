@@ -41,15 +41,17 @@
                                             Name :</p>
                                         <p class="profile_data">{{ $getPerson['contact_person'] }}</p>
                                     </div>
-                                    <div class="col-md-6 mb-4">
-                                        <p class="text-white profile_label">Email :</p>
-                                        <p class="profile_data">{{ $getPerson['email'] }}</p>
-                                    </div>
-                                    <div class="col-md-6 mb-4">
-                                        <p class="text-white profile_label">Phone Number
-                                            :</p>
-                                        <p class="profile_data">{{ $getPerson['phone'] }}</p>
-                                    </div>
+                                    @if ($getPerson['is_checked'] == '1')
+                                        <div class="col-md-6 mb-4">
+                                            <p class="text-white profile_label">Email :</p>
+                                            <p class="profile_data">{{ $getPerson['email'] }}</p>
+                                        </div>
+                                        <div class="col-md-6 mb-4">
+                                            <p class="text-white profile_label">Phone Number
+                                                :</p>
+                                            <p class="profile_data">{{ $getPerson['phone'] }}</p>
+                                        </div>
+                                    @endif
                                     <div class="col-md-6 mb-4">
                                         <p class="text-white profile_label">Address :</p>
                                         <p class="profile_data">{{ $getPerson['address'] ?? '-' }}</p>
