@@ -21,7 +21,7 @@
             <li class="nav-item">
                 <a href="{{ route('list.attending') }}"
                     class="nav-link {{ Route::is('list.attending') ? 'active' : '' }}" aria-current="page">
-                    List Attendees
+                    List Of Attendees
 
                 </a>
             </li>
@@ -35,7 +35,7 @@
             <li class="nav-item">
                 <a href="{{ route('list.guests') }}" class="nav-link {{ Route::is('add.guests') ? 'active' : '' }}"
                     aria-current="page">
-                    List Guests
+                    List Of Members
                 </a>
             </li>
         </ul>

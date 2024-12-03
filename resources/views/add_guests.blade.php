@@ -13,7 +13,7 @@
                                 @if (session('success'))
                                     <div class="alert alert-success">{{ session('success') }}</div>
                                 @endif
-                                <h1 class="text-white text-center">Add Guests</h1>
+                                <h1 class="text-white text-center">Add Members</h1>
                                 <form action="{{ route('store.guests') }}" method="POST" class="guest_form">
                                     @csrf
                                     <input type="hidden" name="event_id" value="{{ $eventId }}">
@@ -64,7 +64,7 @@
 
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-primary save_guest_btn">Save
-                                            Guests</button>
+                                            Members</button>
                                     </div>
                                 </form>
 

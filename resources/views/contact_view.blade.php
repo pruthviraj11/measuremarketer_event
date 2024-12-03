@@ -13,7 +13,7 @@
                                 <center class="mb-4">
                                     <p class="text-white profile_text">Profile</p>
                                 </center>
-                                <div class="col-md-6 mb-3">
+                                <div class="col-md-3 mb-3">
                                     @php
                                         $profileImagePath = $getPerson['profile_image'];
                                     @endphp
@@ -26,9 +26,12 @@
                                             class="img-thumbnail mt-2 rounded-circle" width="110">
                                     @endif
 
-
-
                                 </div>
+                                <div class="col-md-12 mb-5">
+                                    <p class="text-white profile_label">Registered As :</p>
+                                    <p class="profile_data">{{ ucfirst($getPerson['form_type']) ?? '-' }}</p>
+                                </div>
+
 
                                 <div class="row">
                                     <div class="col-md-6 mb-4">
@@ -36,11 +39,26 @@
                                             :</p>
                                         <p class="profile_data">{{ $getPerson['company_name'] }}</p>
                                     </div>
-                                    <div class="col-md-6 mb-4">
-                                        <p class="text-white profile_label">Contact Person
-                                            Name :</p>
-                                        <p class="profile_data">{{ $getPerson['contact_person'] }}</p>
-                                    </div>
+
+                                    @if ($getPerson['form_type'] == 'individual')
+                                        <div class="col-md-6 mb-4">
+                                            <p class="text-white profile_label">Full Name:</p>
+                                            <p class="profile_data">{{ $getPerson['full_name'] }}</p>
+                                        </div>
+
+                                        <div class="col-md-6 mb-4">
+                                            <p class="text-white profile_label">Bio:</p>
+                                            <p class="profile_data">{{ $getPerson['bio'] }}</p>
+                                        </div>
+                                    @else
+                                        <div class="col-md-6 mb-4">
+                                            <p class="text-white profile_label">Contact Person
+                                                Name :</p>
+                                            <p class="profile_data">{{ $getPerson['contact_person'] }}</p>
+                                        </div>
+                                    @endif
+
+
                                     @if ($getPerson['is_checked'] == '1')
                                         <div class="col-md-6 mb-4">
                                             <p class="text-white profile_label">Email :</p>
@@ -56,6 +74,39 @@
                                         <p class="text-white profile_label">Address :</p>
                                         <p class="profile_data">{{ $getPerson['address'] ?? '-' }}</p>
                                     </div>
+
+                                    <div class="col-md-6 mb-4">
+                                        <p class="text-white profile_label">Linkedin :</p>
+                                        <p class="profile_data">{{ $getPerson['linkedin'] ?? '-' }}</p>
+                                    </div>
+
+                                    <div class="col-md-6 mb-4">
+                                        <p class="text-white profile_label">Designation :</p>
+                                        <p class="profile_data">{{ $getPerson['designation'] ?? '-' }}</p>
+                                    </div>
+
+
+                                    <div class="col-md-6 mb-4">
+                                        <p class="text-white profile_label">Experience in Market :</p>
+                                        <p class="profile_data">{{ $getPerson['total_experience'] ?? '-' }}</p>
+                                    </div>
+
+
+
+                                    <div class="col-md-6 mb-4">
+                                        <p class="text-white profile_label">Selected Categories :</p>
+                                        <p class="profile_data">{{ $categoryName ?? '-' }}</p>
+                                    </div>
+
+                                    <div class="col-md-6 mb-4">
+                                        <p class="text-white profile_label">Interests :</p>
+                                        <p class="profile_data">{{ $interestName ?? '-' }}</p>
+                                    </div>
+
+
+
+
+
 
 
                                 </div>

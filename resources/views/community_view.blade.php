@@ -27,20 +27,29 @@
                                 <table id="registrantsTable" class="display table table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>Contact Person</th>
                                             <th>Company Name</th>
+                                            <th>Person Name</th>
+
                                             <th>Designation</th>
 
                                             {{-- <th>Email</th>
                                             <th>Phone</th> --}}
-                                            <th>Action</th> <!-- Added action column for message button -->
+                                            <th></th> <!-- Added action column for message button -->
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($registrants as $registrant)
                                             <tr>
-                                                <td>{{ $registrant->contact_person }}</td>
+                                                @php
+                                                    if ($registrant->form_type == 'company') {
+                                                        $PersonName = $registrant->contact_person;
+                                                    } else {
+                                                        $PersonName = $registrant->full_name;
+                                                    }
+                                                @endphp
+
                                                 <td>{{ $registrant->company_name }}</td>
+                                                <td>{{ $PersonName }}</td>
                                                 <td>{{ $registrant->designation }}</td>
                                                 {{-- <td>{{ $registrant->email }}</td>
                                                 <td>{{ $registrant->phone }}</td> --}}
@@ -55,7 +64,7 @@
 
                                                     <a href="{{ route('get_contact_person', $encryptedId) }}"><button
                                                             class="btn profile_view_btn ">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                            {{-- <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                                 height="24" viewBox="0 0 24 24" fill="none"
                                                                 stroke="currentColor" stroke-width="2"
                                                                 stroke-linecap="round" stroke-linejoin="round"
@@ -63,7 +72,8 @@
                                                                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z">
                                                                 </path>
                                                                 <circle cx="12" cy="12" r="3"></circle>
-                                                            </svg>
+                                                            </svg> --}}
+                                                            View Profile
                                                         </button>
                                                     </a>
 

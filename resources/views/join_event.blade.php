@@ -21,7 +21,7 @@
                         <div class="row">
 
                             <div class="col-md-12 text-center">
-                                <h2 class="text-white">Registered As </h2>
+                                <h2 class="text-white">Register As </h2>
                                 <div class="form-check">
                                     <input class="form-check-input radio_form" type="radio" name="registration_type"
                                         id="company_registration" value="company" checked>
