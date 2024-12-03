@@ -111,7 +111,7 @@
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
 
- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
 
  <!-- Include Select2 JS -->
  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
@@ -119,8 +119,73 @@
 
  <script>
      $(document).ready(function() {
+
          $('#category').select2();
          $('#interests').select2();
+
+         $(".individual_info").hide();
+         $(".radio_form").click(function() {
+             $val = $(this).val();
+             if ($val == "company") {
+                 $(".company_info").show();
+                 $(".individual_info").hide();
+             } else {
+                 $(".company_info").hide();
+                 $(".individual_info").show();
+             }
+
+
+             // company_info
+
+         });
+
+         /*-------Event AttandingList Info---------*/
+         $('#category').change(function() {
+             let categoryId = $(this).val();
+
+             $.ajax({
+                 url: "{{ route('list.attending') }}", // Adjust to your route
+                 method: "GET",
+                 data: {
+                     category: categoryId
+                 },
+                 success: function(response) {
+                     let registrantsTable = $('#registrantsTable tbody');
+                     registrantsTable.empty();
+
+                     if (response.registrants.length > 0) {
+                         response.registrants.forEach(function(registrant) {
+                             let row = `
+                                <tr>
+                                    <td>${registrant.contact_person}</td>
+                                    <td>${registrant.company_name}</td>
+                                    <td>${registrant.designation}</td>
+                                    <td>
+                                        <a href="/get_contact_person/${registrant.id}">
+                                            <button class="btn profile_view_btn">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye">
+                                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                                    <circle cx="12" cy="12" r="3"></circle>
+                                                </svg>
+                                            </button>
+                                        </a>
+                                    </td>
+                                </tr>
+                            `;
+                             registrantsTable.append(row);
+                         });
+                     } else {
+                         registrantsTable.append(
+                             '<tr><td colspan="4" class="text-center">No registrants found.</td></tr>'
+                         );
+                     }
+                 },
+                 error: function() {
+                     alert('Unable to fetch registrants. Please try again.');
+                 }
+             });
+         });
+
 
 
          $('#eventsTable').DataTable({

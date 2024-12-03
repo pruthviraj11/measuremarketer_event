@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
 use App\Models\Event;
 use App\Models\EventGuest;
+use App\Models\EventCategory;
+use App\Models\EventInterest;
+
+
+
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Yajra\DataTables\Facades\DataTables;
 use App\Models\EventNotification;
@@ -20,6 +25,15 @@ use Carbon\Carbon;
 
 class EventRegisterController extends Controller
 {
+
+    public function showJoinEventForm()
+    {
+        $categories = EventCategory::all();
+        $interests = EventInterest::all();
+        return view('join_event', compact('categories', 'interests'));
+    }
+
+
 
     public function store(Request $request)
     {
@@ -155,6 +169,8 @@ class EventRegisterController extends Controller
                     ->groupBy('read_by');
             })
             ->get();
+
+
 
 
 
@@ -313,28 +329,54 @@ class EventRegisterController extends Controller
     }
 
     /*------------- Attending List ------*/
-    public function listEventAttending()
+    public function listEventAttending(Request $request)
     {
         if (Session::has('user')) {
+            // $userId = Session::get('user')->id;
+            // $eventInfo = EventRegister::where('id', $userId)->first();
+            // $eventId = $eventInfo->event_id;
+
+
+            // $event = Event::findOrFail($eventId);
+            // $registrants = EventRegister::where('event_id', $eventId)
+            //     ->where('id', '!=', $userId)
+            //     ->get();
+
+            // $categories = EventCategory::all();
+
+
+            // return view('community_view', compact('event', 'registrants', 'categories'));
+
+
             $userId = Session::get('user')->id;
             $eventInfo = EventRegister::where('id', $userId)->first();
             $eventId = $eventInfo->event_id;
 
-
             $event = Event::findOrFail($eventId);
-            $registrants = EventRegister::where('event_id', $eventId)
-                ->where('id', '!=', $userId)
-                ->get();
+            $categories = EventCategory::all();
 
-            // $userData = EventGuest::join('events', 'event_guests.event_id', '=', 'events.id')
-            //     ->where('event_guests.user_id', $userId)
-            //     ->whereNull('event_guests.deleted_at') // Filter out soft-deleted guests
-            //     ->select('event_guests.*', 'events.name as event_name')
-            //     ->get();
-            return view('community_view', compact('event', 'registrants'));
+            // Fetch registrants with optional category filter
+            $query = EventRegister::where('event_id', $eventId)
+                ->where('id', '!=', $userId);
+
+            if ($request->has('category') && $request->category) {
+                $query->whereRaw("FIND_IN_SET(?, category)", [$request->category]);
+            }
+
+            $registrants = $query->get();
+
+            if ($request->ajax()) {
+                return response()->json(['registrants' => $registrants]);
+            }
+
+            return view('community_view', compact('event', 'registrants', 'categories'));
+
+
+
+
         }
 
-        //return redirect()->route('users_login');
+        return redirect()->route('users_login');
     }
 
 

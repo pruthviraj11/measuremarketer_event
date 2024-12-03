@@ -15,6 +15,14 @@
                                     </div>
                                 @endif
 
+                                <select name="category" id="category">
+                                    <option value="">Select Category</option>
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->category }}</option>
+                                    @endforeach
+
+                                </select>
+
                                 <table id="registrantsTable" class="display table table-bordered">
                                     <thead>
                                         <tr>

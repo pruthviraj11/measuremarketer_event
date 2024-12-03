@@ -36,9 +36,11 @@ Route::get('/', function () {
     return view('index');
 })->name('index');
 
-Route::get('/join_event', function () {
-    return view('join_event');
-})->name('join_event');
+// Route::get('/join_event', function () {
+//     return view('join_event');
+// })->name('join_event');
+
+Route::get('/join_event', [EventRegisterController::class, 'showJoinEventForm'])->name('join_event');
 
 
 Route::get('/users_welcome', function () {
