@@ -12,14 +12,14 @@
                                 @foreach ($chatDetails as $chatDetail)
                                     @if ($chatDetail->sent_by == $userId)
                                         <!-- Right-side chat bubble -->
-                                        <div class="chat-message right">
-                                            <span>{{ $username->company_name }}</span>
+                                        <div class="chat-message right right_part chat_font">
+                                            <span class="chat_name">{{ $username->company_name }}</span>
                                             <p>{{ $chatDetail->message }}</p>
                                             <span class="timestamp">{{ $chatDetail->created_at }}</span>
                                         </div>
                                     @else
                                         <!-- Left-side chat bubble -->
-                                        <div class="chat-message left">
+                                        <div class="chat-message left left_part chat_font">
                                             <p>{{ $chatDetail->message }}</p>
                                             <span class="timestamp">{{ $chatDetail->created_at }}</span>
                                         </div>

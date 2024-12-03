@@ -40,7 +40,7 @@
                                                     <button type="button" class="btn btn-danger remove-guest"
                                                         style="display:none; margin-top: 10px;">Remove</button>
                                                     <button type="button" style="margin-top: 13px;"
-                                                        class="btn btn-secondary add-more"><svg
+                                                        class="btn btn-info add-more"><svg
                                                             xmlns="http://www.w3.org/2000/svg" width="16"
                                                             height="16" viewBox="0 0 24 24" fill="none"
                                                             stroke="currentColor" stroke-width="2"
