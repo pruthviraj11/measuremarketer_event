@@ -344,7 +344,7 @@ class EventRegisterController extends Controller
         $user->save();
 
         // Redirect with success message
-        return redirect()->route('profile.edit')->with('success', 'Your profile has been successfully Updated !.');
+        return redirect()->route('profile.edit')->with('success', 'Your profile has been successfully Updated..!');
     }
     public function showFormGuests()
     {
@@ -492,11 +492,15 @@ class EventRegisterController extends Controller
         $notification->sent_by = $userId;
         $notification->read_by = $request->registrant_id;
         $notification->created_by = $userId;
+        $notification = EventRegister::where('id', $notification->user_id)->first();
+        // dd($notification->company_name);
         $notification->save();
+
 
         try {
             // Send an email to the recipient (registrant)
             $registrant = EventRegister::find($request->registrant_id);
+
             Mail::to($registrant->email)->send(new MessageSent($notification));
 
             // If email was sent successfully, update the status to 1 (success)
@@ -528,7 +532,7 @@ class EventRegisterController extends Controller
     public function userQrCode()
     {
         $ss = QrCode::size(250)->generate('name: Pradip
-        email:gpradipdanMicrosoft Message	
+        email:gpradipdanMicrosoft Message
 
         phone:9890988909');
         return view('qr_code', compact('ss'));

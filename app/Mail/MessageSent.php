@@ -3,9 +3,11 @@
 namespace App\Mail;
 
 use App\Models\EventNotification;
+use App\Models\EventRegister;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+
 
 class MessageSent extends Mailable
 {
@@ -36,6 +38,7 @@ class MessageSent extends Mailable
             ->with([
                 'messageop' => $this->notification->message, // Pass message content to view
                 'eventId' => $this->notification->event_id, // Pass event ID to view
+                'userId' => $this->notification->company_name,
             ])
             ->subject('New Event Notification');
     }

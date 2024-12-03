@@ -112,9 +112,8 @@
     display: none !important;
 }
 
-.form-contact label
-{
-    font-size:17px !important;
+.form-contact label {
+    font-size: 17px !important;
 }
 
 .select2-container--default .select2-selection--multiple .select2-selection__choice
@@ -306,7 +305,8 @@ input:focus {
     font-size: 22px;
 }
 
-#eventsTable_processing {
+#eventsTable_processing,
+#eventMessageTable_processing {
     background: linear-gradient(to right, #e91a83, #4c24c1) !important;
     color: #fff;
     border: transparent;
@@ -327,14 +327,18 @@ input:focus {
 
 .chat_font p {
     color: #fff;
+    line-height: 1;
+    font-size: 13px;
+    margin-top: 2px;
 }
 
 .chat_name {
     color: #fff;
+    font-size: 14px;
 }
 
 .chat-message .timestamp {
-    font-size: 12px !important;
+    font-size: 9px !important;
     color: #fff;
 }
 
