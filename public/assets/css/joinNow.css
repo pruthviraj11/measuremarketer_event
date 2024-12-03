@@ -88,23 +88,28 @@
     background: linear-gradient(to right, #e91a83, #4c24c1);
 }
 
-#eventsTable,#eventMessageTable,#registrantsTable {
+#eventsTable,
+#eventMessageTable,
+#registrantsTable {
     width: 100% !important;
 }
 
-#eventsTable tr th,#eventMessageTable tr th,#registrantsTable tr th {
+#eventsTable tr th,
+#eventMessageTable tr th,
+#registrantsTable tr th {
     font-size: 20px;
     padding: 10px;
 }
 
-#eventsTable tr td,#eventMessageTable tr td,#registrantsTable tr td {
+#eventsTable tr td,
+#eventMessageTable tr td,
+#registrantsTable tr td {
     padding: 10px;
 }
 
 
-.nice-select
-{
-    display:none !important;
+.nice-select {
+    display: none !important;
 }
 
 .form-contact label
@@ -265,12 +270,46 @@ input:focus {
     font-size: 22px;
 }
 
+.alert-error {
+    background: linear-gradient(to right, #e91a83, #4c24c1) !important;
+    color: #fff;
+    border: transparent;
+    width: 100%;
+    text-align: center;
+    font-size: 22px;
+}
+
 #eventsTable_processing {
     background: linear-gradient(to right, #e91a83, #4c24c1) !important;
     color: #fff;
     border: transparent;
 }
 
+.right_part {
+    background: #4c24c1 !important;
+}
+
+.left_part {
+    background: #e93c92 !important;
+}
+
+.chat-message {
+    border-radius: 10px !important;
+    width: 50% !important;
+}
+
+.chat_font p {
+    color: #fff;
+}
+
+.chat_name {
+    color: #fff;
+}
+
+.chat-message .timestamp {
+    font-size: 12px !important;
+    color: #fff;
+}
 
 
 @media(max-width:768px) {

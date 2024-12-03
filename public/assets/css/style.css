@@ -1560,7 +1560,8 @@ h3 {
 
 /* line 10, ../../Arafath/CL/December/236. Event-02/HTML/scss/_slider.scss */
 .slider_area .single_slider {
-    height: 900px;
+    /* height: 900px; */
+    min-height: 900px;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -1649,7 +1650,7 @@ h3 {
 .slider_area .single_slider .slider_text span {
     font-size: 30px;
     font-weight: 400;
-    color: #e91a83;
+    color: #e91a83 !important;
     font-family: "Anton", sans-serif;
 }
 
