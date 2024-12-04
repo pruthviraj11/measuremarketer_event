@@ -33,8 +33,14 @@ Route::get('/admin', function () {
 });
 
 Route::get('/', function () {
-    return view('index');
+    return view('users_login');
 })->name('index');
+
+
+
+// Route::get('/', function () {
+//     return view('index');
+// })->name('index');
 
 // Route::get('/join_event', function () {
 //     return view('join_event');
@@ -49,9 +55,9 @@ Route::get('/users_welcome', function () {
 
 
 
-Route::get('/users_login', function () {
-    return view('users_login');
-})->name('users_login');
+// Route::get('/users_login', function () {
+//     return view('users_login');
+// })->name('users_login');
 
 
 Route::get('/password_request', function () {

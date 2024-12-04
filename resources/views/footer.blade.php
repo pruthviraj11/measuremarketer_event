@@ -129,7 +129,7 @@
              allowClear: true
          });
 
-         $(".individual_info").hide();
+         // $(".individual_info").hide();
          $(".radio_form").click(function() {
              $val = $(this).val();
              if ($val == "company") {

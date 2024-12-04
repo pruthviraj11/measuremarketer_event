@@ -53,7 +53,8 @@ class LoginController extends Controller
     public function userlogout(Request $request)
     {
         $this->performLogout($request);
-        return redirect()->route('users_login');
+        //return redirect()->route('users_login');
+        return redirect()->route('index');
     }
 
     public function checkLogin(Request $request)

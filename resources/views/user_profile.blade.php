@@ -102,7 +102,7 @@
                                         $companyDisplay = $user->form_type == 'company' ? 'block' : 'none';
                                         $individualDisplay = $user->form_type == 'individual' ? 'block' : 'none';
                                     @endphp
-
+        
 
                                     <div class="company_info" style="display:{{ $companyDisplay }}">
                                         <div class="row">
@@ -143,8 +143,7 @@
                                             <div class="col-md-12 mb-3">
                                                 <label for="full_name" class="form-label">Full Name</label>
                                                 <input type="text" name="full_name" class="form-control"
-                                                    id="full_name" value="{{ old('full_name', $user->full_name) }}"
-                                                    required>
+                                                    id="full_name" value="{{ old('full_name', $user->full_name) }}">
                                             </div>
 
                                             <div class="col-md-12 mb-3">
