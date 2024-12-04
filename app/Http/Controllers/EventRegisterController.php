@@ -543,16 +543,31 @@ class EventRegisterController extends Controller
         $notification->sent_by = $userId;
         $notification->read_by = $request->registrant_id;
         $notification->created_by = $userId;
-        //$notification = EventRegister::where('id', $notification->user_id)->first();
-        // dd($notification->company_name);
+
         $notification->save();
+
+
+        $eventDetails = Event::where('id', $request->event_id)->first();
+
+        $eventName = $eventDetails->name;
+
+        $eventRegister = EventRegister::where('id', $request->registrant_id)->first();
+
+        if ($eventRegister->form_type == "company") {
+            $companyName = $eventRegister->company_name;
+        } else {
+            $companyName = $eventRegister->full_name;
+        }
+
+
+        //$companyName = $eventRegister ? $eventRegister->company_name : null;
 
 
         try {
             // Send an email to the recipient (registrant)
             $registrant = EventRegister::find($request->registrant_id);
 
-            Mail::to($registrant->email)->send(new MessageSent($notification));
+            Mail::to($registrant->email)->send(new MessageSent($notification, $companyName, $eventName));
 
             // If email was sent successfully, update the status to 1 (success)
             $notification->status = 1; // success
