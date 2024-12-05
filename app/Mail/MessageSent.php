@@ -14,6 +14,10 @@ class MessageSent extends Mailable
     use Queueable, SerializesModels;
 
     public $notification; // The notification object passed to the view
+    public $companyName;
+
+    public $eventName;
+
 
     /**
      * Create a new message instance.
@@ -21,9 +25,12 @@ class MessageSent extends Mailable
      * @param  \App\Models\EventNotification  $notification
      * @return void
      */
-    public function __construct(EventNotification $notification)
+    public function __construct(EventNotification $notification, $companyName, $eventName)
     {
         $this->notification = $notification;
+        $this->eventName = $eventName;
+        $this->companyName = $companyName;
+
     }
 
     /**
@@ -37,8 +44,9 @@ class MessageSent extends Mailable
         return $this->view('message_sent') // The view for the email
             ->with([
                 'messageop' => $this->notification->message, // Pass message content to view
-                'eventId' => $this->notification->event_id, // Pass event ID to view
-                'userId' => $this->notification->company_name,
+                'eventId' => $this->eventName, // Pass event ID to view
+                'companyName' => $this->companyName, // Pass company name to view
+
             ])
             ->subject('New Event Notification');
     }

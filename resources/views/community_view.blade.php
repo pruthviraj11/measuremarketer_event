@@ -14,32 +14,65 @@
                                         {{ session('success') }}
                                     </div>
                                 @endif
+                                <div class="col-md-12 mb-5">
+                                    <select name="category[]" id="category" multiple class="form-control">
+                                        <option value="">Select Category</option>
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->category }}</option>
+                                        @endforeach
 
-                                <select name="category" id="category">
-                                    <option value="">Select Category</option>
-                                    @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->category }}</option>
-                                    @endforeach
-
-                                </select>
+                                    </select>
+                                </div>
 
                                 <table id="registrantsTable" class="display table table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>Contact Person</th>
+                                            <th>#</th>
                                             <th>Company Name</th>
+                                            <th>Name </th>
+
                                             <th>Designation</th>
 
                                             {{-- <th>Email</th>
                                             <th>Phone</th> --}}
-                                            <th>Action</th> <!-- Added action column for message button -->
+                                            <th></th> <!-- Added action column for message button -->
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($registrants as $registrant)
                                             <tr>
-                                                <td>{{ $registrant->contact_person }}</td>
-                                                <td>{{ $registrant->company_name }}</td>
+                                                @php
+                                                    if ($registrant->form_type == 'company') {
+                                                        $PersonName = $registrant->contact_person;
+                                                    } else {
+                                                        $PersonName = $registrant->full_name;
+                                                    }
+                                                @endphp
+
+                                                <td class="text-center align-middle">
+
+                                                    @php
+                                                        $profileImagePath = $registrant->profile_image;
+                                                    @endphp
+
+                                                    @if ($registrant->profile_image && file_exists(public_path($registrant->profile_image)))
+                                                        <img src="{{ asset($profileImagePath) }}" alt="Profile Image"
+                                                            class="mt-2 rounded-circle" width="80" height="80">
+                                                    @else
+                                                        <img src="{{ asset('images/no_image_found.png') }}"
+                                                            alt="No Image Found"
+                                                            class="img-thumbnail mt-2 rounded-circle" width="80"
+                                                            height="80">
+                                                    @endif
+
+
+
+                                                </td>
+
+                                                <td>
+                                                    {{ $registrant->company_name }}
+                                                </td>
+                                                <td>{{ $PersonName }}</td>
                                                 <td>{{ $registrant->designation }}</td>
                                                 {{-- <td>{{ $registrant->email }}</td>
                                                 <td>{{ $registrant->phone }}</td> --}}
@@ -54,7 +87,7 @@
 
                                                     <a href="{{ route('get_contact_person', $encryptedId) }}"><button
                                                             class="btn profile_view_btn ">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                            {{-- <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                                 height="24" viewBox="0 0 24 24" fill="none"
                                                                 stroke="currentColor" stroke-width="2"
                                                                 stroke-linecap="round" stroke-linejoin="round"
@@ -62,7 +95,8 @@
                                                                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z">
                                                                 </path>
                                                                 <circle cx="12" cy="12" r="3"></circle>
-                                                            </svg>
+                                                            </svg> --}}
+                                                            View Profile
                                                         </button>
                                                     </a>
 

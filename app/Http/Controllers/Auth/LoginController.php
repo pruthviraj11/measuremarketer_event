@@ -53,7 +53,8 @@ class LoginController extends Controller
     public function userlogout(Request $request)
     {
         $this->performLogout($request);
-        return redirect()->route('users_login');
+        //return redirect()->route('users_login');
+        return redirect()->route('index');
     }
 
     public function checkLogin(Request $request)
@@ -73,7 +74,7 @@ class LoginController extends Controller
             session(['user' => $user]);
 
             // Successful login, redirect to the welcome page
-            return redirect()->route('users_welcome');
+            return redirect()->route('profile.edit');
         }
 
         // If login fails, redirect back with error message

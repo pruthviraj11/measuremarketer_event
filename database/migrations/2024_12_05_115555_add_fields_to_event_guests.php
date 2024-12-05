@@ -12,8 +12,9 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::table('event_registers', function (Blueprint $table) {
-            $table->string('full_name')->nullable()->after('interest');
+        Schema::table('event_guests', function (Blueprint $table) {
+
+            $table->string('designation')->nullable()->after('email');
         });
     }
 
@@ -24,7 +25,7 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::table('event_registers', function (Blueprint $table) {
+        Schema::table('event_guests', function (Blueprint $table) {
             //
         });
     }

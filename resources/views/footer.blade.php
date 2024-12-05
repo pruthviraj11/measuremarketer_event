@@ -120,10 +120,16 @@
  <script>
      $(document).ready(function() {
 
-         $('#category').select2();
-         $('#interests').select2();
+         $('#category').select2({
+             placeholder: "Select Category",
+             allowClear: true
+         });
+         $('#interests').select2({
+             placeholder: "Select Interest",
+             allowClear: true
+         });
 
-         $(".individual_info").hide();
+         // $(".individual_info").hide();
          $(".radio_form").click(function() {
              $val = $(this).val();
              if ($val == "company") {
@@ -141,13 +147,13 @@
 
          /*-------Event AttandingList Info---------*/
          $('#category').change(function() {
-             let categoryId = $(this).val();
+             let selectedCategories = $(this).val();
 
              $.ajax({
                  url: "{{ route('list.attending') }}", // Adjust to your route
                  method: "GET",
                  data: {
-                     category: categoryId
+                     categories: selectedCategories
                  },
                  success: function(response) {
                      let registrantsTable = $('#registrantsTable tbody');
@@ -160,8 +166,9 @@
                                     <td>${registrant.contact_person}</td>
                                     <td>${registrant.company_name}</td>
                                     <td>${registrant.designation}</td>
+                                    
                                     <td>
-                                        <a href="/get_contact_person/${registrant.id}">
+                                        <a href="/view-contact-person/encrypt(registrant.id}">
                                             <button class="btn profile_view_btn">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye">
                                                     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
@@ -246,9 +253,27 @@
 
          // Add event listener for View Community button
          $(document).on('click', '.view-messages', function() {
+
+             var viewMessageUrl = "{{ route('event_messages.view', ':id') }}";
              var encryptedId = $(this).data('id');
-             window.location.href = `/messages/view/${encryptedId}`;
+
+             //  $eventname = `/messages/view/${encryptedId}`;
+             //  route(event_messages.view, $ {
+             //      encryptedId
+             //  });
+
+             // window.location.href = `/messages/view/${encryptedId}`;
+
+             var url = viewMessageUrl.replace(':id', encryptedId);
+             window.location.href = url;
+
+
+
+
          });
+
+
+
 
 
 
@@ -285,20 +310,30 @@
          guestForm.classList.add('guest-form');
          guestForm.id = `guest-${guestIndex}`;
          guestForm.innerHTML = `
-            <div class="form-row row d-flex align-items-end"> <!-- Added form-row to align fields in a row -->
-                <div class="form-group col-md-3">
+            <div class="form-row row d-flex align-items-end">
+                 <!-- Added form-row to align fields in a row -->
+                 </hr>
+                <div class="form-group col-md-5">
                     <label for="name">Name</label>
                     <input type="text" name="guests[${guestIndex}][name]" class="form-control" required>
                 </div>
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-5">
                     <label for="email">Email</label>
                     <input type="email" name="guests[${guestIndex}][email]" class="form-control">
                 </div>
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-5">
                     <label for="phone">Phone</label>
                     <input type="text" name="guests[${guestIndex}][phone]" class="form-control">
                 </div>
-                <div class="form-group col-md-3">
+
+
+                <div class="form-group col-md-5">
+                    <label for="designation">Designation</label>
+                    <input type="text" name="guests[${guestIndex}][designation]" class="form-control">
+                </div>
+
+
+                <div class="form-group col-md-2">
 
                     <button type="button" class="btn btn-danger remove-guest" style="margin-top: 10px;">
 

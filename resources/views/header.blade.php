@@ -86,9 +86,9 @@
                                         </div> --}}
 
                                         <!-- Login button (for users not logged in) -->
-                                        <div class="book_btn d-none d-lg-block">
+                                        {{-- <div class="book_btn d-none d-lg-block">
                                             <a href="{{ route('users_login') }}" target="_blank">Login</a>
-                                        </div>
+                                        </div> --}}
                                     @endif
 
                                 </div>

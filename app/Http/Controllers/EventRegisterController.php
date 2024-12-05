@@ -38,25 +38,39 @@ class EventRegisterController extends Controller
     public function store(Request $request)
     {
 
+
         $request->validate([
             'company_name' => 'required|string|max:255',
-            'contact_person' => 'required|string|max:255',
             'email' => 'required|email|unique:event_registers,email',
             'phone' => 'required|digits:10',
-            'password' => 'required|min:8|confirmed',
-            'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'password' => 'required|min:4|confirmed',
             'designation' => 'required|string|max:255',
         ], [
 
             'phone.digits' => 'Phone number must be 10 digits.',
-            'password.confirmed' => 'Password confirmation does not match.',
         ]);
+
+
+
 
 
 
         $eventRegister = new EventRegister();
         $eventRegister->company_name = $request->company_name;
-        $eventRegister->contact_person = $request->contact_person;
+
+        if ($request->category == '') {
+            $categoryies = '';
+        } else {
+            $categoryies = implode(",", $request->category);
+        }
+
+        if ($request->interests == '') {
+            $interests = '';
+        } else {
+            $interests = implode(",", $request->interests);
+        }
+
+
         $eventRegister->email = $request->email;
         $eventRegister->address = $request->input('address-1');
         $eventRegister->phone = $request->phone;
@@ -66,26 +80,34 @@ class EventRegisterController extends Controller
 
         $eventRegister->linkedin = $request->linkedin;
         $eventRegister->total_experience = $request->total_experience;
-        $eventRegister->bio = $request->bio;
-        $eventRegister->category = implode(",", $request->category);
-        $eventRegister->interest = implode(",", $request->interests);
+
+        $eventRegister->category = $categoryies;
+        $eventRegister->interest = $interests;
         $eventRegister->event_id = 1;
 
-        // dd($eventRegister->password);
+        $eventRegister->form_type = $request->registration_type;
 
-
-        if ($request->hasFile('profile_image')) {
-            $image = $request->file('profile_image');
-            $directory = public_path('images/profilephoto');
-            if (!file_exists($directory)) {
-                mkdir($directory, 0777, true);
+        $regType = $request->registration_type;
+        if ($regType == "company") {
+            $eventRegister->contact_person = $request->contact_person;
+            if ($request->hasFile('profile_image')) {
+                $image = $request->file('profile_image');
+                $directory = public_path('images/profilephoto');
+                if (!file_exists($directory)) {
+                    mkdir($directory, 0777, true);
+                }
+                $imageName = time() . '.' . $image->getClientOriginalExtension();
+                $image->move($directory, $imageName);
+                $eventRegister->profile_image = 'images/profilephoto/' . $imageName;
             }
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->move($directory, $imageName);
-            $eventRegister->profile_image = 'images/profilephoto/' . $imageName;
+
+        } else {
+
+            $eventRegister->full_name = $request->full_name;
+            $eventRegister->bio = $request->bio;
+
         }
 
-        // dd($eventRegister);
         $eventRegister->save();
 
         return redirect()->route('join_event')->with('success', 'Thank you for registering! Your spot is confirmed, and we can’t wait to see you at the event!');
@@ -239,8 +261,32 @@ class EventRegisterController extends Controller
                 ->where('sent_by', $CompanyId);
         })->get();
 
+
+        $messageInfo = [];
+
+        foreach ($chatDetails as $chatDetail) {
+            $companyname = EventRegister::where('id', $chatDetail->sent_by)->first();
+            $messageCompany['company_name'] = $companyname->company_name;
+            $messageCompany['id'] = $chatDetail->id;
+            $messageCompany['user_id'] = $chatDetail->user_id;
+            $messageCompany['event_id'] = $chatDetail->event_id;
+            $messageCompany['message'] = $chatDetail->message;
+            $messageCompany['sent_by'] = $chatDetail->sent_by;
+            $messageCompany['read_by'] = $chatDetail->read_by;
+            $messageCompany['status'] = $chatDetail->status;
+            $messageCompany['created_at'] = $chatDetail->created_at;
+            $messageCompany['updated_at'] = $chatDetail->updated_at;
+
+            array_push($messageInfo, $messageCompany);
+        }
+
+
+        $messageDatas = $messageInfo;
+
+        // dd($messageDatas);
+
         $getPerson = EventRegister::where('id', $CompanyId)->first();
-        return view('event_chats', compact('chatDetails', 'userId', 'username', 'getPerson'));
+        return view('event_chats', compact('chatDetails', 'messageDatas', 'userId', 'username', 'getPerson'));
     }
 
 
@@ -255,9 +301,12 @@ class EventRegisterController extends Controller
         $userId = Session::get('user')->id;
 
         $user = EventRegister::where('id', $userId)->first();
+
+        $categories = EventCategory::all();
+        $interests = EventInterest::all();
         // dd($user);
         // Return the view with user data
-        return view('user_profile', compact('user'));
+        return view('user_profile', compact('user', 'categories', 'interests'));
     }
     public function updateProfile(Request $request)
     {
@@ -266,33 +315,78 @@ class EventRegisterController extends Controller
         $user = EventRegister::findOrFail($userId);
 
         // Update the user's details
+
+
         $user->company_name = $request->company_name;
         $user->email = $request->email;
         $user->phone = $request->phone;
-        $user->contact_person = $request->contact_person;
 
-        // Handle image upload if present
-        if ($request->hasFile('profile_image')) {
-            // Delete old image if it exists in the public directory
-            if ($user->profile_image && file_exists(public_path('images/profilephoto/' . $user->profile_image))) {
-                unlink(public_path('images/profilephoto/' . $user->profile_image));
+        $user->linkedin = $request->linkedin;
+        $user->address = $request->address;
+        $user->designation = $request->designation;
+        $user->total_experience = $request->total_experience;
+
+        $user->form_type = $request->registration_type;
+
+        if ($request->category != "") {
+            $categories = implode(",", $request->category);
+        } else {
+            $categories = '';
+        }
+
+        if ($request->interests != "") {
+            $interests = implode(",", $request->interests);
+        } else {
+            $interests = '';
+        }
+
+
+
+        $user->category = $categories;
+        $user->interest = $interests;
+
+
+
+        //$formType = $request->form_type;
+        $formType = $request->registration_type;
+
+        if ($formType == "company") {
+            $user->contact_person = $request->contact_person;
+            if ($request->hasFile('profile_image')) {
+                // Delete old image if it exists in the public directory
+                if ($user->profile_image && file_exists(public_path('images/profilephoto/' . $user->profile_image))) {
+                    unlink(public_path('images/profilephoto/' . $user->profile_image));
+                }
+
+                // Store the new image in the 'public/images/profilephoto' directory
+                $image = $request->file('profile_image');
+                $imageName = time() . '.' . $image->getClientOriginalExtension();
+
+                // Move the image to the 'public/images/profilephoto' directory
+                $image->move(public_path('images/profilephoto'), $imageName);
+
+                // Update the database with the new image name (relative path)
+                $user->profile_image = 'images/profilephoto/' . $imageName;
             }
 
-            // Store the new image in the 'public/images/profilephoto' directory
-            $image = $request->file('profile_image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-
-            // Move the image to the 'public/images/profilephoto' directory
-            $image->move(public_path('images/profilephoto'), $imageName);
-
-            // Update the database with the new image name (relative path)
-            $user->profile_image = 'images/profilephoto/' . $imageName;
+        } else {
+            $user->full_name = $request->full_name;
+            $user->bio = $request->bio;
         }
+
+
+        // Handle image upload if present
 
         // Update the password if provided
-        if ($request->filled('password')) {
-            $user->password = encrypt($request->password);
+
+        if ($request->password != "") {
+            $user->password = Hash::make($request->password);
         }
+
+
+        // if ($request->filled('password')) {
+        //     $user->password = encrypt($request->password);
+        // }
 
         // Save the updated user information
         $user->save();
@@ -359,11 +453,22 @@ class EventRegisterController extends Controller
             $query = EventRegister::where('event_id', $eventId)
                 ->where('id', '!=', $userId);
 
-            if ($request->has('category') && $request->category) {
-                $query->whereRaw("FIND_IN_SET(?, category)", [$request->category]);
+            // if ($request->has('category') && $request->category) {
+            //     $query->whereRaw("FIND_IN_SET(?, category)", [$request->category]);
+            // }
+
+            if ($request->has('categories') && is_array($request->categories)) {
+                $query->where(function ($q) use ($request) {
+                    foreach ($request->categories as $category) {
+                        $q->orWhereRaw("FIND_IN_SET(?, category)", [$category]);
+                    }
+                });
             }
 
             $registrants = $query->get();
+
+
+
 
             if ($request->ajax()) {
                 return response()->json(['registrants' => $registrants]);
@@ -389,6 +494,7 @@ class EventRegisterController extends Controller
             'guests.*.name' => 'required|string',
             'guests.*.email' => 'nullable|email',
             'guests.*.phone' => 'nullable|string',
+            'guests.*.designation' => 'nullable|string',
         ]);
 
         $userId = Session::get('user')->id;
@@ -402,6 +508,7 @@ class EventRegisterController extends Controller
                 'name' => $guest['name'],
                 'phone' => $guest['phone'] ?? null,
                 'email' => $guest['email'] ?? null,
+                'designation' => $guest['designation'] ?? null,
                 'created_by' => $userId,
                 'updated_by' => $userId,
             ]);
@@ -438,16 +545,31 @@ class EventRegisterController extends Controller
         $notification->sent_by = $userId;
         $notification->read_by = $request->registrant_id;
         $notification->created_by = $userId;
-        $notification = EventRegister::where('id', $notification->user_id)->first();
-        // dd($notification->company_name);
+
         $notification->save();
+
+
+        $eventDetails = Event::where('id', $request->event_id)->first();
+
+        $eventName = $eventDetails->name;
+
+        $eventRegister = EventRegister::where('id', $request->registrant_id)->first();
+
+        if ($eventRegister->form_type == "company") {
+            $companyName = $eventRegister->company_name;
+        } else {
+            $companyName = $eventRegister->full_name;
+        }
+
+
+        //$companyName = $eventRegister ? $eventRegister->company_name : null;
 
 
         try {
             // Send an email to the recipient (registrant)
             $registrant = EventRegister::find($request->registrant_id);
 
-            Mail::to($registrant->email)->send(new MessageSent($notification));
+            Mail::to($registrant->email)->send(new MessageSent($notification, $companyName, $eventName));
 
             // If email was sent successfully, update the status to 1 (success)
             $notification->status = 1; // success
@@ -481,7 +603,43 @@ class EventRegisterController extends Controller
         email:' . $email . '
         phone:' . $phone . ''
         );
-        return view('contact_view', compact('getPerson', 'ss'));
+        if ($getPerson->category != '') {
+            $explodeCategories = explode(",", $getPerson->category);
+
+            $dataCat = [];
+            foreach ($explodeCategories as $explodeCategory) {
+                $carInfo = EventCategory::where('id', $explodeCategory)->first();
+
+                if ($carInfo) {
+                    $dataCat[] = $carInfo->category;
+                }
+            }
+            $categoryName = implode(",", $dataCat);
+
+        } else {
+            $categoryName = "---";
+        }
+
+
+        if ($getPerson->interest != '') {
+            $explodeinterests = explode(",", $getPerson->category);
+
+            $dataInterest = [];
+            foreach ($explodeinterests as $explodeinterest) {
+                $interestInfo = EventInterest::where('id', $explodeinterest)->first();
+
+                if ($interestInfo) {
+                    $dataInterest[] = $interestInfo->name;
+                }
+            }
+            $interestName = implode(",", $dataInterest);
+
+        } else {
+            $interestName = "---";
+        }
+
+
+        return view('contact_view', compact('getPerson', 'categoryName', 'interestName', 'ss'));
     }
 
     public function userQrCode($encryptedId)

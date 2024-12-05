@@ -12,8 +12,8 @@
     {{-- {{ dd($messageop) }} --}}
     {{-- <p><strong>Event ID:</strong> {{ $eventId }}</p> --}}
     <p><strong>Message:</strong> {{ $messageop }}</p>
-    <p>Event Id: {{ $eventId }}</p>
-    <p>user Id: {{ $userId }}</p>
+    <p>Event Name: {{ $eventName }}</p>
+    <p>Name: {{ $companyName }}</p>
 
 </body>
 

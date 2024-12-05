@@ -23,10 +23,10 @@
 
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <h1 class="text-white mb-5">List Guests</h1>
+                                        <h1 class="text-white mb-5">List Of Members</h1>
                                     </div>
                                     <div class="col-md-6 text-right"> <a href="{{ route('add.guests') }}"
-                                            class="btn btn-primary btn-sm add_guest_btn">Add Guest</a></div>
+                                            class="btn btn-primary btn-sm add_guest_btn">Add Member</a></div>
                                 </div>
                                 <!-- Table for displaying guest information -->
                                 <table id="guestsTable" class="table table-bordered">
@@ -35,16 +35,22 @@
                                             <th>Guest Name</th>
                                             <th>Email</th>
                                             <th>Phone</th>
+                                            <th>Designation</th>
                                             <th>Event Name</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($userData as $guest)
+                                            @php
+                                                $designation = $guest->designation ?? '-';
+                                            @endphp
+
                                             <tr>
                                                 <td>{{ $guest->name }}</td>
                                                 <td>{{ $guest->email }}</td>
                                                 <td>{{ $guest->phone }}</td>
+                                                <td class="text-center">{{ $designation }}</td>
                                                 <td>{{ $guest->event_name }}</td>
                                                 <td>
                                                     <!-- Delete Button -->

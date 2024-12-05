@@ -21,18 +21,18 @@
                         <div class="row">
 
                             <div class="col-md-12 text-center">
+                                <h2 class="text-white">Register As </h2>
                                 <div class="form-check">
                                     <input class="form-check-input radio_form" type="radio" name="registration_type"
                                         id="company_registration" value="company" checked>
-                                    <label class="form-check-label form_type" for="company_registration">Registered As
-                                        Company
+                                    <label class="form-check-label form_type" for="company_registration">Company
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input radio_form" type="radio" name="registration_type"
                                         id="individual_registration" value="individual">
-                                    <label class="form-check-label form_type" for="individual_registration">Registered
-                                        As Individual </label>
+                                    <label class="form-check-label form_type" for="individual_registration">Individual
+                                    </label>
                                 </div>
                             </div>
 
@@ -46,7 +46,7 @@
                             <div class="col-sm-6 form-group">
                                 {{-- <label class="text-white" for="company_name">Company Name</label> --}}
                                 <input type="text" class="form-control" name="company_name" id="company_name"
-                                    placeholder="Name" value="{{ old('company_name') }}" required>
+                                    placeholder="Company Name" value="{{ old('company_name') }}" required>
                                 @error('company_name')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -115,7 +115,7 @@
                                         {{-- <label class="text-white" for="contact_person">Contact Person</label> --}}
                                         <input type="text" class="form-control" name="contact_person"
                                             id="contact_person" placeholder="Enter your contact Person Name."
-                                            value="{{ old('contact_person') }}" required>
+                                            value="{{ old('contact_person') }}">
                                         @error('contact_person')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
@@ -123,11 +123,11 @@
                                 </div>
 
 
-                                <div class="row individual_info">
+                                <div class="row individual_info" style="display:none;">
                                     <div class="col-sm-12 form-group">
                                         {{-- <label class="text-white" for="contact_person">Contact Person</label> --}}
                                         <input type="text" class="form-control" name="full_name" id="full_name"
-                                            placeholder="Full Name" value="{{ old('full_name') }}" required>
+                                            placeholder="Full Name" value="{{ old('full_name') }}">
                                         @error('contact_person')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
@@ -135,7 +135,7 @@
 
                                     <div class="col-sm-12 form-group">
                                         {{-- <label class="text-white" for="tel">Phone</label> --}}
-                                        <textarea name="bio" class="form-control" placeholder="Bio." required></textarea>
+                                        <textarea name="bio" class="form-control" placeholder="Bio."></textarea>
                                         @error('bio')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
@@ -149,6 +149,38 @@
 
 
                             </div>
+
+                            <div class="col-sm-12 form-group">
+                                <label class="text-white" for="category">Categories to Choose From: </label>
+
+                                <select class="form-control" name="category[]" id="category" multiple="multiple">
+                                    <option value="">Select Category</option>
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->category }}</option>
+                                    @endforeach
+                                </select>
+                                @error('category')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+
+                            </div>
+
+                            <div class="col-sm-12 form-group">
+                                <label class="text-white" for="category">Interested in: </label>
+
+                                <select class="form-control" name="interests[]" id="interests" multiple="multiple">
+                                    <option value="">Select Interests</option>
+
+                                    @foreach ($interests as $interest)
+                                        <option value="{{ $interest->id }}">{{ $interest->name }}</option>
+                                    @endforeach
+
+                                </select>
+                                @error('interests')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+
+                            </div>
                         </div>
 
                         <!----  Enter Individual Form Fields  --->
@@ -157,38 +189,10 @@
 
 
 
-                        <div class="col-sm-12 form-group">
-                            <label class="text-white" for="category">Categories to Choose From: </label>
-
-                            <select class="form-control" name="category[]" id="category" multiple="multiple">
-                                <option value="">Select Category</option>
-                                @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->category }}</option>
-                                @endforeach
-                            </select>
-                            @error('category')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
-
-                        </div>
 
 
-                        <div class="col-sm-12 form-group">
-                            <label class="text-white" for="category">Interested in: </label>
 
-                            <select class="form-control" name="interests[]" id="interests" multiple="multiple">
-                                <option value="">Select Interests</option>
 
-                                @foreach ($interests as $interest)
-                                    <option value="{{ $interest->id }}">{{ $interest->name }}</option>
-                                @endforeach
-
-                            </select>
-                            @error('interests')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
-
-                        </div>
 
                         <div class="col-sm-12 form-group">
 
