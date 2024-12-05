@@ -136,7 +136,7 @@ class EventRegisterController extends Controller
                 ->addColumn('event_date', function ($event) {
                     // Combine Start Date, Start Time, End Date, and End Time
                     // $startDate = $event->start_date ?? '-';
-    
+
                     // $startDate = Carbon::now()->format('d-m-Y');
                     $startTime = $event->start_time ?? '-';
 
@@ -198,19 +198,19 @@ class EventRegisterController extends Controller
             return DataTables::of($eventMessage)
                 ->addColumn('company_name', function ($eventMessage) {
                     // Combine Start Date, Start Time, End Date, and End Time
-    
+
                     return $eventMessage->company_name;
                 })->addColumn('message', function ($eventMessage) {
                     // Combine Start Date, Start Time, End Date, and End Time
                     return $eventMessage->messages;
 
                     // Return combined date and time
-    
+
                 })
                 ->addColumn('action', function ($eventMessage) {
                     // Encrypt the event ID
                     //$encryptedId = encrypt($event->id);
-    
+
                     $encryptedId = encrypt($eventMessage->read_by);
 
                     // Return the button with the encrypted ID
@@ -585,9 +585,18 @@ class EventRegisterController extends Controller
 
     public function getContactPerson($encryptedId)
     {
-        $id = decrypt($encryptedId);
+        $id = decrypt(value: $encryptedId);
         $getPerson = EventRegister::where('id', $id)->first();
+        $name = $getPerson->company_name;
+        $email = $getPerson->email;
+        $phone = $getPerson->phone;
 
+
+        $ss = QrCode::size(80)->generate(
+            'name: ' . $name . '
+        email:' . $email . '
+        phone:' . $phone . ''
+        );
         if ($getPerson->category != '') {
             $explodeCategories = explode(",", $getPerson->category);
 
@@ -624,15 +633,20 @@ class EventRegisterController extends Controller
         }
 
 
-        return view('contact_view', compact('getPerson', 'categoryName', 'interestName'));
+        return view('contact_view', compact('getPerson', 'categoryName', 'interestName', 'ss'));
     }
 
-    public function userQrCode()
+    public function userQrCode($encryptedId)
     {
-        $ss = QrCode::size(250)->generate('name: Pradip
-        email:gpradipdanMicrosoft Message
+        $id = $encryptedId;
+        $getPerson = EventRegister::where('id', $id)->first();
+        // dd($getPerson->id);
 
-        phone:9890988909');
+        $ss = QrCode::size(80)->generate(
+            'name: name .
+        email: email
+        phone:phone '
+        );
         return view('qr_code', compact('ss'));
     }
 
