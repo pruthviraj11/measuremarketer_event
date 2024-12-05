@@ -35,7 +35,7 @@
             <li class="nav-item">
                 <a href="{{ route('list.guests') }}" class="nav-link {{ Route::is('add.guests') ? 'active' : '' }}"
                     aria-current="page">
-                    List Of Members
+                    Add Members
                 </a>
             </li>
         </ul>

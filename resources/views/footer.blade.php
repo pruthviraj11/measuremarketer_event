@@ -310,20 +310,30 @@
          guestForm.classList.add('guest-form');
          guestForm.id = `guest-${guestIndex}`;
          guestForm.innerHTML = `
-            <div class="form-row row d-flex align-items-end"> <!-- Added form-row to align fields in a row -->
-                <div class="form-group col-md-3">
+            <div class="form-row row d-flex align-items-end">
+                 <!-- Added form-row to align fields in a row -->
+                 </hr>
+                <div class="form-group col-md-5">
                     <label for="name">Name</label>
                     <input type="text" name="guests[${guestIndex}][name]" class="form-control" required>
                 </div>
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-5">
                     <label for="email">Email</label>
                     <input type="email" name="guests[${guestIndex}][email]" class="form-control">
                 </div>
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-5">
                     <label for="phone">Phone</label>
                     <input type="text" name="guests[${guestIndex}][phone]" class="form-control">
                 </div>
-                <div class="form-group col-md-3">
+
+
+                <div class="form-group col-md-5">
+                    <label for="designation">Designation</label>
+                    <input type="text" name="guests[${guestIndex}][designation]" class="form-control">
+                </div>
+
+
+                <div class="form-group col-md-2">
 
                     <button type="button" class="btn btn-danger remove-guest" style="margin-top: 10px;">
 

@@ -35,16 +35,22 @@
                                             <th>Guest Name</th>
                                             <th>Email</th>
                                             <th>Phone</th>
+                                            <th>Designation</th>
                                             <th>Event Name</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($userData as $guest)
+                                            @php
+                                                $designation = $guest->designation ?? '-';
+                                            @endphp
+
                                             <tr>
                                                 <td>{{ $guest->name }}</td>
                                                 <td>{{ $guest->email }}</td>
                                                 <td>{{ $guest->phone }}</td>
+                                                <td class="text-center">{{ $designation }}</td>
                                                 <td>{{ $guest->event_name }}</td>
                                                 <td>
                                                     <!-- Delete Button -->

@@ -27,8 +27,9 @@
                                 <table id="registrantsTable" class="display table table-bordered">
                                     <thead>
                                         <tr>
+                                            <th>#</th>
                                             <th>Company Name</th>
-                                            <th>Person Name</th>
+                                            <th>Name </th>
 
                                             <th>Designation</th>
 
@@ -48,7 +49,29 @@
                                                     }
                                                 @endphp
 
-                                                <td>{{ $registrant->company_name }}</td>
+                                                <td class="text-center align-middle">
+
+                                                    @php
+                                                        $profileImagePath = $registrant->profile_image;
+                                                    @endphp
+
+                                                    @if ($registrant->profile_image && file_exists(public_path($registrant->profile_image)))
+                                                        <img src="{{ asset($profileImagePath) }}" alt="Profile Image"
+                                                            class="mt-2 rounded-circle" width="80" height="80">
+                                                    @else
+                                                        <img src="{{ asset('images/no_image_found.png') }}"
+                                                            alt="No Image Found"
+                                                            class="img-thumbnail mt-2 rounded-circle" width="80"
+                                                            height="80">
+                                                    @endif
+
+
+
+                                                </td>
+
+                                                <td>
+                                                    {{ $registrant->company_name }}
+                                                </td>
                                                 <td>{{ $PersonName }}</td>
                                                 <td>{{ $registrant->designation }}</td>
                                                 {{-- <td>{{ $registrant->email }}</td>

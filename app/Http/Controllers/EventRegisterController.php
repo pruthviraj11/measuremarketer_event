@@ -494,6 +494,7 @@ class EventRegisterController extends Controller
             'guests.*.name' => 'required|string',
             'guests.*.email' => 'nullable|email',
             'guests.*.phone' => 'nullable|string',
+            'guests.*.designation' => 'nullable|string',
         ]);
 
         $userId = Session::get('user')->id;
@@ -507,6 +508,7 @@ class EventRegisterController extends Controller
                 'name' => $guest['name'],
                 'phone' => $guest['phone'] ?? null,
                 'email' => $guest['email'] ?? null,
+                'designation' => $guest['designation'] ?? null,
                 'created_by' => $userId,
                 'updated_by' => $userId,
             ]);
