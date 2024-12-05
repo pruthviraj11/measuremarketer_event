@@ -9,6 +9,14 @@ use Spatie\Permission\Models\Permission;
 
 use App\Models\Role;
 use App\Models\User;
+
+use App\Models\Event;
+use App\Models\EventRegister;
+use App\Models\EventGuest;
+use App\Models\EventCategory;
+use App\Models\EventInterest;
+
+
 use App\Services\RoleService;
 use App\Services\UserService;
 use App\Services\EventService;
@@ -179,10 +187,14 @@ class EventController extends Controller
         })->addColumn('actions', function ($row) {
             $encryptedId = encrypt($row->id);
 
+            $viewDetail = "<a data-bs-toggle='tooltip' title='View Users' data-bs-delay='400' class='me_1 btn-sm btneye ' href='" . route('app-event-user-registered-views', $encryptedId) . "' target='_blank'><i data-feather='eye'></i></a>";
+
+            $viewMessages = "<a data-bs-toggle='tooltip' title='View Messages' data-bs-delay='400' class='me_1 btn-sm btneye ' href='" . route('app-event-user-views-messages', $encryptedId) . "' target='_blank'><i data-feather='message-circle'></i></a>";
+
             // Delete Button
             $deleteButton = "<a data-bs-toggle='tooltip' title='Delete' data-bs-delay='400' class='btn btn-danger confirm-delete' data-idos='.$encryptedId' id='confirm-color  href='" . route('app-users-destroy', $encryptedId) . "'><i data-feather='trash-2'></i></a>";
 
-            return $deleteButton;
+            return $viewDetail . $viewMessages . $deleteButton;
         })->rawColumns(['company_name', 'email', 'phone', 'contact_person', 'address', 'guests', 'actions'])->make(true);
     }
 
@@ -260,6 +272,72 @@ class EventController extends Controller
 
 
     }
+
+    /*----------  View Registered User Details -----------*/
+
+    public function ViewRegisteredUser($encrypted_id)
+    {
+
+        $id = decrypt($encrypted_id);
+
+        $registeredUser = $this->eventService->getUserRegistered($id);
+        $categories = EventCategory::all();
+        $interests = EventInterest::all();
+
+
+        if ($registeredUser->category != '') {
+            $explodeCategories = explode(",", $registeredUser->category);
+
+            $dataCat = [];
+            foreach ($explodeCategories as $explodeCategory) {
+                $carInfo = EventCategory::where('id', $explodeCategory)->first();
+
+                if ($carInfo) {
+                    $dataCat[] = $carInfo->category;
+                }
+            }
+            $categoryName = implode(",", $dataCat);
+
+        } else {
+            $categoryName = "---";
+        }
+
+
+        if ($registeredUser->interest != '') {
+            $explodeinterests = explode(",", $registeredUser->category);
+
+            $dataInterest = [];
+            foreach ($explodeinterests as $explodeinterest) {
+                $interestInfo = EventInterest::where('id', $explodeinterest)->first();
+
+                if ($interestInfo) {
+                    $dataInterest[] = $interestInfo->name;
+                }
+            }
+            $interestName = implode(",", $dataInterest);
+
+        } else {
+            $interestName = "---";
+        }
+
+
+        return view('content.apps.event.view_users', compact('registeredUser', 'categoryName', 'interestName'));
+
+
+    }
+
+
+    public function ViewUserMessages($encrypted_id)
+    {
+
+        $id = decrypt($encrypted_id);
+        dd($id);
+    }
+
+
+
+
+
 
 
 

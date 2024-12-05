@@ -102,7 +102,7 @@
                                         $companyDisplay = $user->form_type == 'company' ? 'block' : 'none';
                                         $individualDisplay = $user->form_type == 'individual' ? 'block' : 'none';
                                     @endphp
-        
+
 
                                     <div class="company_info" style="display:{{ $companyDisplay }}">
                                         <div class="row">

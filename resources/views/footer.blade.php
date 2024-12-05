@@ -253,9 +253,27 @@
 
          // Add event listener for View Community button
          $(document).on('click', '.view-messages', function() {
+
+             var viewMessageUrl = "{{ route('event_messages.view', ':id') }}";
              var encryptedId = $(this).data('id');
-             window.location.href = `/messages/view/${encryptedId}`;
+
+             //  $eventname = `/messages/view/${encryptedId}`;
+             //  route(event_messages.view, $ {
+             //      encryptedId
+             //  });
+
+             // window.location.href = `/messages/view/${encryptedId}`;
+
+             var url = viewMessageUrl.replace(':id', encryptedId);
+             window.location.href = url;
+
+
+
+
          });
+
+
+
 
 
 

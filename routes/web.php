@@ -183,7 +183,12 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
     Route::get('event/destroy/{encrypted_id}', [EventController::class, 'destroy'])->name('app-event-destroy');
     Route::get('event/registered/{encrypted_id}', [EventController::class, 'UserRegistered'])->name('app-event-registers-users');
     Route::get('event/registered/getAllRegistered/{encrypted_id}', action: [EventController::class, 'getAllRegistered'])->name('app-event-all-registers-users-lists');
-    Route::get('event/registered/destroy/{encrypted_id}', [EventController::class, 'RegisteredUserDestroy'])->name('app-event-user-registered-destroy');
+
+    Route::get('event/registered/{encrypted_id}', [EventController::class, 'UserRegistered'])->name('app-event-registers-users');
+
+    Route::get('event/registered/views/{encrypted_id}', [EventController::class, 'ViewRegisteredUser'])->name('app-event-user-registered-views');
+
+    Route::get('event/registered/messages/{encrypted_id}', [EventController::class, 'ViewUserMessages'])->name('app-event-user-views-messages');
 
 
     Route::get('event/guests/{encrypted_id}', [EventController::class, 'RegisteredGuests'])->name('app-event-registers-guests');
