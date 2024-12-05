@@ -27,139 +27,249 @@
                                         <div class="form-check d-inline">
                                             <input class="form-check-input radio_form" type="radio"
                                                 name="registration_type" id="company_registration" value="company"
-                                                @if ($user->form_type == 'company') checked @endif>
+                                                @if ($user->form_type == 'company' || $user->form_type == '') checked @endif
+                                                @if ($user->form_type == 'individual') disabled @endif>
                                             <label class="form-check-label form_type" for="company_registration">Company
                                             </label>
                                         </div>
                                         <div class="form-check d-inline">
                                             <input class="form-check-input radio_form" type="radio"
                                                 name="registration_type" id="individual_registration" value="individual"
-                                                @if ($user->form_type == 'individual') checked @endif>
+                                                @if ($user->form_type == 'individual') checked @endif
+                                                @if ($user->form_type == 'company') disabled @endif>
                                             <label class="form-check-label form_type"
                                                 for="individual_registration">Individual
                                             </label>
                                         </div>
                                     </div>
 
-                                    <input type="hidden" name="form_type" value="{{ $user->form_type }}" />
-                                    <div class="row">
-                                        <div class="col-md-6 mb-3">
-                                            <label for="company_name" class="form-label">Company Name</label>
-                                            <input type="text" name="company_name" class="form-control"
-                                                id="company_name" value="{{ old('company_name', $user->company_name) }}"
-                                                required>
-                                        </div>
-
-                                        <div class="col-md-6 mb-3">
-                                            <label for="email" class="form-label">Email</label>
-                                            <input type="email" name="email" class="form-control" id="email"
-                                                value="{{ old('email', $user->email) }}" required>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-6 mb-3">
-                                            <label for="phone" class="form-label">Phone</label>
-                                            <input type="text" name="phone" class="form-control" id="phone"
-                                                value="{{ old('phone', $user->phone) }}" required>
-                                        </div>
-
-
-                                        <div class="col-md-6 mb-3">
-                                            <label for="linkedin" class="form-label">Linkedin</label>
-                                            <input type="text" name="linkedin" class="form-control" id="linkedin"
-                                                value="{{ old('linkedin', $user->linkedin) }}" required>
-                                        </div>
-
-
-                                        <div class="col-md-12 mb-3">
-                                            <label for="address" class="form-label">Location</label>
-                                            <input type="text" name="address" class="form-control" id="address"
-                                                value="{{ old('address', $user->address) }}" required>
-                                        </div>
-
-
-                                        <div class="col-md-6 mb-3">
-                                            <label for="designation" class="form-label">Designation
-                                                Person</label>
-                                            <input type="text" name="designation" class="form-control"
-                                                id="designation" value="{{ old('designation', $user->designation) }}"
-                                                required>
-                                        </div>
-
-
-                                        <div class="col-md-6 mb-3">
-                                            <label for="total_experience" class="form-label">Marketing
-                                                Experience</label>
-                                            <input type="text" name="total_experience" class="form-control"
-                                                id="total_experience"
-                                                value="{{ old('total_experience', $user->total_experience) }}" required>
-                                        </div>
-                                    </div>
+                                    <input type="hidden" name="form_type" id="form_type"
+                                        value="{{ $user->form_type }}" />
 
 
                                     @php
-                                        $companyDisplay = $user->form_type == 'company' ? 'block' : 'none';
+                                        $companyDisplay = in_array($user->form_type, ['company', ''])
+                                            ? 'block'
+                                            : 'none';
                                         $individualDisplay = $user->form_type == 'individual' ? 'block' : 'none';
                                     @endphp
 
+                                    @if ($user->form_type == 'company' || $user->form_type == '')
 
-                                    <div class="company_info" style="display:{{ $companyDisplay }}">
-                                        <div class="row">
-                                            <div class="col-md-12 mb-3">
-                                                <label for="contact_person" class="form-label">Contact
-                                                    Person</label>
-                                                <input type="text" name="contact_person" class="form-control"
-                                                    id="contact_person"
-                                                    value="{{ old('contact_person', $user->contact_person) }}"
-                                                    required>
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="profile_image" class="form-label">Profile
-                                                    Image</label>
-                                                <input type="file" name="profile_image" class="form-control"
-                                                    id="profile_image">
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                @php
-                                                    $profileImagePath = $user->profile_image;
-                                                @endphp
-
-                                                @if ($user->profile_image && file_exists(public_path($user->profile_image)))
-                                                    <img src="{{ asset($profileImagePath) }}" alt="Profile Image"
-                                                        class=" mt-2 rounded-circle" width="100" height="100">
-                                                @else
-                                                    <img src="{{ asset('images/no_image_found.png') }}"
-                                                        alt="No Image Found" class="img-thumbnail mt-2 rounded-circle"
-                                                        width="120">
-                                                @endif
+                                        <div class="company_info" style="display:{{ $companyDisplay }}">
+                                            <!-------  Company Div ------->
+                                            <div class="row">
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="company_name" class="form-label">Company Name</label>
+                                                    <input type="text" name="company_name" class="form-control"
+                                                        id="company_name"
+                                                        value="{{ old('company_name', $user->company_name) }}">
+                                                </div>
                                             </div>
 
+                                            <div class="row">
+
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="profile_image" class="form-label">Company
+                                                        Profile</label>
+                                                    <input type="file" name="profile_image" class="form-control"
+                                                        id="profile_image">
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    @php
+                                                        $profileImagePath = $user->profile_image;
+                                                    @endphp
+
+                                                    @if ($user->profile_image && file_exists(public_path($user->profile_image)))
+                                                        <img src="{{ asset($profileImagePath) }}" alt="Profile Image"
+                                                            class=" mt-2 rounded-circle" width="100" height="100">
+                                                    @else
+                                                        <img src="{{ asset('images/no_image_found.png') }}"
+                                                            alt="No Image Found"
+                                                            class="img-thumbnail mt-2 rounded-circle" width="120">
+                                                    @endif
+                                                </div>
+
+                                            </div>
+
+                                            <div class="row">
+
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="total_experience" class="form-label">Years into
+                                                        Market</label>
+                                                    <input type="text" name="total_experience" class="form-control"
+                                                        id="total_experience"
+                                                        value="{{ old('total_experience', $user->total_experience) }}">
+                                                </div>
+
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="contact_person" class="form-label">Contact Name</label>
+                                                    <input type="text" name="contact_person" class="form-control"
+                                                        id="contact_person"
+                                                        value="{{ old('contact_person', $user->contact_person) }}">
+                                                </div>
+
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="designation" class="form-label">Designation</label>
+                                                    <input type="text" name="designation" class="form-control"
+                                                        id="designation"
+                                                        value="{{ old('designation', $user->designation) }}">
+                                                </div>
+
+                                                {{-- <div class="col-md-2 mb-3">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="1"
+                                                            id="email_check" name="email_check"
+                                                            {{ old('email_check') ? 'checked' : '' }}>
+
+                                                    </div>
+                                                </div> --}}
+
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="email" class="form-label">Email </label>
+                                                    <input class="" type="checkbox" value="1"
+                                                        {{ $user->email_check == '1' ? 'checked' : '' }}
+                                                        id="email_check" name="email_check">
+
+
+                                                    <input type="email" name="email" class="form-control"
+                                                        id="email" value="{{ old('email', $user->email) }}">
+                                                </div>
+
+
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="phone" class="form-label">Phone</label>
+                                                    <input class="" type="checkbox" value="1"
+                                                        {{ $user->phone_check == '1' ? 'checked' : '' }}
+                                                        id="phone_check" name="phone_check">
+
+                                                    <input type="text" name="phone" class="form-control"
+                                                        id="phone" value="{{ old('phone', $user->phone) }}">
+                                                </div>
+
+
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="linkedin" class="form-label">Linkedin</label>
+                                                    <input type="text" name="linkedin" class="form-control"
+                                                        id="linkedin"
+                                                        value="{{ old('linkedin', $user->linkedin) }}">
+                                                </div>
+
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="address" class="form-label">Location</label>
+                                                    <input type="text" name="address" class="form-control"
+                                                        id="address" value="{{ old('address', $user->address) }}">
+                                                </div>
+                                            </div>
+
+
+
+
+
+                                            <!-------End Company Div ------->
                                         </div>
-                                    </div>
+                                    @endif
+                                    @if ($user->form_type == 'individual' || $user->form_type == '')
+                                        <!----  Indivudual Section ----->
 
-                                    <div class="individual_info" style="display:{{ $individualDisplay }}">
-                                        <div class="row">
-                                            <div class="col-md-12 mb-3">
-                                                <label for="full_name" class="form-label">Full Name</label>
-                                                <input type="text" name="full_name" class="form-control"
-                                                    id="full_name" value="{{ old('full_name', $user->full_name) }}">
+                                        <div class="individual_info" style="display:{{ $individualDisplay }}">
+
+                                            <div class="row">
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="full_name" class="form-label">Full Name</label>
+                                                    <input type="text" name="individual_full_name"
+                                                        class="form-control" id="full_name"
+                                                        value="{{ old('full_name', $user->full_name) }}">
+                                                </div>
+
                                             </div>
 
-                                            <div class="col-md-12 mb-3">
-                                                <label for="bio" class="form-label">Bio</label>
-                                                <textarea name="bio" class="form-control" id="bio">{{ old('full_name', $user->bio) }}</textarea>
+                                            <div class="row">
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="email" class="form-label">Email</label>
+                                                    <input class="" type="checkbox" value="1"
+                                                        id="individual_email_check" name="individual_email_check">
+                                                    {{ $user->email_check == '1' ? 'checked' : '' }}
+
+
+                                                    <input type="email" name="individual_email"
+                                                        class="form-control" id="email"
+                                                        value="{{ old('individual_email', $user->email) }}">
+                                                </div>
+
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="phone" class="form-label">Phone</label>
+
+                                                    <input class="" type="checkbox" value="1"
+                                                        id="individual_phone_check" name="individual_phone_check"
+                                                        {{ $user->phone_check == '1' ? 'checked' : '' }}>
+
+                                                    <input type="text" name="individual_phone"
+                                                        class="form-control" id="phone"
+                                                        value="{{ old('phone', $user->phone) }}">
+                                                </div>
+
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="linkedin" class="form-label">Linkedin</label>
+                                                    <input type="text" name="individual_linkedin"
+                                                        class="form-control" id="linkedin"
+                                                        value="{{ old('linkedin', $user->linkedin) }}">
+                                                </div>
+
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="company_name" class="form-label">Company</label>
+                                                    <input type="text" name="individual_company_name"
+                                                        class="form-control" id="company_name"
+                                                        value="{{ old('company_name', $user->company_name) }}">
+                                                </div>
+
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="designation" class="form-label">Current
+                                                        Designation</label>
+                                                    <input type="text" name="individual_designation"
+                                                        class="form-control" id="designation"
+                                                        value="{{ old('designation', $user->designation) }}">
+                                                </div>
+
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="total_experience" class="form-label">Total
+                                                        Experience
+                                                        in Marketing</label>
+                                                    <input type="text" name="individual_total_experience"
+                                                        class="form-control" id="total_experience"
+                                                        value="{{ old('total_experience', $user->total_experience) }}">
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="address" class="form-label">Location</label>
+                                                    <input type="text" name="individual_address"
+                                                        class="form-control" id="address"
+                                                        value="{{ old('address', $user->address) }}">
+                                                </div>
+
+
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="bio" class="form-label">Bio</label>
+                                                    <textarea name="individual_bio" class="form-control" id="bio">{{ old('full_name', $user->bio) }}</textarea>
+
+                                                </div>
+
+
 
                                             </div>
 
+
+                                            <!----  Indivudual Section ----->
                                         </div>
-                                    </div>
-
+                                    @endif
 
                                     <div class="row">
 
                                         <div class="col-md-12 mb-3">
-                                            <label class="text-white" for="category">Selected Categories:
+                                            <label class="text-white" for="category">Categories to choose
+                                                from:
                                             </label>
                                             <select class="form-control" name="category[]" id="category"
                                                 multiple="multiple">
@@ -182,7 +292,7 @@
 
 
                                         <div class="col-md-12 mb-3">
-                                            <label class="text-white" for="category">Selected Interests:
+                                            <label class="text-white" for="category">Interested in:
                                             </label>
                                             <select class="form-control" name="interests[]" id="interests"
                                                 multiple="multiple">
@@ -214,6 +324,9 @@
 
 
                                     </div>
+
+
+
 
                                     <button type="submit" class="btn btn-primary profile_update_btn">Update
                                         Profile</button>

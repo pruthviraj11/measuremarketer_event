@@ -136,7 +136,7 @@ class EventRegisterController extends Controller
                 ->addColumn('event_date', function ($event) {
                     // Combine Start Date, Start Time, End Date, and End Time
                     // $startDate = $event->start_date ?? '-';
-
+    
                     // $startDate = Carbon::now()->format('d-m-Y');
                     $startTime = $event->start_time ?? '-';
 
@@ -198,19 +198,19 @@ class EventRegisterController extends Controller
             return DataTables::of($eventMessage)
                 ->addColumn('company_name', function ($eventMessage) {
                     // Combine Start Date, Start Time, End Date, and End Time
-
+    
                     return $eventMessage->company_name;
                 })->addColumn('message', function ($eventMessage) {
                     // Combine Start Date, Start Time, End Date, and End Time
                     return $eventMessage->messages;
 
                     // Return combined date and time
-
+    
                 })
                 ->addColumn('action', function ($eventMessage) {
                     // Encrypt the event ID
                     //$encryptedId = encrypt($event->id);
-
+    
                     $encryptedId = encrypt($eventMessage->read_by);
 
                     // Return the button with the encrypted ID
@@ -310,18 +310,6 @@ class EventRegisterController extends Controller
 
         // Update the user's details
 
-
-        $user->company_name = $request->company_name;
-        $user->email = $request->email;
-        $user->phone = $request->phone;
-
-        $user->linkedin = $request->linkedin;
-        $user->address = $request->address;
-        $user->designation = $request->designation;
-        $user->total_experience = $request->total_experience;
-
-        $user->form_type = $request->registration_type;
-
         if ($request->category != "") {
             $categories = implode(",", $request->category);
         } else {
@@ -336,16 +324,40 @@ class EventRegisterController extends Controller
 
 
 
-        $user->category = $categories;
-        $user->interest = $interests;
 
 
 
-        //$formType = $request->form_type;
+
+
         $formType = $request->registration_type;
-
         if ($formType == "company") {
+
+            $user->company_name = $request->company_name;
+            $user->total_experience = $request->total_experience;
             $user->contact_person = $request->contact_person;
+            $user->designation = $request->designation;
+            $user->email = $request->email;
+            $user->phone = $request->phone;
+            $user->linkedin = $request->linkedin;
+            $user->address = $request->address;
+
+            if ($request->email_check != '') {
+                $user->email_check = $request->email_check;
+            } else {
+                $user->email_check = "0";
+            }
+
+            if ($request->phone_check != '') {
+                $user->phone_check = $request->phone_check;
+            } else {
+                $user->phone_check = "0";
+            }
+
+
+
+
+
+
             if ($request->hasFile('profile_image')) {
                 // Delete old image if it exists in the public directory
                 if ($user->profile_image && file_exists(public_path('images/profilephoto/' . $user->profile_image))) {
@@ -364,18 +376,57 @@ class EventRegisterController extends Controller
             }
 
         } else {
-            $user->full_name = $request->full_name;
-            $user->bio = $request->bio;
+            $user->full_name = $request->individual_full_name;
+            $user->email = $request->individual_email;
+            $user->phone = $request->individual_phone;
+            $user->linkedin = $request->individual_linkedin;
+            $user->company_name = $request->individual_company_name;
+            $user->designation = $request->individual_designation;
+            $user->total_experience = $request->individual_total_experience;
+            $user->address = $request->individual_address;
+            $user->bio = $request->individual_bio;
+
+            if ($request->individual_email_check != '') {
+                $user->email_check = $request->individual_email_check;
+            } else {
+                $user->email_check = "0";
+            }
+
+            if ($request->individual_phone_check != '') {
+                $user->phone_check = $request->individual_phone_check;
+            } else {
+                $user->phone_check = "0";
+            }
+
+
+
         }
+
+        $user->category = $categories;
+        $user->interest = $interests;
+
+        if ($request->password != "") {
+            $user->password = Hash::make($request->password);
+        }
+
+        $user->save();
+
+
+        $user->form_type = $request->registration_type;
+
+
+
+
+
+        //$formType = $request->form_type;
+
+
 
 
         // Handle image upload if present
 
         // Update the password if provided
 
-        if ($request->password != "") {
-            $user->password = Hash::make($request->password);
-        }
 
 
         // if ($request->filled('password')) {

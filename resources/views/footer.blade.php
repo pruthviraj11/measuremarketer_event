@@ -10,7 +10,7 @@
                          Copyright &copy;
                          <script>
                              document.write(new Date().getFullYear());
-                         </script>Copyright © 2024 Measure marketers. All rights reserved.
+                         </script> Optimize X Summit. All rights reserved.
                          <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                      </p>
                  </div>
@@ -161,8 +161,14 @@
 
                      if (response.registrants.length > 0) {
                          response.registrants.forEach(function(registrant) {
+                             let profileImageUrl = registrant.profile_image &&
+                                 registrant.profile_image !== '' ?
+                                 registrant.profile_image :
+                                 'images/no_image_found.png'; // Default image if no profile image exists
                              let row = `
                                 <tr>
+
+                                    <td><img src="${profileImageUrl}" alt="Profile Image" class="mt-2 rounded-circle" width="80" height="80"></td>
                                     <td>${registrant.contact_person}</td>
                                     <td>${registrant.company_name}</td>
                                     <td>${registrant.designation}</td>

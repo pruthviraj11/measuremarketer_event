@@ -30,7 +30,6 @@
                                             <th>#</th>
                                             <th>Company Name</th>
                                             <th>Name </th>
-
                                             <th>Designation</th>
 
                                             {{-- <th>Email</th>
