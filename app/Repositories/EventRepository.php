@@ -56,6 +56,11 @@ class EventRepository
         return EventGuest::where('user_id', $userId)->where('event_id', $eventId)->count();
     }
 
+    public function CountMessages($userId, $eventId)
+    {
+        return EventGuest::where('user_id', $userId)->where('event_id', $eventId)->count();
+    }
+
 
 
     public function getUserGuests($userId, $eventId)

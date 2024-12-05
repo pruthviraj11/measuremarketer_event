@@ -1,6 +1,6 @@
 @extends('layouts/contentLayoutMaster')
 
-@section('title', $eventName . ' | ' . $registeredUser)
+@section('title', '')
 
 @section('vendor-style')
     {{-- Page Css files --}}
@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/responsive.bootstrap5.min.css')) }}">
     <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/buttons.bootstrap5.min.css')) }}">
     <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/rowGroup.bootstrap5.min.css')) }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+
 @endsection
 
 @section('page-style')
@@ -29,7 +33,7 @@
         <!-- list and filter start -->
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">{{ $registeredUser }} Guests Lists</h4>
+                <h4 class="card-title">List Of Messages</h4>
                 {{-- <a href="{{ route('app-users-add') }}" class="col-md-2 btn btn-primary">Add Users
                 </a> --}}
             </div>
@@ -38,10 +42,10 @@
                     <table class="user-list-table table dt-responsive" id="users-table">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Designation</th>
-                                <th>Phone</th>
-                                <th>Email</th>
+                                <th>Company Name</th>
+                                <th>Message</th>
+                                <th>Action</th>
+
                             </tr>
                         </thead>
                     </table>
@@ -80,26 +84,22 @@
                 processing: true,
                 serverSide: true,
                 "lengthMenu": [10, 25, 50, 100, 200],
-                ajax: "{{ route('app-event-all-registers-guests-lists', $id) }}",
+                ajax: "{{ route('app-event-user-views-all-messages', $userId) }}",
                 columns: [{
-                        data: 'name',
-                        name: 'name'
+                        data: 'company_name',
+                        name: 'company_name'
                     },
 
                     {
-                        data: 'designation',
-                        name: 'designation'
+                        data: 'message',
+                        name: 'message'
                     },
 
                     {
-                        data: 'phone',
-                        name: 'phone'
+                        data: 'action',
+                        name: 'action'
                     },
 
-                    {
-                        data: 'email',
-                        name: 'email'
-                    },
 
 
                 ],
@@ -113,4 +113,11 @@
         });
     </script>
     {{-- Page js files --}}
+
+    <script>
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    </script>
 @endsection

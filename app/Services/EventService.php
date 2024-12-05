@@ -68,6 +68,12 @@ class EventService
         return $events;
     }
 
+    public function CountMessages($userId, $eventId)
+    {
+        $events = $this->eventRepository->CountMessages($userId, $eventId);
+        return $events;
+    }
+
 
 
     public function getUserGuests($userId, $eventId)

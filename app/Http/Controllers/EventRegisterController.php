@@ -194,12 +194,6 @@ class EventRegisterController extends Controller
 
 
 
-
-
-
-
-
-
         if ($request->ajax()) {
             return DataTables::of($eventMessage)
                 ->addColumn('company_name', function ($eventMessage) {

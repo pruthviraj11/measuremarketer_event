@@ -8,6 +8,13 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\EventRegisterController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\RegisterUsersController;
+use App\Http\Controllers\GuestController;
+use App\Http\Controllers\MessageController;
+
+
+
+
 
 
 
@@ -181,21 +188,28 @@ Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
     Route::get('event/list', [EventController::class, 'index'])->name('app-event-list');
     Route::get('event/getAll', [EventController::class, 'getAll'])->name('app-event-get-all');
     Route::get('event/destroy/{encrypted_id}', [EventController::class, 'destroy'])->name('app-event-destroy');
-    Route::get('event/registered/{encrypted_id}', [EventController::class, 'UserRegistered'])->name('app-event-registers-users');
-    Route::get('event/registered/getAllRegistered/{encrypted_id}', action: [EventController::class, 'getAllRegistered'])->name('app-event-all-registers-users-lists');
 
-    Route::get('event/registered/{encrypted_id}', [EventController::class, 'UserRegistered'])->name('app-event-registers-users');
-
-    Route::get('event/registered/views/{encrypted_id}', [EventController::class, 'ViewRegisteredUser'])->name('app-event-user-registered-views');
-
-    Route::get('event/registered/messages/{encrypted_id}', [EventController::class, 'ViewUserMessages'])->name('app-event-user-views-messages');
-
-
-    Route::get('event/guests/{encrypted_id}', [EventController::class, 'RegisteredGuests'])->name('app-event-registers-guests');
-    Route::get('event/guests/getAllRegisteredGuests/{encrypted_id}', action: [EventController::class, 'getAllRegisteredGuests'])->name('app-event-all-registers-guests-lists');
+    Route::get('event/registered/{encrypted_id}', [RegisterUsersController::class, 'UserRegistered'])->name('app-event-registers-users');
+    Route::get('event/registered/getAllRegistered/{encrypted_id}', action: [RegisterUsersController::class, 'getAllRegistered'])->name('app-event-all-registers-users-lists');
+    Route::get('event/registered/views/{encrypted_id}', [RegisterUsersController::class, 'ViewRegisteredUser'])->name('app-event-user-registered-views');
+    Route::get('event/registered/destroy/{encrypted_id}', [RegisterUsersController::class, 'RegisteredUserDestroy'])->name('app-event-user-registered-delete');
 
 
 
+    Route::get('event/guests/{encrypted_id}', [GuestController::class, 'RegisteredGuests'])->name('app-event-registers-guests');
+    Route::get('event/guests/getAllRegisteredGuests/{encrypted_id}', action: [GuestController::class, 'getAllRegisteredGuests'])->name('app-event-all-registers-guests-lists');
+
+
+
+    Route::get('event/messages/{encrypted_id}', [MessageController::class, 'ViewUserMessages'])->name('app-event-user-views-messages');
+    Route::get('event/registered/messages_all/{encrypted_id}', [MessageController::class, 'ViewAllUserMessages'])->name('app-event-user-views-all-messages');
+    Route::get('event/registered/chat_details/{encryptedId}/{userId}', [MessageController::class, 'ViewUserChatMessages'])->name('app-event-user-chat-messages');
+
+
+
+
+
+    // Route::get('event/registered/user_messages/{encrypted_id}', [EventController::class, 'SendMessagesUser'])->name('app-event-registers-guests');
 
     // Route::get('event/add', [EventController::class, 'create'])->name('app-event-add');
 
