@@ -13,21 +13,29 @@
                                 <center class="mb-4">
                                     <p class="text-white profile_text">Profile</p>
                                 </center>
-                                <div class="col-md-6 mb-3">
-                                    @php
-                                        $profileImagePath = $getPerson['profile_image'];
-                                    @endphp
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        @php
+                                            $profileImagePath = $getPerson['profile_image'];
+                                        @endphp
 
-                                    @if ($getPerson['profile_image'] && file_exists(public_path($getPerson['profile_image'])))
-                                        <img src="{{ asset($profileImagePath) }}" alt="Profile Image"
-                                            class="mt-2 rounded-circle" width="100" height="100">
-                                    @else
-                                        <img src="{{ asset('images/no_image_found.png') }}" alt="No Image Found"
-                                            class="img-thumbnail mt-2 rounded-circle" width="110">
-                                    @endif
+                                        @if ($getPerson['profile_image'] && file_exists(public_path($getPerson['profile_image'])))
+                                            <img src="{{ asset($profileImagePath) }}" alt="Profile Image"
+                                                class="mt-2 rounded-circle" width="100" height="100">
+                                        @else
+                                            <img src="{{ asset('images/no_image_found.png') }}" alt="No Image Found"
+                                                class="img-thumbnail mt-2 rounded-circle" width="110">
+                                        @endif
 
 
+                                    </div>
+                                    {{-- QR Code --}}
+                                    <div class="col-md-6">
 
+                                        <span class="qr_span">
+                                            {!! $ss !!}
+                                        </span>
+                                    </div>
                                 </div>
 
                                 <div class="row">

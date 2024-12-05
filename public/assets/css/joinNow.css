@@ -315,6 +315,14 @@ input:focus {
     color: #fff;
 }
 
+.qr_span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 120px !important;
+    width: 120px;
+    background-color: #fff !important;
+}
 
 @media(max-width:768px) {
     #eventsTable tr th {
