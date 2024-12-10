@@ -23,6 +23,8 @@ use App\Mail\MessageSent;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
+use Illuminate\Support\Facades\Crypt;
+
 class EventRegisterController extends Controller
 {
 
@@ -502,6 +504,17 @@ class EventRegisterController extends Controller
             //     $query->whereRaw("FIND_IN_SET(?, category)", [$request->category]);
             // }
 
+            // if ($request->has('categories') && is_array($request->categories)) {
+            //     $query->where(function ($q) use ($request) {
+            //         foreach ($request->categories as $category) {
+            //             $q->orWhereRaw("FIND_IN_SET(?, category)", [$category]);
+            //         }
+            //     });
+            // }
+
+            // $registrants = $query->get();
+
+
             if ($request->has('categories') && is_array($request->categories)) {
                 $query->where(function ($q) use ($request) {
                     foreach ($request->categories as $category) {
@@ -510,12 +523,19 @@ class EventRegisterController extends Controller
                 });
             }
 
-            $registrants = $query->get();
+            $registrants = $query->get()->map(function ($registrant) {
+                $registrant->encrypted_id = encrypt($registrant->id); // Add encrypted ID
+                return $registrant;
+            });
+
 
 
 
 
             if ($request->ajax()) {
+
+
+
                 return response()->json(['registrants' => $registrants]);
             }
 

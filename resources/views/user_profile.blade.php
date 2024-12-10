@@ -10,7 +10,7 @@
                             @include('sidebar_welcome')
                             <div class="col-md-9">
                                 <div class="text-center mb-3">
-                                    <h1 class="text-white">Update Profile</h1>
+                                    <h1 class="text-white text-family">My Profile</h1>
 
                                 </div>
                                 @if (session('success'))
@@ -22,22 +22,27 @@
                                     @csrf
 
 
-                                    <div class="col-md-12 text-center mb-3">
-                                        <h2 class="text-white">Register As </h2>
-                                        <div class="form-check d-inline">
+                                    <div class="col-md-12 text-start mb-3">
+                                        {{-- <h2 class="text-white text-register">Register As </h2> --}}
+                                        <label for="register_as">
+                                            <h3 class="text-white text-register form-label">Register
+                                                As</h3>
+                                        </label></br>
+                                        <div class="form-check d-inline form_inline">
                                             <input class="form-check-input radio_form" type="radio"
                                                 name="registration_type" id="company_registration" value="company"
                                                 @if ($user->form_type == 'company' || $user->form_type == '') checked @endif
                                                 @if ($user->form_type == 'individual') disabled @endif>
-                                            <label class="form-check-label form_type" for="company_registration">Company
+                                            <label class="form-check-label form_type custom-font-size"
+                                                for="company_registration">Company
                                             </label>
                                         </div>
-                                        <div class="form-check d-inline">
+                                        <div class="form-check d-inline form_inline">
                                             <input class="form-check-input radio_form" type="radio"
                                                 name="registration_type" id="individual_registration" value="individual"
                                                 @if ($user->form_type == 'individual') checked @endif
                                                 @if ($user->form_type == 'company') disabled @endif>
-                                            <label class="form-check-label form_type"
+                                            <label class="form-check-label form_type custom-font-size"
                                                 for="individual_registration">Individual
                                             </label>
                                         </div>
@@ -55,7 +60,6 @@
                                     @endphp
 
                                     @if ($user->form_type == 'company' || $user->form_type == '')
-
                                         <div class="company_info" style="display:{{ $companyDisplay }}">
                                             <!-------  Company Div ------->
                                             <div class="row">
@@ -70,12 +74,11 @@
                                             <div class="row">
 
                                                 <div class="col-md-6 mb-3">
-                                                    <label for="profile_image" class="form-label">Company
-                                                        Profile</label>
+                                                    <label for="profile_image" class="form-label">
+                                                        Profile Picture</label>
                                                     <input type="file" name="profile_image" class="form-control"
                                                         id="profile_image">
-                                                </div>
-                                                <div class="col-md-6 mb-3">
+
                                                     @php
                                                         $profileImagePath = $user->profile_image;
                                                     @endphp
@@ -89,51 +92,52 @@
                                                             class="img-thumbnail mt-2 rounded-circle" width="120">
                                                     @endif
                                                 </div>
+                                                <div class="col-md-6 mb-3">
+
+                                                    <div class="row">
+                                                        <div class="col-md-12 mb-3">
+                                                            <label for="total_experience"
+                                                                class="form-label">Experience</label>
+                                                            <input type="text" name="total_experience"
+                                                                class="form-control" id="total_experience"
+                                                                value="{{ old('total_experience', $user->total_experience) }}">
+                                                        </div>
+
+                                                        <div class="col-md-12 mb-3">
+                                                            <label for="contact_person" class="form-label">Contact
+                                                                Name</label>
+                                                            <input type="text" name="contact_person"
+                                                                class="form-control" id="contact_person"
+                                                                value="{{ old('contact_person', $user->contact_person) }}">
+                                                        </div>
+                                                    </div>
+
+
+
+                                                </div>
 
                                             </div>
 
                                             <div class="row">
 
-                                                <div class="col-md-6 mb-3">
-                                                    <label for="total_experience" class="form-label">Years into
-                                                        Market</label>
-                                                    <input type="text" name="total_experience" class="form-control"
-                                                        id="total_experience"
-                                                        value="{{ old('total_experience', $user->total_experience) }}">
-                                                </div>
+
+
+
 
                                                 <div class="col-md-6 mb-3">
-                                                    <label for="contact_person" class="form-label">Contact Name</label>
-                                                    <input type="text" name="contact_person" class="form-control"
-                                                        id="contact_person"
-                                                        value="{{ old('contact_person', $user->contact_person) }}">
-                                                </div>
-
-                                                <div class="col-md-6 mb-3">
-                                                    <label for="designation" class="form-label">Designation</label>
-                                                    <input type="text" name="designation" class="form-control"
-                                                        id="designation"
-                                                        value="{{ old('designation', $user->designation) }}">
-                                                </div>
-
-                                                {{-- <div class="col-md-2 mb-3">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="1"
-                                                            id="email_check" name="email_check"
-                                                            {{ old('email_check') ? 'checked' : '' }}>
-
-                                                    </div>
-                                                </div> --}}
-
-                                                <div class="col-md-6 mb-3">
-                                                    <label for="email" class="form-label">Email </label>
+                                                    <label for="email" class="form-label">Email
+                                                    </label>
                                                     <input class="" type="checkbox" value="1"
                                                         {{ $user->email_check == '1' ? 'checked' : '' }}
                                                         id="email_check" name="email_check">
 
+                                                    <label for="email" class="form-label ml-1">(Display to
+                                                        Others)
+                                                    </label>
 
                                                     <input type="email" name="email" class="form-control"
-                                                        id="email" value="{{ old('email', $user->email) }}">
+                                                        id="email" value="{{ old('email', $user->email) }}"
+                                                        placeholder="Email Address">
                                                 </div>
 
 
@@ -143,8 +147,21 @@
                                                         {{ $user->phone_check == '1' ? 'checked' : '' }}
                                                         id="phone_check" name="phone_check">
 
+
+                                                    <label for="email" class="form-label ml-1">(Display to
+                                                        Others)
+                                                    </label>
                                                     <input type="text" name="phone" class="form-control"
-                                                        id="phone" value="{{ old('phone', $user->phone) }}">
+                                                        id="phone" value="{{ old('phone', $user->phone) }}"
+                                                        placeholder="Phone Number">
+                                                </div>
+
+
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="designation" class="form-label">Designation</label>
+                                                    <input type="text" name="designation" class="form-control"
+                                                        id="designation"
+                                                        value="{{ old('designation', $user->designation) }}">
                                                 </div>
 
 
@@ -189,13 +206,17 @@
                                                 <div class="col-md-6 mb-3">
                                                     <label for="email" class="form-label">Email</label>
                                                     <input class="" type="checkbox" value="1"
-                                                        id="individual_email_check" name="individual_email_check">
-                                                    {{ $user->email_check == '1' ? 'checked' : '' }}
+                                                        id="individual_email_check" name="individual_email_check"
+                                                        {{ $user->email_check == '1' ? 'checked' : '' }}>
 
+                                                    <label for="email" class="form-label ml-1">(Display to
+                                                        Others)
+                                                    </label>
 
                                                     <input type="email" name="individual_email"
                                                         class="form-control" id="email"
-                                                        value="{{ old('individual_email', $user->email) }}">
+                                                        value="{{ old('individual_email', $user->email) }}"
+                                                        placeholder="Email Address">
                                                 </div>
 
                                                 <div class="col-md-6 mb-3">
@@ -204,6 +225,10 @@
                                                     <input class="" type="checkbox" value="1"
                                                         id="individual_phone_check" name="individual_phone_check"
                                                         {{ $user->phone_check == '1' ? 'checked' : '' }}>
+
+                                                    <label for="email" class="form-label ml-1">(Display to
+                                                        Others)
+                                                    </label>
 
                                                     <input type="text" name="individual_phone"
                                                         class="form-control" id="phone"
@@ -233,9 +258,8 @@
                                                 </div>
 
                                                 <div class="col-md-6 mb-3">
-                                                    <label for="total_experience" class="form-label">Total
-                                                        Experience
-                                                        in Marketing</label>
+                                                    <label for="total_experience"
+                                                        class="form-label">Experience</label>
                                                     <input type="text" name="individual_total_experience"
                                                         class="form-control" id="total_experience"
                                                         value="{{ old('total_experience', $user->total_experience) }}">

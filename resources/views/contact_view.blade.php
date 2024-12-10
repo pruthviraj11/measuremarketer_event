@@ -69,17 +69,20 @@
                                     @endif
 
 
-                                    @if ($getPerson['is_checked'] == '1')
+                                    @if ($getPerson['email_check'] == '1')
                                         <div class="col-md-6 mb-4">
                                             <p class="text-white profile_label">Email :</p>
                                             <p class="profile_data">{{ $getPerson['email'] }}</p>
                                         </div>
+                                    @endif
+                                    @if ($getPerson['phone_check'] == '1')
                                         <div class="col-md-6 mb-4">
                                             <p class="text-white profile_label">Phone Number
                                                 :</p>
                                             <p class="profile_data">{{ $getPerson['phone'] }}</p>
                                         </div>
                                     @endif
+
                                     <div class="col-md-6 mb-4">
                                         <p class="text-white profile_label">Address :</p>
                                         <p class="profile_data">{{ $getPerson['address'] ?? '-' }}</p>
@@ -97,7 +100,7 @@
 
 
                                     <div class="col-md-6 mb-4">
-                                        <p class="text-white profile_label">Experience in Market :</p>
+                                        <p class="text-white profile_label">Experiences:</p>
                                         <p class="profile_data">{{ $getPerson['total_experience'] ?? '-' }}</p>
                                     </div>
 

@@ -66,12 +66,13 @@
                                         <!-- Check if user session exists -->
                                         <!-- My Account button (for logged-in users) -->
                                         <div class="book_btn d-none d-lg-block">
-                                            <a href="{{ route('registerd_event') }}" target="_blank">My Account</a>
+                                            <a href="{{ route('registerd_event') }}" class="text-header"
+                                                target="_blank">My Account</a>
                                         </div>
 
                                         <!-- Logout button (for logged-in users) -->
                                         <div class="book_btn d-none d-lg-block">
-                                            <a href="{{ route('userlogout') }}" target="_blank"
+                                            <a href="{{ route('userlogout') }}" class="text-header" target="_blank"
                                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
                                         </div>
 
