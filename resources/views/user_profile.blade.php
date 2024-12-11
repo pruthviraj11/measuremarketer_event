@@ -132,7 +132,7 @@
                                                         id="email_check" name="email_check">
 
                                                     <label for="email" class="form-label ml-1">(Display to
-                                                        Others)
+                                                        Other Attendees)
                                                     </label>
 
                                                     <input type="email" name="email" class="form-control"
@@ -149,7 +149,7 @@
 
 
                                                     <label for="email" class="form-label ml-1">(Display to
-                                                        Others)
+                                                        Other Attendees)
                                                     </label>
                                                     <input type="text" name="phone" class="form-control"
                                                         id="phone" value="{{ old('phone', $user->phone) }}"
@@ -210,7 +210,7 @@
                                                         {{ $user->email_check == '1' ? 'checked' : '' }}>
 
                                                     <label for="email" class="form-label ml-1">(Display to
-                                                        Others)
+                                                        Other Attendees)
                                                     </label>
 
                                                     <input type="email" name="individual_email"
@@ -227,7 +227,7 @@
                                                         {{ $user->phone_check == '1' ? 'checked' : '' }}>
 
                                                     <label for="email" class="form-label ml-1">(Display to
-                                                        Others)
+                                                        Other Attendees)
                                                     </label>
 
                                                     <input type="text" name="individual_phone"
@@ -266,7 +266,7 @@
                                                 </div>
 
                                                 <div class="col-md-12 mb-3">
-                                                    <label for="address" class="form-label">Location</label>
+                                                    <label for="address" class="form-label">Your Location</label>
                                                     <input type="text" name="individual_address"
                                                         class="form-control" id="address"
                                                         value="{{ old('address', $user->address) }}">

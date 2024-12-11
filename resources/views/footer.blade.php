@@ -121,15 +121,10 @@
      $(document).ready(function() {
 
 
-         $('.category').select2({
+         $('#list_category').select2({
              placeholder: "Select Category",
              allowClear: true
          });
-         $('.interests').select2({
-             placeholder: "Select Interest",
-             allowClear: true
-         });
-
 
          $('#category').select2({
              placeholder: "Select Category",
@@ -157,7 +152,7 @@
          });
 
          /*-------Event AttandingList Info---------*/
-         $('#category').change(function() {
+         $('#list_category').change(function() {
              let selectedCategories = $(this).val();
 
              $.ajax({
@@ -183,7 +178,7 @@
                                     <td>${registrant.contact_person}</td>
                                     <td>${registrant.company_name}</td>
                                     <td>${registrant.designation}</td>
-
+                                    
                                     <td>
                                         <a href="/view-contact-person/${registrant.encrypted_id}">
                                             <button class="btn profile_view_btn">
@@ -398,19 +393,20 @@
              //  title: "<strong> Access to profiles will be available on the event day!</strong>",
              icon: "info",
              html: `
-   <h2> Access to profiles will be available on the event day!</h2>
-  `,
+  <h2> Access to profiles will be available on the event day!</h2>
+ `,
              showCloseButton: true,
              showCancelButton: false,
              focusConfirm: false,
              confirmButtonText: `
-    <i class="fa fa-thumbs-up"></i> Great!
-  `,
+   <i class="fa fa-thumbs-up"></i> Great!
+ `,
              confirmButtonAriaLabel: "Thumbs up, great!",
 
          });
      }
-
+ </script>
+ <script>
      function confirmDelete(guestId) {
          Swal.fire({
              title: 'Are you sure?',

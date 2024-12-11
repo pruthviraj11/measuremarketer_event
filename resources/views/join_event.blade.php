@@ -80,7 +80,7 @@
                                         name="email_check">
 
                                     <label for="email" class="form-label ml-1">(Display to
-                                        Others)
+                                        Other Attendees)
                                     </label>
 
                                     <input type="email" name="email" class="form-control" id="email"
@@ -95,7 +95,7 @@
 
 
                                     <label for="email" class="form-label ml-1">(Display to
-                                        Others)
+                                        Other Attendees)
                                     </label>
                                     <input type="text" name="phone" class="form-control" id="phone"
                                         value="{{ old('phone') }}" placeholder="Phone Number">
@@ -116,7 +116,7 @@
 
 
                                 <div class="col-md-12 mb-3">
-                                    <label for="address" class="form-label">Location</label>
+                                    <label for="address" class="form-label">Your Location</label>
                                     <input type="text" name="address" class="form-control" id="address"
                                         value="{{ old('address') }}">
                                 </div>
@@ -142,7 +142,7 @@
                                             id="individual_email_check" name="individual_email_check">
 
                                         <label for="email" class="form-label ml-1">(Display to
-                                            Others)
+                                            Other Attendees)
                                         </label>
 
                                         <input type="email" name="individual_email" class="form-control"
@@ -157,7 +157,7 @@
                                             id="individual_phone_check" name="individual_phone_check">
 
                                         <label for="email" class="form-label ml-1">(Display to
-                                            Others)
+                                            Other Attendees)
                                         </label>
 
                                         <input type="text" name="individual_phone" class="form-control"
@@ -190,7 +190,7 @@
                                     </div>
 
                                     <div class="col-md-12 mb-3">
-                                        <label for="address" class="form-label">Location</label>
+                                        <label for="address" class="form-label">Your Location</label>
                                         <input type="text" name="individual_address" class="form-control"
                                             id="address" value="{{ old('address') }}">
                                     </div>
@@ -209,7 +209,7 @@
                             <div class="col-md-12">
                                 <label class="text-white" for="category">Categories to Choose From: </label>
 
-                                <select class="form-control category" name="category[]" multiple="multiple">
+                                <select class="form-control" name="category[]" id="category" multiple="multiple">
                                     <option value="">Select Category</option>
                                     @foreach ($categories as $category)
                                         <option value="{{ $category->id }}">{{ $category->category }}
@@ -225,7 +225,7 @@
                             <div class="col-md-12 form-group">
                                 <label class="text-white" for="category">Interested in: </label>
 
-                                <select class="form-control interests" name="interests[]" multiple="multiple">
+                                <select class="form-control" name="interests[]" id="interests" multiple="multiple">
                                     <option value="">Select Interests</option>
 
                                     @foreach ($interests as $interest)
@@ -268,14 +268,7 @@
                             <div class="col-12">
                                 <h4 class="text-white">Login Information</h4>
                             </div>
-                            <div class="col-sm-6 form-group">
-                                {{-- <label class="text-white" for="email">Email</label> --}}
-                                <input type="email" class="form-control" name="email" id="email"
-                                    placeholder="Enter your email." value="{{ old('email') }}">
-                                @error('email')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
+
                             <div class="col-sm-6 form-group">
                                 {{-- <label class="text-white" for="pass">Password</label> --}}
                                 <input type="password" name="password" class="form-control form_passsword"

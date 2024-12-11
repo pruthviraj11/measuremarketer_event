@@ -133,7 +133,7 @@ class EventRegisterController extends Controller
         $eventRegister->category = $categories;
         $eventRegister->interest = $interests;
         $eventRegister->password = Hash::make($request->password);
-        $eventRegister->password = encrypt($request->password);
+        // $eventRegister->password = encrypt($request->password);
 
 
 

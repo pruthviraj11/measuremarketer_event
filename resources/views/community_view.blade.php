@@ -15,7 +15,7 @@
                                     </div>
                                 @endif
                                 <div class="col-md-12 mb-5">
-                                    <select name="category[]" id="category" multiple class="form-control">
+                                    <select name="category[]" id="list_category" multiple class="form-control select2">
                                         <option value="">Select Category</option>
                                         @foreach ($categories as $category)
                                             <option value="{{ $category->id }}">{{ $category->category }}</option>
