@@ -215,8 +215,8 @@
                      data: 'name'
                  },
                  {
-                     data: 'event_date',
-                     name: 'event_date'
+                     data: 'detail',
+                     name: 'detail'
                      //  render: function(data, type, row) {
                      //      const startDate = row.start_date ? row.start_date : '-';
                      //      const startTime = row.start_time ? row.start_time : '-';

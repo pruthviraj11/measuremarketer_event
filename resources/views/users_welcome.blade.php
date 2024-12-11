@@ -18,7 +18,7 @@
                                     <thead>
                                         <tr>
                                             <th>Event Name</th>
-                                            <th>Event Date</th> <!-- Combined Start and End Date -->
+                                            <th>Event Detail</th> <!-- Combined Start and End Date -->
                                             {{-- <th>Action</th> --}}
                                         </tr>
                                     </thead>
