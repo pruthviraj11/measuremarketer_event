@@ -10,9 +10,9 @@
                             @include('sidebar_welcome')
                             <div class="col-md-9">
                                 <div class="text-center mb-3">
-                                    <h1 class="text-white text-family">My Profile</h1>
-
+                                    <h2 class="text-white text-family">Register Yourself / Company</h2>
                                 </div>
+
                                 @if (session('success'))
                                     <div class="alert alert-success">{{ session('success') }}</div>
                                 @endif
@@ -354,7 +354,7 @@
 
                                     <button type="submit" class="btn btn-primary profile_update_btn">Update
                                         Profile</button>
-
+                                </form>
 
                             </div>
 
@@ -379,7 +379,7 @@
 
                             <button type="submit" class="btn btn-primary profile_update_btn">Update
                                 Profile</button> --}}
-                            </form>
+
                         </div>
                     </div>
                 </div>

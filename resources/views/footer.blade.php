@@ -120,6 +120,17 @@
  <script>
      $(document).ready(function() {
 
+
+         $('.category').select2({
+             placeholder: "Select Category",
+             allowClear: true
+         });
+         $('.interests').select2({
+             placeholder: "Select Interest",
+             allowClear: true
+         });
+
+
          $('#category').select2({
              placeholder: "Select Category",
              allowClear: true

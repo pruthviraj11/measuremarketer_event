@@ -74,7 +74,7 @@ class LoginController extends Controller
             session(['user' => $user]);
 
             // Successful login, redirect to the welcome page
-            return redirect()->route('profile.edit');
+            return redirect()->route('profile.view');
         }
 
         // If login fails, redirect back with error message

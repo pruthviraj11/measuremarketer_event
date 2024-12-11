@@ -75,6 +75,9 @@ Route::get('/password_request', function () {
 Route::get('/profile/edit', [EventRegisterController::class, 'editProfile'])->name('profile.edit');
 
 // Handle the profile update
+
+Route::get('/profile', [EventRegisterController::class, 'ProfileButton'])->name('profile.view');
+
 Route::post('/profile/update', [EventRegisterController::class, 'updateProfile'])->name('profile.update');
 
 

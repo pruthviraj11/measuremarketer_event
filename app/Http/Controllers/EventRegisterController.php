@@ -41,29 +41,25 @@ class EventRegisterController extends Controller
     {
 
 
-        $request->validate([
-            'company_name' => 'required|string|max:255',
-            'email' => 'required|email|unique:event_registers,email',
-            'phone' => 'required|digits:10',
-            'password' => 'required|min:4|confirmed',
-            'designation' => 'required|string|max:255',
-        ], [
+        // $request->validate([
+        //     'company_name' => 'required|string|max:255',
+        //     'email' => 'required|email|unique:event_registers,email',
+        //     'phone' => 'required|digits:10',
+        //     'password' => 'required|min:4|confirmed',
+        //     'designation' => 'required|string|max:255',
+        // ], [
 
-            'phone.digits' => 'Phone number must be 10 digits.',
-        ]);
-
-
-
-
+        //     'phone.digits' => 'Phone number must be 10 digits.',
+        // ]);
 
 
         $eventRegister = new EventRegister();
-        $eventRegister->company_name = $request->company_name;
+
 
         if ($request->category == '') {
-            $categoryies = '';
+            $categories = '';
         } else {
-            $categoryies = implode(",", $request->category);
+            $categories = implode(",", $request->category);
         }
 
         if ($request->interests == '') {
@@ -72,26 +68,32 @@ class EventRegisterController extends Controller
             $interests = implode(",", $request->interests);
         }
 
+        $formType = $request->registration_type;
 
-        $eventRegister->email = $request->email;
-        $eventRegister->address = $request->input('address-1');
-        $eventRegister->phone = $request->phone;
-        $eventRegister->password = Hash::make($request->password);
-        // $eventRegister->password = encrypt($request->password);
-        $eventRegister->designation = $request->designation;
 
-        $eventRegister->linkedin = $request->linkedin;
-        $eventRegister->total_experience = $request->total_experience;
 
-        $eventRegister->category = $categoryies;
-        $eventRegister->interest = $interests;
-        $eventRegister->event_id = 1;
-
-        $eventRegister->form_type = $request->registration_type;
-
-        $regType = $request->registration_type;
-        if ($regType == "company") {
+        if ($formType == "company") {
+            $eventRegister->company_name = $request->company_name;
+            $eventRegister->total_experience = $request->total_experience;
             $eventRegister->contact_person = $request->contact_person;
+            $eventRegister->designation = $request->designation;
+            $eventRegister->email = $request->email;
+            $eventRegister->phone = $request->phone;
+            $eventRegister->linkedin = $request->linkedin;
+            $eventRegister->address = $request->address;
+
+            if ($request->email_check != '') {
+                $eventRegister->email_check = $request->email_check;
+            } else {
+                $eventRegister->email_check = "0";
+            }
+
+            if ($request->phone_check != '') {
+                $eventRegister->phone_check = $request->phone_check;
+            } else {
+                $eventRegister->phone_check = "0";
+            }
+
             if ($request->hasFile('profile_image')) {
                 $image = $request->file('profile_image');
                 $directory = public_path('images/profilephoto');
@@ -102,13 +104,78 @@ class EventRegisterController extends Controller
                 $image->move($directory, $imageName);
                 $eventRegister->profile_image = 'images/profilephoto/' . $imageName;
             }
-
         } else {
+            $eventRegister->full_name = $request->individual_full_name;
+            $eventRegister->email = $request->individual_email;
+            $eventRegister->phone = $request->individual_phone;
+            $eventRegister->linkedin = $request->individual_linkedin;
+            $eventRegister->company_name = $request->individual_company_name;
+            $eventRegister->designation = $request->individual_designation;
+            $eventRegister->total_experience = $request->individual_total_experience;
+            $eventRegister->address = $request->individual_address;
+            $eventRegister->bio = $request->individual_bio;
 
-            $eventRegister->full_name = $request->full_name;
-            $eventRegister->bio = $request->bio;
+            if ($request->individual_email_check != '') {
+                $eventRegister->email_check = $request->individual_email_check;
+            } else {
+                $eventRegister->email_check = "0";
+            }
 
+            if ($request->individual_phone_check != '') {
+                $eventRegister->phone_check = $request->individual_phone_check;
+            } else {
+                $eventRegister->phone_check = "0";
+            }
         }
+
+        $eventRegister->event_id = 1;
+        $eventRegister->form_type = $request->registration_type;
+        $eventRegister->category = $categories;
+        $eventRegister->interest = $interests;
+        $eventRegister->password = Hash::make($request->password);
+        $eventRegister->password = encrypt($request->password);
+
+
+
+
+        // $eventRegister->email = $request->email;
+        // $eventRegister->address = $request->input('address-1');
+        // $eventRegister->phone = $request->phone;
+        // $eventRegister->password = Hash::make($request->password);
+        // // $eventRegister->password = encrypt($request->password);
+        // $eventRegister->designation = $request->designation;
+
+        // $eventRegister->linkedin = $request->linkedin;
+        // $eventRegister->total_experience = $request->total_experience;
+
+        // $eventRegister->category = $categoryies;
+        // $eventRegister->interest = $interests;
+        // $eventRegister->event_id = 1;
+
+        // $eventRegister->form_type = $request->registration_type;
+
+        // $regType = $request->registration_type;
+        // if ($regType == "company") {
+        //     $eventRegister->contact_person = $request->contact_person;
+        //     if ($request->hasFile('profile_image')) {
+        //         $image = $request->file('profile_image');
+        //         $directory = public_path('images/profilephoto');
+        //         if (!file_exists($directory)) {
+        //             mkdir($directory, 0777, true);
+        //         }
+        //         $imageName = time() . '.' . $image->getClientOriginalExtension();
+        //         $image->move($directory, $imageName);
+        //         $eventRegister->profile_image = 'images/profilephoto/' . $imageName;
+        //     }
+
+        // } else {
+
+        //     $eventRegister->full_name = $request->full_name;
+        //     $eventRegister->bio = $request->bio;
+
+        // }
+
+
 
         $eventRegister->save();
 
@@ -304,6 +371,17 @@ class EventRegisterController extends Controller
         // Return the view with user data
         return view('user_profile', compact('user', 'categories', 'interests'));
     }
+
+    /*-----  Profile Button ----*/
+    public function ProfileButton()
+    {
+        $userId = Session::get('user')->id;
+        return view('view_profile', compact('userId'));
+    }
+
+
+
+
     public function updateProfile(Request $request)
     {
         $userId = Session::get('user')->id;

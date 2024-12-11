@@ -101,6 +101,31 @@
 }
 
 
+/*----  Vipul Added Css -----*/
+
+.profile_button a
+{
+    background: linear-gradient(to right, #e91a83, #4c24c1);
+    font-family: "Poppins", serif !important;
+    padding: 12px 46px;
+    font-size: 16px;
+    font-weight: 400;
+    border: 1px solid transparent;
+    color: #fff;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    text-transform: capitalize;
+    border-radius: 40px !important;
+}
+
+.profile_button a:hover
+{
+    border-color: #e91a83;
+    color: #e91a83;
+    background: transparent;
+}
+
 
 
 
