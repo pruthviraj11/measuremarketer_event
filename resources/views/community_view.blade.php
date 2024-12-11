@@ -24,17 +24,17 @@
                                     </select>
                                 </div>
 
-                                <table id="registrantsTable" class="display table table-bordered">
+                                <table id="registrantsTable" class="display table">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
+                                            <th>Profile</th>
                                             <th>Company Name</th>
                                             <th>Name </th>
                                             <th>Designation</th>
 
                                             {{-- <th>Email</th>
                                             <th>Phone</th> --}}
-                                            <th></th> <!-- Added action column for message button -->
+                                            <th>Connect</th> <!-- Added action column for message button -->
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -56,26 +56,26 @@
 
                                                     @if ($registrant->profile_image && file_exists(public_path($registrant->profile_image)))
                                                         <img src="{{ asset($profileImagePath) }}" alt="Profile Image"
-                                                            class="mt-2 rounded-circle" width="80" height="80">
+                                                            class="mt-2 rounded-circle" width="60" height="60">
                                                     @else
                                                         <img src="{{ asset('images/no_image_found.png') }}"
                                                             alt="No Image Found"
-                                                            class="img-thumbnail mt-2 rounded-circle" width="80"
-                                                            height="80">
+                                                            class="img-thumbnail mt-2 rounded-circle" width="60"
+                                                            height="60">
                                                     @endif
 
 
 
                                                 </td>
 
-                                                <td>
+                                                <td class="align-middle text-center">
                                                     {{ $registrant->company_name }}
                                                 </td>
-                                                <td>{{ $PersonName }}</td>
-                                                <td>{{ $registrant->designation }}</td>
+                                                <td class="align-middle text-center">{{ $PersonName }}</td>
+                                                <td class="align-middle text-center">{{ $registrant->designation }}</td>
                                                 {{-- <td>{{ $registrant->email }}</td>
                                                 <td>{{ $registrant->phone }}</td> --}}
-                                                <td>
+                                                <td class="align-middle text-center">
                                                     {{-- <button type="button" class="btn btn-primary send_message_btn"
                                                         data-toggle="modal" data-target="#exampleModal"
                                                         data-id="{{ $registrant->id }}"
@@ -84,8 +84,22 @@
                                                         Message</button> --}}
                                                     <?php $encryptedId = encrypt($registrant->id); ?>
 
-                                                    <a href="{{ route('get_contact_person', $encryptedId) }}"><button
+                                                    {{-- <a href="{{ route('get_contact_person', $encryptedId) }}"><button
                                                             class="btn profile_view_btn ">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                height="24" viewBox="0 0 24 24" fill="none"
+                                                                stroke="currentColor" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round"
+                                                                class="feather feather-eye">
+                                                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z">
+                                                                </path>
+                                                                <circle cx="12" cy="12" r="3"></circle>
+                                                            </svg>
+                                                            View Profile
+                                                        </button>
+                                                    </a> --}}
+
+                                                    <a onclick=eventAlert()><button class="btn profile_view_btn ">
                                                             {{-- <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                                 height="24" viewBox="0 0 24 24" fill="none"
                                                                 stroke="currentColor" stroke-width="2"
@@ -98,7 +112,6 @@
                                                             View Profile
                                                         </button>
                                                     </a>
-
                                                 </td>
                                             </tr>
                                         @endforeach

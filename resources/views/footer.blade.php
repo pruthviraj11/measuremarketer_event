@@ -172,7 +172,7 @@
                                     <td>${registrant.contact_person}</td>
                                     <td>${registrant.company_name}</td>
                                     <td>${registrant.designation}</td>
-                                    
+
                                     <td>
                                         <a href="/view-contact-person/${registrant.encrypted_id}">
                                             <button class="btn profile_view_btn">
@@ -382,6 +382,24 @@
  </script>
  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
  <script>
+     function eventAlert() {
+         Swal.fire({
+             //  title: "<strong> Access to profiles will be available on the event day!</strong>",
+             icon: "info",
+             html: `
+   <h2> Access to profiles will be available on the event day!</h2>
+  `,
+             showCloseButton: true,
+             showCancelButton: false,
+             focusConfirm: false,
+             confirmButtonText: `
+    <i class="fa fa-thumbs-up"></i> Great!
+  `,
+             confirmButtonAriaLabel: "Thumbs up, great!",
+
+         });
+     }
+
      function confirmDelete(guestId) {
          Swal.fire({
              title: 'Are you sure?',

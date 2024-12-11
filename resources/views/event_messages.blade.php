@@ -14,7 +14,7 @@
                                     {{-- <h6>My Account</h6> --}}
                                 </center>
                                 <!-- DataTable for Registered Events -->
-                                <table id="eventMessageTable" class="display text-white border-white table-bordered">
+                                <table id="eventMessageTable" class="table display">
                                     <thead>
                                         <tr>
                                             <th>Company Name</th>

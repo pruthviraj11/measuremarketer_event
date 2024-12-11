@@ -39,7 +39,7 @@
             </div>
             <div class="card-body border-bottom">
                 <div class="card-datatable table-responsive pt-0">
-                    <table class="user-list-table table dt-responsive" id="users-table">
+                    <table class="user-list-table table dt-responsive message_table" id="users-table">
                         <thead>
                             <tr>
                                 <th>Company Name</th>
