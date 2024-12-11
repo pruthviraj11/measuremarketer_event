@@ -29,7 +29,7 @@
                                             class="btn btn-primary btn-sm add_guest_btn">Add New Member</a></div>
                                 </div>
                                 <!-- Table for displaying guest information -->
-                                <table id="guestsTable" class="table table-bordered">
+                                <table id="guestsTable" class="table">
                                     <thead>
                                         <tr>
                                             <th>Guest Name</th>
@@ -76,6 +76,9 @@
                                                                     y2="17"></line>
                                                             </svg></button>
                                                     </form>
+
+
+
                                                 </td>
                                             </tr>
                                         @endforeach
