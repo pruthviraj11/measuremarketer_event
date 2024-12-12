@@ -407,7 +407,16 @@ class EventRegisterController extends Controller
     public function ProfileButton()
     {
         $userId = Session::get('user')->id;
+        $eventRegister = EventRegister::where('id', $userId)->first();
+
+        if ($eventRegister->is_updated != null) {
+            return redirect()->route('profile.edit');
+        }
+
+
+        $userId = Session::get('user')->id;
         return view('view_profile', compact('userId'));
+
     }
 
 
@@ -451,6 +460,9 @@ class EventRegisterController extends Controller
             $user->phone = $request->phone;
             $user->linkedin = $request->linkedin;
             $user->address = $request->address;
+            $user->is_updated = $request->updated;
+
+
 
             if ($request->email_check != '') {
                 $user->email_check = $request->email_check;
@@ -519,6 +531,8 @@ class EventRegisterController extends Controller
         if ($request->password != "") {
             $user->password = Hash::make($request->password);
         }
+
+
 
         $user->save();
 

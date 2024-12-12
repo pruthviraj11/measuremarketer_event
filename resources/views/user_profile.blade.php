@@ -21,6 +21,7 @@
                                     enctype="multipart/form-data">
                                     @csrf
 
+                                    <input type="hidden" name="updated" id="" value="1">
 
                                     <div class="col-md-12 text-start mb-3">
                                         {{-- <h2 class="text-white text-register">Register As </h2> --}}
