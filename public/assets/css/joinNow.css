@@ -458,3 +458,10 @@ input:focus {
 div:where(.swal2-container).swal2-center>.swal2-popup {
     background:#000000bf;
 }
+
+
+@media (max-width: 768px) {
+    .display_none_mobile {
+        display: none;
+    }
+}

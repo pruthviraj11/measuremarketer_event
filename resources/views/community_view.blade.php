@@ -27,7 +27,7 @@
                                     <table id="registrantsTable" class="display table">
                                         <thead>
                                             <tr>
-                                                <th class="d-md-inline-block d-none">Profile</th>
+                                                <th class="display_none_mobile">Profile</th>
                                                 <th>Company Name</th>
                                                 <th>Name</th>
                                                 <th>Designation</th>
@@ -44,7 +44,7 @@
                                                             $PersonName = $registrant->full_name;
                                                         }
                                                     @endphp
-                                                    <td class="text-center align-middle d-md-block d-none">
+                                                    <td class="text-center align-middle display_none_mobile">
                                                         @php
                                                             $profileImagePath = $registrant->profile_image;
                                                         @endphp
