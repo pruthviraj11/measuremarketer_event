@@ -40,7 +40,7 @@
 
 
                             <!-- Personal Information -->
-                            <div class="col-12 mt-4">
+                            <div class="col-md-12 mt-4">
                                 {{-- <h4 class="text-white">Personal Information</h4> --}}
                             </div>
 
@@ -264,12 +264,12 @@
 
 
                         <!-- Login Information -->
-                        <div class="row">
-                            <div class="col-12 p-0">
+                        <div class="row g-0">
+                            <div class="col-md-12 pl-0">
                                 <h4 class="text-white">Login Information</h4>
                             </div>
 
-                            <div class="col-sm-6 form-group p-0">
+                            <div class="col-sm-6 form-group pl-0">
                                 {{-- <label class="text-white" for="pass">Password</label> --}}
                                 <input type="text" name="password" class="form-control form_passsword"
                                     id="pass" placeholder="Enter Username" value="{{ old('password') }}">
