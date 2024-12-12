@@ -96,6 +96,13 @@
 
                                                     <div class="row">
                                                         <div class="col-md-12 mb-3">
+                                                            <label for="contact_person" class="form-label">Contact
+                                                                Name</label>
+                                                            <input type="text" name="contact_person"
+                                                                class="form-control" id="contact_person"
+                                                                value="{{ old('contact_person', $user->contact_person) }}">
+                                                        </div>
+                                                        <div class="col-md-12 mb-3">
                                                             <label for="total_experience"
                                                                 class="form-label">Experience</label>
                                                             <input type="text" name="total_experience"
@@ -103,13 +110,6 @@
                                                                 value="{{ old('total_experience', $user->total_experience) }}">
                                                         </div>
 
-                                                        <div class="col-md-12 mb-3">
-                                                            <label for="contact_person" class="form-label">Contact
-                                                                Name</label>
-                                                            <input type="text" name="contact_person"
-                                                                class="form-control" id="contact_person"
-                                                                value="{{ old('contact_person', $user->contact_person) }}">
-                                                        </div>
                                                     </div>
 
 

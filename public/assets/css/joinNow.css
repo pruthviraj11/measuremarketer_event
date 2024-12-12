@@ -99,8 +99,7 @@
 
 /*----  Vipul Added Css -----*/
 
-.profile_button a
-{
+.profile_button a {
     background: linear-gradient(to right, #e91a83, #4c24c1);
     font-family: "Poppins", serif !important;
     padding: 12px 46px;
@@ -115,8 +114,7 @@
     border-radius: 40px !important;
 }
 
-.profile_button a:hover
-{
+.profile_button a:hover {
     border-color: #e91a83;
     color: #e91a83;
     background: transparent;
@@ -427,14 +425,25 @@ input:focus {
 }
 
 
-.table td,
+/* .table td,
 .table th,
 .table td {
     border: 1px solid rgba(255, 255, 255, 0.2) !important;
+} */
+
+#eventsTable,
+#registrantsTable,
+#eventMessageTable,
+#guestsTable {
+    border-top: 1px solid rgba(255, 255, 255, 0.5) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5) !important;
 }
 
+.table thead th {
+    border-bottom: none;
+    border-top: none;
+}
 
-#eventsTable {
-    border-top: 1px solid rgba(255, 255, 255, 0.2) !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+.table td {
+    border-top: none;
 }

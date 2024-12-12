@@ -198,7 +198,7 @@
 
 
                                     <div class="col-md-12 mb-5">
-                                        <label for="bio" class="form-label">Bio</label>
+                                        <label for="bio" class="form-label">Company information</label>
                                         <textarea name="individual_bio" class="form-control" id="bio">{{ old('full_name') }}</textarea>
 
                                     </div>
@@ -206,7 +206,7 @@
                             </div>
                             <!-----  End Individual Radio Select --->
 
-                            <div class="col-md-12">
+                            <div class="col-md-12 form-group p-0">
                                 <label class="text-white" for="category">Categories to Choose From: </label>
 
                                 <select class="form-control" name="category[]" id="category" multiple="multiple">
@@ -222,7 +222,7 @@
 
                             </div>
 
-                            <div class="col-md-12 form-group">
+                            <div class="col-md-12 form-group p-0">
                                 <label class="text-white" for="category">Interested in: </label>
 
                                 <select class="form-control" name="interests[]" id="interests" multiple="multiple">
@@ -265,14 +265,14 @@
 
                         <!-- Login Information -->
                         <div class="row">
-                            <div class="col-12">
+                            <div class="col-12 p-0">
                                 <h4 class="text-white">Login Information</h4>
                             </div>
 
-                            <div class="col-sm-6 form-group">
+                            <div class="col-sm-6 form-group p-0">
                                 {{-- <label class="text-white" for="pass">Password</label> --}}
-                                <input type="password" name="password" class="form-control form_passsword"
-                                    id="pass" placeholder="Enter your password." value="{{ old('password') }}">
+                                <input type="text" name="password" class="form-control form_passsword"
+                                    id="pass" placeholder="Enter Username" value="{{ old('password') }}">
 
                                 <button type="button" class="btn btn-outline-secondary toggle-password"
                                     data-target="#pass">
@@ -284,11 +284,11 @@
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <div class="col-sm-6 form-group">
+                            <div class="col-sm-6 form-group pr-0">
                                 {{-- <label class="text-white" for="pass2">Confirm Password</label> --}}
                                 <input type="password" name="password_confirmation"
                                     class="form-control form_passsword" id="pass2"
-                                    placeholder="Re-enter your password." value="{{ old('password_confirmation') }}">
+                                    placeholder="enter your password." value="{{ old('password_confirmation') }}">
 
                                 <button type="button" class="btn btn-outline-secondary confirm-toggle-password"
                                     data-target="#pass2">
