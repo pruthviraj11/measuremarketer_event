@@ -27,7 +27,7 @@
                                     <table id="registrantsTable" class="display table">
                                         <thead>
                                             <tr>
-                                                <th class="d-md-block d-none">Profile</th>
+                                                <th class="d-md-inline-block d-none">Profile</th>
                                                 <th>Company Name</th>
                                                 <th>Name</th>
                                                 <th>Designation</th>
