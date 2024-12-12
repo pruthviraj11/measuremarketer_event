@@ -14,6 +14,7 @@
                                     {{-- <h6>My Account</h6> --}}
                                 </center>
                                 <!-- DataTable for Registered Events -->
+                                <div class="table-responsive">
                                 <table id="eventMessageTable" class="table display">
                                     <thead>
                                         <tr>
@@ -28,6 +29,7 @@
                                 </table>
 
                             </div>
+                        </div>
 
                         </div>
                     </div>

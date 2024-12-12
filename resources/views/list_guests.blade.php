@@ -23,12 +23,13 @@
 
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <h1 class="text-white mb-5">List Of Members</h1>
+                                        <h1 class="text-white mb-5 poppins">List Of Members</h1>
                                     </div>
                                     <div class="col-md-6 text-right"> <a href="{{ route('add.guests') }}"
-                                            class="btn btn-primary btn-sm add_guest_btn">Add New Member</a></div>
+                                            class="btn btn-primary btn-sm add_guest_btn mb-3">Add New Member</a></div>
                                 </div>
                                 <!-- Table for displaying guest information -->
+                                <div class="table-responsive">
                                 <table id="guestsTable" class="table">
                                     <thead>
                                         <tr>
@@ -86,6 +87,7 @@
                                 </table>
 
                             </div>
+                        </div>
                         </div>
                     </div>
                 </div>

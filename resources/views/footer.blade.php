@@ -393,7 +393,7 @@
              //  title: "<strong> Access to profiles will be available on the event day!</strong>",
              icon: "info",
              html: `
-  <h2> Access to profiles will be available on the event day!</h2>
+  <h2 class="poppins text-white"> Access to profiles will be available on the event day!</h2>
  `,
              showCloseButton: true,
              showCancelButton: false,

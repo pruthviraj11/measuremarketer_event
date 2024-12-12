@@ -78,6 +78,10 @@
 .text-family {
     font-family: "Poppins", serif !important;
 }
+.poppins{
+       font-family: "Poppins", serif !important;
+
+}
 
 .text-register {
     font-family: "Muli", sans-serif !important;
@@ -440,10 +444,17 @@ input:focus {
 }
 
 .table thead th {
-    border-bottom: none;
-    border-top: none;
+    /* border-bottom: none;
+    border-top: none; */
 }
 
 .table td {
     border-top: none;
+}
+.table tbody td {
+    border-top: 1px solid rgba(255, 255, 255, 0.5) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5) !important;
+}
+div:where(.swal2-container).swal2-center>.swal2-popup {
+    background:#000000bf;
 }

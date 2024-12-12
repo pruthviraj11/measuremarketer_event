@@ -7,10 +7,11 @@
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item">
-                <a href="{{ route('profile.view') }}" class="nav-link {{ Route::is('profile.view') ? 'active' : '' }}"
-                    aria-current="page">
-                    My Profile
-                </a>
+                <a href="{{ route('profile.view') }}" 
+                class="nav-link {{ Route::is('profile.view', 'profile.edit') ? 'active' : '' }}" 
+                aria-current="page">
+                My Profile
+             </a>
             </li>
             <li class="nav-item">
                 <a href="{{ route('registerd_event') }}"

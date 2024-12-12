@@ -23,8 +23,57 @@
 
                                     </select>
                                 </div>
-
-                                <table id="registrantsTable" class="display table">
+                                <div class="table-responsive">
+                                    <table id="registrantsTable" class="display table">
+                                        <thead>
+                                            <tr>
+                                                <th class="d-md-block d-none">Profile</th>
+                                                <th>Company Name</th>
+                                                <th>Name</th>
+                                                <th>Designation</th>
+                                                <th>Connect</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($registrants as $registrant)
+                                                <tr>
+                                                    @php
+                                                        if ($registrant->form_type == 'company') {
+                                                            $PersonName = $registrant->contact_person;
+                                                        } else {
+                                                            $PersonName = $registrant->full_name;
+                                                        }
+                                                    @endphp
+                                                    <td class="text-center align-middle d-md-block d-none">
+                                                        @php
+                                                            $profileImagePath = $registrant->profile_image;
+                                                        @endphp
+                                                        @if ($registrant->profile_image && file_exists(public_path($registrant->profile_image)))
+                                                            <img src="{{ asset($profileImagePath) }}" alt="Profile Image"
+                                                                class="mt-2 rounded-circle " width="60" height="60">
+                                                        @else
+                                                            <img src="{{ asset('images/no_image_found.png') }}" alt="No Image Found"
+                                                                class="img-thumbnail mt-2 rounded-circle " width="60" height="60">
+                                                        @endif
+                                                    </td>
+                                                    <td class="align-middle text-center">
+                                                        {{ $registrant->company_name }}
+                                                    </td>
+                                                    <td class="align-middle text-center">{{ $PersonName }}</td>
+                                                    <td class="align-middle text-center">{{ $registrant->designation }}</td>
+                                                    <td class="align-middle text-center">
+                                                        <a onclick="eventAlert()"><button class="btn profile_view_btn">
+                                                                View Profile
+                                                            </button>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                                
+                               <?php /* <table id="registrantsTable" class="display table">
                                     <thead>
                                         <tr>
                                             <th>Profile</th>
@@ -117,6 +166,7 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+                                */ ?>
                             </div>
 
                         </div>
