@@ -302,7 +302,7 @@
      $(document).ready(function() {
          $('#registrantsTable').DataTable({
              ordering: false,
-             paging: false,
+            //  paging: false,
              info: false,
          });
      });

@@ -77,6 +77,7 @@ class EventRegisterController extends Controller
             $eventRegister->total_experience = $request->total_experience;
             $eventRegister->contact_person = $request->contact_person;
             $eventRegister->designation = $request->designation;
+            $eventRegister->bio = $request->individual_bio;
             $eventRegister->email = $request->email;
             $eventRegister->phone = $request->phone;
             $eventRegister->linkedin = $request->linkedin;

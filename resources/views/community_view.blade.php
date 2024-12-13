@@ -44,7 +44,7 @@
                                                             $PersonName = $registrant->full_name;
                                                         }
                                                     @endphp
-                                                    <td class="text-center align-middle display_none_mobile">
+                                                    <td class=" align-middle display_none_mobile">
                                                         @php
                                                             $profileImagePath = $registrant->profile_image;
                                                         @endphp
@@ -56,12 +56,12 @@
                                                                 class="img-thumbnail mt-2 rounded-circle " width="60" height="60">
                                                         @endif
                                                     </td>
-                                                    <td class="align-middle text-center">
-                                                        {{ $registrant->company_name }}
+                                                    <td class="align-middle ">
+                                                        {{ $registrant->company_name ?? '-' }}
                                                     </td>
-                                                    <td class="align-middle text-center">{{ $PersonName }}</td>
-                                                    <td class="align-middle text-center">{{ $registrant->designation }}</td>
-                                                    <td class="align-middle text-center">
+                                                    <td class="align-middle">{{ $PersonName ?? '-'}}</td>
+                                                    <td class="align-middle">{{ $registrant->designation ?? '-' }}</td>
+                                                    <td class="align-middle">
                                                         <a onclick="eventAlert()"><button class="btn profile_view_btn">
                                                                 View Profile
                                                             </button>

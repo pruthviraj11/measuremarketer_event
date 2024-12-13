@@ -21,7 +21,7 @@
                         <div class="row">
 
                             <div class="col-md-12 text-center">
-                                <h2 class="text-white">Register As </h2>
+                                <h2 class="text-white poppins">Register As </h2>
                                 <div class="form-check">
                                     <input class="form-check-input radio_form" type="radio" name="registration_type"
                                         id="company_registration" value="company" checked>
@@ -74,10 +74,10 @@
                                 </div>
 
                                 <div class="col-md-6 mb-3">
-                                    <label for="email" class="form-label">Email
+                                    <label for="email" class="form-label" >Email
                                     </label>
                                     <input class="" type="checkbox" value="1" id="email_check"
-                                        name="email_check">
+                                        name="email_check" checked>
 
                                     <label for="email" class="form-label ml-1">(Display to
                                         Other Attendees)
@@ -91,7 +91,7 @@
                                 <div class="col-md-6 mb-3">
                                     <label for="phone" class="form-label">Phone</label>
                                     <input class="" type="checkbox" value="1" id="phone_check"
-                                        name="phone_check">
+                                        name="phone_check" checked>
 
 
                                     <label for="email" class="form-label ml-1">(Display to
@@ -100,7 +100,11 @@
                                     <input type="text" name="phone" class="form-control" id="phone"
                                         value="{{ old('phone') }}" placeholder="Phone Number">
                                 </div>
+                                <div class="col-md-12 mb-5">
+                                    <label for="bio" class="form-label">Company information</label>
+                                    <textarea name="individual_bio" class="form-control" id="bio">{{ old('full_name') }}</textarea>
 
+                                </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="designation" class="form-label">Designation</label>
                                     <input type="text" name="designation" class="form-control" id="designation"
@@ -139,7 +143,7 @@
                                     <div class="col-md-6 mb-3">
                                         <label for="email" class="form-label">Email</label>
                                         <input class="" type="checkbox" value="1"
-                                            id="individual_email_check" name="individual_email_check">
+                                            id="individual_email_check" name="individual_email_check" checked>
 
                                         <label for="email" class="form-label ml-1">(Display to
                                             Other Attendees)
@@ -154,7 +158,7 @@
                                         <label for="phone" class="form-label">Phone</label>
 
                                         <input class="" type="checkbox" value="1"
-                                            id="individual_phone_check" name="individual_phone_check">
+                                            id="individual_phone_check" name="individual_phone_check" checked>
 
                                         <label for="email" class="form-label ml-1">(Display to
                                             Other Attendees)
@@ -198,7 +202,7 @@
 
 
                                     <div class="col-md-12 mb-5">
-                                        <label for="bio" class="form-label">Company information</label>
+                                        <label for="bio" class="form-label">Bio</label>
                                         <textarea name="individual_bio" class="form-control" id="bio">{{ old('full_name') }}</textarea>
 
                                     </div>
@@ -266,7 +270,7 @@
                         <!-- Login Information -->
                         <div class="row g-0">
                             <div class="col-md-12 pl-0">
-                                <h4 class="text-white">Login Information</h4>
+                                <h4 class="text-white poppins">Login Information</h4>
                             </div>
 
                             <div class="col-sm-6 form-group pl-0">
