@@ -40,17 +40,38 @@ class EventRegisterController extends Controller
     public function store(Request $request)
     {
 
+        $formType = $request->registration_type;
 
-        // $request->validate([
-        //     'company_name' => 'required|string|max:255',
-        //     'email' => 'required|email|unique:event_registers,email',
-        //     'phone' => 'required|digits:10',
-        //     'password' => 'required|min:4|confirmed',
-        //     'designation' => 'required|string|max:255',
-        // ], [
+        if ($formType == "company") {
+            $request->validate([
+                'company_name' => 'required|string|max:255',
+                'email' => 'required|email|unique:event_registers,email',
+                'phone' => 'required|digits:10',
+                'password' => 'required|min:4|confirmed',
+                'designation' => 'required|string|max:255',
+            ], [
 
-        //     'phone.digits' => 'Phone number must be 10 digits.',
-        // ]);
+                'phone.digits' => 'Phone number must be 10 digits.',
+            ]);
+        } else {
+
+            $request->validate([
+                'individual_full_name' => 'required|string|max:255',
+                'individual_email' => 'required|email|unique:event_registers,email',
+                'individual_phone' => 'required|digits:10',
+                'password' => 'required|min:4|confirmed',
+                // 'designation' => 'required|string|max:255',
+            ], [
+                'individual_full_name' => 'Full Name is required',
+                'individual_email' => 'Email is required',
+                'individual_phone' => 'Phone Number is required',
+                'phone.digits' => 'Phone number must be 10 digits.',
+            ]);
+
+        }
+
+
+
 
 
         $eventRegister = new EventRegister();
@@ -68,7 +89,7 @@ class EventRegisterController extends Controller
             $interests = implode(",", $request->interests);
         }
 
-        $formType = $request->registration_type;
+
 
 
 

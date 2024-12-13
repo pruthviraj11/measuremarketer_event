@@ -51,6 +51,9 @@
                                     <label for="company_name" class="form-label">Company Name</label>
                                     <input type="text" name="company_name" class="form-control" id="company_name"
                                         value="{{ old('company_name') }}">
+                                    @error('company_name')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <div class="col-md-6 mb-3">
@@ -74,7 +77,7 @@
                                 </div>
 
                                 <div class="col-md-6 mb-3">
-                                    <label for="email" class="form-label" >Email
+                                    <label for="email" class="form-label">Email
                                     </label>
                                     <input class="" type="checkbox" value="1" id="email_check"
                                         name="email_check" checked>
@@ -85,6 +88,9 @@
 
                                     <input type="email" name="email" class="form-control" id="email"
                                         value="{{ old('email') }}" placeholder="Email Address">
+                                    @error('email')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
 
@@ -99,6 +105,9 @@
                                     </label>
                                     <input type="text" name="phone" class="form-control" id="phone"
                                         value="{{ old('phone') }}" placeholder="Phone Number">
+                                    @error('phone')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="col-md-12 mb-5">
                                     <label for="bio" class="form-label">Company information</label>
@@ -109,6 +118,10 @@
                                     <label for="designation" class="form-label">Designation</label>
                                     <input type="text" name="designation" class="form-control" id="designation"
                                         value="{{ old('designation') }}">
+                                    @error('designation')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+
                                 </div>
 
 
@@ -138,6 +151,9 @@
                                         <label for="full_name" class="form-label">Full Name</label>
                                         <input type="text" name="individual_full_name" class="form-control"
                                             id="full_name" value="{{ old('full_name') }}">
+                                        @error('individual_full_name')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
 
                                     <div class="col-md-6 mb-3">
@@ -152,6 +168,9 @@
                                         <input type="email" name="individual_email" class="form-control"
                                             id="email" value="{{ old('individual_email') }}"
                                             placeholder="Email Address">
+                                        @error('individual_email')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
 
                                     <div class="col-md-6 mb-3">
@@ -166,6 +185,9 @@
 
                                         <input type="text" name="individual_phone" class="form-control"
                                             id="phone" value="{{ old('phone') }}">
+                                        @error('individual_phone')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
 
                                     <div class="col-md-6 mb-3">
@@ -275,8 +297,8 @@
 
                             <div class="col-sm-6 form-group pl-0">
                                 {{-- <label class="text-white" for="pass">Password</label> --}}
-                                <input type="text" name="password" class="form-control form_passsword"
-                                    id="pass" placeholder="Enter Username" value="{{ old('password') }}">
+                                <input type="password" name="password" class="form-control form_passsword"
+                                    id="pass" placeholder="Password" value="{{ old('password') }}">
 
                                 <button type="button" class="btn btn-outline-secondary toggle-password"
                                     data-target="#pass">
@@ -292,7 +314,7 @@
                                 {{-- <label class="text-white" for="pass2">Confirm Password</label> --}}
                                 <input type="password" name="password_confirmation"
                                     class="form-control form_passsword" id="pass2"
-                                    placeholder="enter your password." value="{{ old('password_confirmation') }}">
+                                    placeholder="Confirm Password." value="{{ old('password_confirmation') }}">
 
                                 <button type="button" class="btn btn-outline-secondary confirm-toggle-password"
                                     data-target="#pass2">
