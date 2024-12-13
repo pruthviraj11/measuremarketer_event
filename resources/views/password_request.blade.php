@@ -28,7 +28,7 @@
 
                     <!-- Form -->
                     <div class="d-flex justify-content-center align-items-center">
-                        <form action="{{ route('users_login') }}" method="POST" enctype="multipart/form-data"
+                        <form action="{{ route('users_reset_password') }}" method="POST" enctype="multipart/form-data"
                             class="registration-form">
                             @csrf
                             <div class="row">
@@ -43,7 +43,7 @@
 
 
                                 <div class="col-md-12 form-group text-center">
-                                    <button type="submit" class="button boxed-btn">Send Link</button>
+                                    <button type="submit" class="button boxed-btn">Send Email</button>
                                 </div>
 
                                 <div class="col-md-12 text-center">

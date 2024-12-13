@@ -54,8 +54,12 @@
                                 </div>
 
                                 <!-- Forgot Password Link -->
-                                <div class="col-md-12 text-center">
+                                <div class="col-md-6 text-center">
                                     <a href="{{ route('join_event') }}" class="text-white">Register Now</a>
+                                </div>
+
+                                <div class="col-md-6 text-center">
+                                    <a href="{{ route('password_request') }}" class="text-white">Forgot Password</a>
                                 </div>
                             </div>
                         </form>

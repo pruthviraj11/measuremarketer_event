@@ -100,6 +100,9 @@ Route::post('event-registration', [EventRegisterController::class, 'store'])->na
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/users_login', [LoginController::class, 'checkLogin'])->name('users_login');
+Route::post('/reset_password', [LoginController::class, 'resetPassword'])->name('users_reset_password');
+
+
 
 Route::post('/login', [LoginController::class, 'login']);
 Route::any('/logout', [LoginController::class, 'logout'])->name('logout');

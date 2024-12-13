@@ -10,6 +10,9 @@ use App\Models\EventRegister; // Assuming your model is named EventRegister
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ResetPassword;
+use Illuminate\Support\Str;
 class LoginController extends Controller
 {
     /*
@@ -81,6 +84,43 @@ class LoginController extends Controller
         return Redirect::back()->withErrors([
             'email' => 'The provided credentials are incorrect.',
         ]);
+    }
+
+
+
+    /*----------  Reset Password Details ----------*/
+
+    public function resetPassword(Request $request)
+    {
+        // Validate the input data
+        $request->validate([
+            'email' => 'required|email',
+        ]);
+
+        // Check if the email exists in the event_registers table
+        $user = EventRegister::where('email', $request->email)->first();
+
+        if (!empty($user)) {
+
+            $randomPassword = Str::random(6);
+            $newPassword = Hash::make($randomPassword);
+
+            $user->password = $newPassword;
+            $user->save();
+
+            Mail::to($user->email)->send(new ResetPassword($user, $randomPassword));
+
+
+            return redirect()->route('password_request')->with('success', 'Your New Password  has been sent to your email please check there..');
+            ;
+        } else {
+
+            return Redirect::back()->withErrors([
+                'email' => 'Enter email is incorrect.',
+            ]);
+        }
+
+
     }
 
 
