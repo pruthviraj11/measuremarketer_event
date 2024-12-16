@@ -61,11 +61,37 @@
                                                     </td>
                                                     <td class="align-middle">{{ $PersonName ?? '-'}}</td>
                                                     <td class="align-middle">{{ $registrant->designation ?? '-' }}</td>
-                                                    <td class="align-middle">
+                                                    {{-- <td class="align-middle">
                                                         <a onclick="eventAlert()"><button class="btn profile_view_btn">
                                                                 View Profile
                                                             </button>
                                                         </a>
+                                                    </td> --}}
+                                                    <td class="align-middle text-center">
+                                                        {{-- <button type="button" class="btn btn-primary send_message_btn"
+                                                            data-toggle="modal" data-target="#exampleModal"
+                                                            data-id="{{ $registrant->id }}"
+                                                            data-name="{{ $registrant->contact_person }}"
+                                                            data-event-id="{{ $registrant->event_id }}">Send
+                                                            Message</button> --}}
+                                                        <?php $encryptedId = encrypt($registrant->id); ?>
+    
+                                                        <a href="{{ route('get_contact_person', $encryptedId) }}"><button
+                                                                class="btn profile_view_btn ">
+                                                                {{-- <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                    height="24" viewBox="0 0 24 24" fill="none"
+                                                                    stroke="currentColor" stroke-width="2"
+                                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                                    class="feather feather-eye">
+                                                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z">
+                                                                    </path>
+                                                                    <circle cx="12" cy="12" r="3"></circle>
+                                                                </svg> --}}
+                                                                View Profile
+                                                            </button>
+                                                        </a>
+    
+                                                      
                                                     </td>
                                                 </tr>
                                             @endforeach
